@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MV Suggestion Tool</title>
+    <style>
+        /* Basic Reset & Defaults */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa; /* Lighter background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        main {
+            flex-grow: 1; /* Pushes footer elements down */
+            padding-top: 80px; /* Increased padding for taller nav */
+            width: 100%;
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: rgba(51, 51, 51, 0.9); /* Slightly transparent dark */
+            backdrop-filter: blur(5px); /* Blur effect for nav background */
+            color: #fff;
+            position: fixed; /* Keeps nav on top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between; /* Space between logo and menu */
+            align-items: center;
+            padding: 10px 25px; /* Padding around nav */
+            height: 70px; /* Fixed height */
+        }
+
+        .logo-placeholder {
+            /* Replace this div with an <img> tag when you have your logo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px; /* Adjust size as needed */
+            height: 50px; /* Adjust size as needed */
+            border: 2px dashed #a0d8f0;
+            color: #a0d8f0;
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+            user-select: none; /* Prevent text selection */
+            /* If using an image:
+             img { max-width: 100%; max-height: 100%; object-fit: contain; } */
+        }
+
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: flex-end; /* Align menu items to the right */
+        }
+
+        .main-nav ul li {
+            margin-left: 30px; /* Increased space between menu items */
+        }
+
+        .main-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px; /* Slightly larger padding */
+            font-size: 1.05em;
+            border-radius: 4px;
+            transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 3px solid transparent; /* Thicker underline */
+            cursor: pointer; /* Ensure pointer cursor */
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            color: #e0cff0; /* Lighter highlight */
+            border-bottom: 3px solid #9E69AF; /* Use theme color */
+            background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover/active */
+        }
+
+        /* Page Sections */
+        .page {
+            display: none; /* Hide pages by default */
+            padding: 30px 20px; /* Increased padding */
+            animation: fadeIn 0.6s ease-in-out;
+            min-height: calc(100vh - 110px); /* Adjust based on nav/footer height */
+            position: relative; /* Needed for absolute positioning of back button */
+            padding-bottom: 80px; /* More space for the back button */
+        }
+
+        .page.active {
+            display: block; /* Show active page */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-container {
+            max-width: 950px; /* Slightly wider */
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 40px; /* More padding */
+            border-radius: 10px; /* Softer corners */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Softer shadow */
+        }
+
+        /* Headings */
+        h1, h2 {
+            color: #343a40; /* Darker heading color */
+            margin-bottom: 20px; /* More space below heading */
+            font-weight: 600;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.4em;
+            color: #495057;
+        }
+
+        h2 {
+            font-size: 1.9em;
+            border-bottom: 2px solid #eee; /* Slightly thicker border */
+            padding-bottom: 8px;
+            margin-top: 35px; /* More space between sections in results */
+            color: #6E91D6; /* Use theme color */
+        }
+        .result-section h2 {
+             color: #9E69AF; /* Other theme color for result headers */
+             border-color: #e0d1e6;
+        }
+
+
+        /* Button General Styling & Gradient */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px; /* Larger padding */
+            margin: 10px 8px;
+            border: none;
+            border-radius: 6px; /* Slightly rounder */
+            cursor: pointer;
+            font-size: 1.05em; /* Slightly larger font */
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #fff; /* White text */
+            background: linear-gradient(135deg, #9E69AF, #6E91D6); /* Gradient */
+            background-size: 200% 200%; /* For hover animation */
+            transition: background-position 0.4s ease-out, transform 0.15s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Button Hover Animation */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .btn:hover {
+            animation: gradientShift 4s ease infinite; /* Infinite gradient shift on hover */
+            transform: translateY(-2px); /* Slight lift */
+            box-shadow: 0 4px 10px rgba(138, 105, 175, 0.4); /* Colored shadow */
+        }
+
+        .btn:active {
+            transform: scale(0.97) translateY(0); /* Press effect */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Specific Button Styles */
+         .btn-primary { /* Explore Now & Get Suggestions */
+            /* Uses default gradient */
+         }
+         .btn-secondary { /* Go Back */
+             background: linear-gradient(135deg, #6c757d, #495057); /* Grey gradient */
+             background-size: 200% 200%;
+         }
+          .btn-secondary:hover {
+             box-shadow: 0 4px 10px rgba(80, 80, 80, 0.3); /* Grey shadow */
+             /* Optional: Add animation for secondary too */
+             /* animation: gradientShift 4s ease infinite; */
+         }
+
+         .btn-warning { /* Record */
+             background: linear-gradient(135deg, #ffc107, #ff9800); /* Yellow/Orange gradient */
+             background-size: 200% 200%;
+             color: #333; /* Dark text for yellow */
+         }
+         .btn-warning:hover {
+             box-shadow: 0 4px 10px rgba(255, 170, 0, 0.4);
+             color: #111;
+         }
+
+         .btn-danger { /* Stop Recording */
+             background: linear-gradient(135deg, #dc3545, #c82333); /* Red gradient */
+             background-size: 200% 200%;
+         }
+         .btn-danger:hover {
+              box-shadow: 0 4px 10px rgba(220, 50, 70, 0.4);
+         }
+
+
+        .btn-back {
+            position: absolute;
+            bottom: 20px; /* Lower position */
+            left: 25px; /* More inset */
+            margin: 0;
+            z-index: 10; /* Ensure it's above other content if needed */
+        }
+
+        #home-page .btn-back {
+            display: none; /* Hide back button on home */
+        }
+
+
+        /* Home Page Specific */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            /* Make it taller */
+            height: 65vh; /* Use viewport height */
+            min-height: 450px;
+            max-height: 700px;
+            overflow: hidden;
+            border-radius: 10px; /* Match content container */
+            margin: 0 auto 30px auto; /* Center and add margin below */
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            /* Apply Gaussian Blur */
+            filter: blur(4px) brightness(0.9); /* Add blur and slight darken */
+            transform: scale(1.05); /* Slightly zoom in to hide blurred edges */
+        }
+
+        .hero-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for contrast */
+            padding: 40px 50px; /* More padding */
+            border-radius: 8px;
+            text-align: center;
+            max-width: 85%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-text-overlay h1 {
+            font-size: 2.8em; /* Larger text */
+            margin-bottom: 25px;
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Text shadow */
+        }
+
+        /* About Page Specific */
+        #about-page p {
+            max-width: 750px; /* Wider paragraph */
+            margin: 30px auto; /* Center paragraph */
+            text-align: justify;
+            font-size: 1.1em; /* Slightly larger text */
+            color: #495057;
+        }
+
+        /* Feature Page Specific */
+        #feature-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 30px; /* More space between form groups */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px; /* More space below label */
+            font-weight: 600; /* Bolder label */
+            color: #495057;
+            font-size: 1.05em;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 14px; /* More padding */
+            border: 1px solid #ced4da; /* Standard border */
+            border-radius: 6px; /* Match button radius */
+            font-size: 1em;
+            margin-bottom: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+             border-color: #8a6fb5; /* Theme color focus */
+             box-shadow: 0 0 0 3px rgba(158, 105, 175, 0.2); /* Focus ring */
+             outline: none;
+        }
+
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px; /* Taller textarea */
+        }
+
+         .form-group select {
+             /* Appearance for cross-browser consistency */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%236c757d" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 45px; /* Space for arrow */
+            cursor: pointer;
+         }
+          /* Style for disabled option */
+         .form-group select option[disabled] {
+            color: #999;
+         }
+
+        /* Audio Input Group Styling */
+        .audio-input-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 10px; /* Space between elements */
+        }
+
+        .form-group input[type="file"] {
+             padding: 8px 12px; /* Adjust padding for file input */
+             cursor: pointer;
+             flex-grow: 1; /* Allow file input to take space */
+             min-width: 200px; /* Minimum width */
+             margin-bottom: 0; /* Remove bottom margin if in group */
+        }
+
+        /* Style file input button appearance */
+        input[type="file"]::file-selector-button {
+            padding: 10px 18px;
+            margin-right: 12px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #6c757d, #495057); /* Match secondary button */
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+            font-weight: 600;
+        }
+        input[type="file"]::file-selector-button:hover {
+            transform: scale(1.03);
+        }
+         input[type="file"]::file-selector-button:active {
+            transform: scale(0.98);
+         }
+
+        #record-status {
+            margin-left: 15px;
+            font-style: italic;
+            color: #dc3545; /* Red for recording */
+            font-weight: 500;
+        }
+
+
+        .form-group small {
+            display: block;
+            margin-top: 8px;
+            color: #6c757d; /* Grey text */
+            font-size: 0.9em;
+        }
+
+        #get-suggestions-button {
+            display: block;
+            width: 100%;
+            max-width: 350px; /* Wider button */
+            margin: 40px auto 0 auto; /* More margin top, center */
+            padding: 16px 30px; /* Even larger */
+            font-size: 1.15em;
+        }
+
+
+        /* Results Area */
+        #results-area {
+            margin-top: 50px; /* More space before results */
+            padding-top: 30px;
+            border-top: 2px solid #eee; /* Thicker separator */
+            display: none; /* Hide initially */
+        }
+
+        .result-section {
+            background-color: #ffffff; /* White background for sections */
+            padding: 25px 30px; /* More padding */
+            margin-bottom: 25px;
+            border-radius: 8px; /* Match content container */
+            border: 1px solid #e9ecef; /* Lighter border */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Subtle shadow */
+            display: none; /* Hide individual sections initially */
+        }
+
+        .result-section .content {
+            white-space: pre-wrap;
+            font-size: 1em; /* Standard font size */
+            color: #495057; /* Slightly darker text */
+            line-height: 1.7; /* More line spacing */
+        }
+        /* Style bullet points within results */
+        .result-section .content ul,
+        .result-section .content ol {
+            margin-left: 25px; /* Indent lists */
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+         .result-section .content li {
+             margin-bottom: 8px; /* Space between list items */
+         }
+
+        /* Image Placeholder Styles */
+        .image-placeholder-container {
+            display: grid; /* Use grid for better alignment */
+            gap: 20px; /* Space between image placeholders */
+            margin-top: 15px;
+        }
+
+        /* Grid layout for placeholders */
+        #result-visuals .image-placeholder-container {
+             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid: 3 columns on large screens */
+        }
+        #result-moodboard .image-placeholder-container {
+             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid: 4-5 columns on large screens */
+        }
+
+        .image-placeholder {
+            border: 1px solid #dee2e6;
+            border-radius: 6px; /* Match button radius */
+            background-color: #f8f9fa; /* Light background */
+            overflow: hidden;
+            text-align: center;
+            color: #495057;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .image-placeholder:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .image-placeholder img {
+            display: block;
+            width: 100%;
+            height: 180px; /* Taller placeholders */
+            object-fit: cover;
+            background-color: #e9ecef; /* Fallback background */
+            border-bottom: 1px solid #dee2e6;
+        }
+        #result-moodboard .image-placeholder img {
+             height: 140px; /* Slightly smaller height for moodboard */
+         }
+
+        .image-placeholder figcaption {
+            font-size: 0.9em;
+            padding: 10px 12px; /* More padding */
+            background-color: #fff;
+            min-height: 50px; /* Ensure some space for caption */
+            line-height: 1.4;
+        }
+
+        /* Specific Small Notes */
+        .result-section small {
+            display: block;
+            margin-top: 15px;
+            color: #6c757d;
+            font-style: italic;
+            font-size: 0.85em;
+        }
+
+        /* Color Palette Display */
+        .color-palette-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* More space */
+            margin-top: 15px;
+        }
+        .color-swatch {
+            min-width: 110px; /* Ensure minimum width */
+            height: 80px; /* Taller swatch */
+            border-radius: 6px; /* Match other elements */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            overflow: hidden;
+            padding: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+            flex-grow: 1; /* Allow swatches to grow */
+        }
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch span {
+            display: block;
+            word-break: break-word; /* Break long color names */
+            max-width: 100%;
+        }
+        .color-swatch .hex-code {
+            margin-top: 8px; /* More space */
+            font-size: 1em; /* Larger hex code */
+            font-family: 'Courier New', Courier, monospace;
+            user-select: all; /* Make hex selectable */
+            opacity: 0.85;
+        }
+
+
+        /* Loading Spinner */
+        #loading-indicator p {
+            font-weight: 500;
+            color: #495057;
+        }
+        .spinner {
+            border: 5px solid rgba(0, 0, 0, 0.1); /* Thicker border */
+            width: 40px; /* Larger spinner */
+            height: 40px;
+            border-radius: 50%;
+            border-left-color: #6E91D6; /* Use theme color */
+            margin: 15px auto; /* More margin */
+            animation: spin 1s linear infinite; /* Linear spin */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error Message */
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 18px 25px; /* More padding */
+            border-radius: 6px;
+            margin: 25px 0;
+            text-align: center;
+            font-weight: 500;
+            display: none; /* Hidden by default */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+             .content-container { max-width: 90%; padding: 30px; }
+             h1 { font-size: 2.1em; }
+             h2 { font-size: 1.7em; }
+             .hero-text-overlay h1 { font-size: 2.4em; }
+             #result-visuals .image-placeholder-container { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+             #result-moodboard .image-placeholder-container { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+        }
+
+
+        @media (max-width: 768px) {
+            .main-nav {
+                padding: 10px 15px;
+                height: auto; /* Allow wrap */
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .logo-placeholder { margin-bottom: 10px; width: 80px; height: 40px; font-size: 1em; }
+            .main-nav ul {
+                justify-content: flex-start;
+                width: 100%;
+                padding-top: 10px; /* Space below logo */
+                flex-wrap: wrap; /* Allow nav items to wrap */
+            }
+             .main-nav ul li { margin-left: 0; margin-right: 15px; margin-bottom: 5px; }
+             .main-nav ul li a { padding: 6px 10px; font-size: 1em; }
+            main { padding-top: 140px; /* Adjust for taller wrapped nav */ }
+
+            .hero-container { height: 55vh; min-height: 400px; }
+            .hero-text-overlay { padding: 30px; }
+            .hero-text-overlay h1 { font-size: 2em; }
+
+            h1 { font-size: 1.9em; }
+            h2 { font-size: 1.6em; }
+            .content-container { padding: 25px; }
+
+            #result-visuals .image-placeholder-container { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+            #result-moodboard .image-placeholder-container { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .image-placeholder img { height: 150px; }
+             #result-moodboard .image-placeholder img { height: 120px; }
+
+
+            .btn-back {
+               position: relative;
+               bottom: auto;
+               left: auto;
+               margin: 30px auto 0 auto; /* Center it with more margin */
+               display: block;
+               width: fit-content;
+            }
+             #home-page .btn-back { display: none; }
+            .page { padding-bottom: 30px; padding-left: 15px; padding-right: 15px; }
+        }
+
+        @media (max-width: 480px) {
+            main { padding-top: 130px; }
+            .hero-container { height: 50vh; min-height: 350px; }
+            .hero-text-overlay { padding: 25px; max-width: 90%; }
+            .hero-text-overlay h1 { font-size: 1.7em; }
+
+            .btn { padding: 12px 22px; font-size: 1em; margin: 8px 5px;}
+            #get-suggestions-button { max-width: 90%; padding: 14px 25px; font-size: 1.1em; }
+
+            .form-group input[type="text"],
+            .form-group textarea,
+            .form-group select { padding: 12px; }
+
+             /* Stack audio buttons vertically */
+            .audio-input-group { flex-direction: column; align-items: stretch; }
+            .form-group input[type="file"] { margin-bottom: 10px; /* Space below file input */ }
+             .audio-input-group .btn { width: 100%; margin: 5px 0;} /* Full width audio buttons */
+             #record-status { margin: 5px 0 10px 0; text-align: center; }
+
+
+            #result-visuals .image-placeholder-container { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } /* Maybe 1 or 2 wide */
+            #result-moodboard .image-placeholder-container { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); } /* 2 or 3 wide */
+            .image-placeholder img { height: 140px; }
+             #result-moodboard .image-placeholder img { height: 110px; }
+
+            .content-container { padding: 20px; }
+             .result-section { padding: 20px; }
+             h1 { font-size: 1.7em; }
+             h2 { font-size: 1.5em; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <!-- Replace this div with your <img> tag -->
+        <img src="logofinal(white).png" alt="My Logo" class="logo-placeholder">
+        <ul>
+            <li><a data-page="home" class="nav-link active">Home</a></li>
+            <li><a data-page="about" class="nav-link">About</a></li>
+            <li><a data-page="feature" class="nav-link">Feature</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Home Page Section -->
+        <section id="home-page" class="page active">
+            <div class="hero-container">
+                <img src="heroimg.jpg" alt="Abstract music visuals" class="hero-image">
+                 <!-- Using Picsum for dynamic placeholder -->
+                <div class="hero-text-overlay">
+                    <h1>Get your MV suggestion based on your lyrics!</h1>
+                    <button id="explore-button" class="btn btn-primary">Explore now</button>
+                </div>
+            </div>
+            <!-- Content below hero can be added here if needed -->
+            <button class="btn btn-secondary btn-back" data-target="home">Go Back (to Home)</button> <!-- Usually hidden/disabled on Home -->
+        </section>
+
+        <!-- About Page Section -->
+        <section id="about-page" class="page">
+            <div class="content-container">
+                <h2>About Us</h2>
+                <p>
+                    Welcome to the MV Assistant! We are passionate about helping artists translate their musical creations into compelling visual stories. Crafting the perfect music video concept can be challenging, requiring a blend of artistic vision and practical planning. Our AI-powered tool is designed to bridge that gap. By analyzing your lyrics, keywords, and genre, MV Assistant generates tailored suggestions for music video concepts, requirements, budget estimations, visual inspirations, and color palettes. We aim to streamline the creative process, providing a launchpad for your ideas and empowering you to bring your music to life visually, whether you're an indie artist or part of a larger production. Let's make something amazing together!
+                </p>
+            </div>
+            <button class="btn btn-secondary btn-back" data-target="home">Go Back</button>
+        </section>
+
+        <!-- Feature Page Section -->
+        <section id="feature-page" class="page">
+            <div class="content-container">
+                <h1>MV Assistant</h1>
+
+                <form id="feature-form" onsubmit="return false;"> <!-- Prevent default form submission -->
+                    <div class="form-group">
+                        <label for="lyrics-input">Music Lyrics:</label>
+                        <textarea id="lyrics-input" rows="7" placeholder="Paste your complete song lyrics here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="keywords-input">Keywords / Theme:</label>
+                        <input type="text" id="keywords-input" placeholder="e.g., nostalgic, summer vibe, urban decay, overcoming struggle, first love">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genre-select">Music Genre:</label>
+                        <select id="genre-select" required> <!-- Added required attribute -->
+                            <option value="" disabled selected>-- Select a Genre --</option>
+                            <option value="RnB">RnB / Soul</option>
+                            <option value="Folk">Folk / Acoustic</option>
+                            <option value="Rock">Rock (Alternative, Hard Rock, etc.)</option>
+                            <option value="Pop">Pop (Synth-pop, Dance-pop, etc.)</option>
+                            <option value="Hiphop">Hip-hop / Rap</option>
+                            <option value="Electronic">Electronic (EDM, House, Techno)</option>
+                            <option value="Classical">Classical / Orchestral</option>
+                            <option value="Country">Country</option>
+                             <option value="Jazz">Jazz / Blues</option>
+                             <option value="Reggae">Reggae / Dancehall</option>
+                             <option value="Metal">Metal</option>
+                            <option value="Other">Other / Fusion</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="track-upload">Audio Input (Optional):</label>
+                        <div class="audio-input-group">
+                             <input type="file" id="track-upload" accept="audio/*">
+                             <button type="button" id="record-audio-button" class="btn btn-warning">Record Audio</button>
+                             <span id="record-status"></span>
+                        </div>
+                        <small>Note: Audio analysis (upload/record) is not implemented in this demo's AI call. Suggestions based on text inputs.</small>
+                    </div>
+
+                    <button type="button" id="get-suggestions-button" class="btn btn-primary">Get Suggestions!</button>
+                </form>
+
+                <div id="loading-indicator" style="display: none; margin-top: 30px; text-align: center;">
+                    <p>Generating creative suggestions... This might take a few moments.</p>
+                    <div class="spinner"></div>
+                </div>
+
+                <div id="error-message" class="error-message"></div> <!-- Error message placeholder -->
+
+                <div id="results-area">
+                    <!-- AI suggestions will be populated here -->
+                     <section id="result-concept" class="result-section"><h2>Concept / Key Visual</h2><div class="content"></div></section>
+                     <section id="result-requirements" class="result-section"><h2>Requirements for MV</h2><div class="content"></div></section>
+                     <section id="result-budget" class="result-section"><h2>Estimated Budget</h2><div class="content"></div></section>
+                     <section id="result-visuals" class="result-section">
+                         <h2>Visual Demo (Key Image Ideas)</h2>
+                         <div class="content image-placeholder-container">
+                             <!-- Image placeholders will be added here by JS -->
+                         </div>
+                         <small>Note: Images are illustrative placeholders generated based on AI descriptions.</small>
+                     </section>
+                     <section id="result-moodboard" class="result-section">
+                         <h2>Moodboard Influences</h2>
+                          <div class="content">
+                              <p id="moodboard-description"></p> <!-- Text description here -->
+                              <div class="image-placeholder-container" id="moodboard-images">
+                                  <!-- Moodboard placeholders will be added here by JS -->
+                              </div>
+                         </div>
+                          <small>Note: Images are illustrative placeholders generated based on AI descriptions.</small>
+                     </section>
+                     <section id="result-palette" class="result-section">
+                         <h2>Color Palette</h2>
+                         <div class="content color-palette-display">
+                             <!-- Color swatches will be added here by JS -->
+                         </div>
+                     </section>
+                </div>
+
+            </div>
+             <button class="btn btn-secondary btn-back" data-target="home">Go Back</button>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Element References ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const exploreButton = document.getElementById('explore-button');
+            const backButtons = document.querySelectorAll('.btn-back');
+            const getSuggestionsButton = document.getElementById('get-suggestions-button');
+            const featureForm = document.getElementById('feature-form');
+            const resultsArea = document.getElementById('results-area');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const errorMessageDiv = document.getElementById('error-message');
+            const recordAudioButton = document.getElementById('record-audio-button');
+            const recordStatus = document.getElementById('record-status');
+            const lyricsInput = document.getElementById('lyrics-input');
+            const keywordsInput = document.getElementById('keywords-input');
+            const genreSelect = document.getElementById('genre-select');
+            const trackUploadInput = document.getElementById('track-upload'); // Ref for file input
+
+            // --- Audio Recording Variables ---
+            let mediaRecorder;
+            let audioChunks = [];
+            let isRecording = false;
+            let recordedAudioBlob = null; // To store the final Blob
+
+            // --- Page Navigation ---
+            function showPage(pageId) {
+                pages.forEach(page => page.classList.remove('active'));
+                const targetPage = document.getElementById(`${pageId}-page`);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                } else {
+                    console.error("Target page not found:", pageId);
+                    document.getElementById('home-page').classList.add('active'); // Fallback
+                    pageId = 'home';
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+                window.scrollTo(0, 0); // Scroll to top on page change
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage(link.getAttribute('data-page'));
+                });
+            });
+
+            if (exploreButton) {
+                exploreButton.addEventListener('click', () => showPage('feature'));
+            }
+
+            backButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('home'); // Always go back home
+                });
+            });
+
+             // --- Microphone Recording Logic ---
+             if (recordAudioButton) {
+                 recordAudioButton.addEventListener('click', handleRecordButtonClick);
+             } else {
+                 console.warn("Record audio button not found.");
+             }
+
+            async function handleRecordButtonClick() {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    recordStatus.textContent = 'Recording not supported on this browser.';
+                    recordAudioButton.disabled = true;
+                    return;
+                }
+
+                if (!isRecording) {
+                    // Start Recording
+                    try {
+                        // Clear previous recording/file state if user clicks record
+                        recordedAudioBlob = null;
+                        trackUploadInput.value = ''; // Clear file input if user records instead
+                        recordStatus.textContent = 'Requesting mic access...';
+
+                        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                        mediaRecorder = new MediaRecorder(stream);
+
+                        mediaRecorder.ondataavailable = event => {
+                            if (event.data.size > 0) { // Only push if data exists
+                                audioChunks.push(event.data);
+                            }
+                        };
+
+                        mediaRecorder.onstop = () => {
+                            if (audioChunks.length > 0) {
+                                recordedAudioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' }); // Use a common web format
+                                const audioUrl = URL.createObjectURL(recordedAudioBlob);
+                                console.log("Recording finished. Blob:", recordedAudioBlob, "URL:", audioUrl);
+                                recordStatus.textContent = `Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB).`;
+                            } else {
+                                console.log("Recording stopped with no data.");
+                                recordStatus.textContent = 'Recording stopped (no audio captured).';
+                                recordedAudioBlob = null; // Ensure blob is null if no data
+                            }
+                            audioChunks = []; // Reset chunks
+
+                            // Stop tracks to turn off microphone light/indicator
+                            stream.getTracks().forEach(track => track.stop());
+                            updateRecordingUI(false); // Update UI after tracks are stopped
+                        };
+
+                        mediaRecorder.onerror = (event) => {
+                            console.error("MediaRecorder error:", event.error);
+                            recordStatus.textContent = `Recording error: ${event.error.name}`;
+                            isRecording = false;
+                            updateRecordingUI(false);
+                            stream.getTracks().forEach(track => track.stop()); // Ensure mic is off
+                        };
+
+                        audioChunks = []; // Clear previous recording chunks
+                        mediaRecorder.start();
+                        isRecording = true;
+                        updateRecordingUI(true);
+                        recordStatus.textContent = 'Recording... Click again to stop.';
+
+                    } catch (err) {
+                        console.error("Error accessing microphone:", err);
+                        recordStatus.textContent = `Mic access error: ${err.name}`;
+                        isRecording = false; // Ensure state is correct
+                        updateRecordingUI(false);
+                    }
+                } else {
+                    // Stop Recording
+                    if (mediaRecorder && mediaRecorder.state === "recording") {
+                         mediaRecorder.stop();
+                         recordStatus.textContent = 'Stopping recording...';
+                         // State updates happen in the onstop handler
+                    } else {
+                        // Handle case where button is in stop state but recorder isn't active
+                        isRecording = false;
+                        updateRecordingUI(false);
+                        recordStatus.textContent = 'Stopped.';
+                    }
+                }
+            }
+
+            function updateRecordingUI(recording) {
+                 if (!recordAudioButton) return;
+                 isRecording = recording; // Update global state
+                 if (recording) {
+                     recordAudioButton.textContent = 'Stop Recording';
+                     recordAudioButton.classList.remove('btn-warning');
+                     recordAudioButton.classList.add('btn-danger');
+                 } else {
+                     recordAudioButton.textContent = 'Record Audio';
+                     recordAudioButton.classList.remove('btn-danger');
+                     recordAudioButton.classList.add('btn-warning');
+                     // recordStatus text is set in onstop or onclick handlers
+                 }
+             }
+
+             // Clear recording status if user selects a file
+             if(trackUploadInput) {
+                 trackUploadInput.addEventListener('change', () => {
+                     if (trackUploadInput.files.length > 0) {
+                          if (isRecording && mediaRecorder && mediaRecorder.state === "recording") {
+                              mediaRecorder.stop(); // Stop recording if user uploads
+                          }
+                          recordStatus.textContent = ''; // Clear recording status
+                          recordedAudioBlob = null; // Clear recorded blob
+                     }
+                 });
+             }
+
+
+            // --- Feature Page: Get Suggestions Logic ---
+            if (getSuggestionsButton) {
+                getSuggestionsButton.addEventListener('click', handleGetSuggestions);
+            }
+
+            async function handleGetSuggestions() {
+                // --- !! EXTREME SECURITY WARNING !! ---
+                // --- !! API Key exposed client-side. HIGH RISK. !! ---
+                // --- !! DO NOT USE IN PRODUCTION ENVIRONMENT. !! ---
+                const GEMINI_API_KEY = "AIzaSyB5c-hp-QeKBpBTz8qwANe4j5Kc4dZ_bWM"; // <--- EXTREMELY INSECURE - VISIBLE TO ALL VISITORS
+                const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+
+                // 1. Get Form Data
+                const lyrics = lyricsInput.value.trim();
+                const keywords = keywordsInput.value.trim();
+                const selectedGenre = genreSelect.value;
+                // Note: Uploaded file (trackUploadInput.files[0]) and recorded audio (recordedAudioBlob) exist
+                // but ARE NOT USED in this specific API call structure.
+
+                // 2. Validation
+                if (!lyrics) { displayError("Please provide the song lyrics."); return; }
+                if (!keywords) { displayError("Please enter some keywords or describe the theme."); return; }
+                if (!selectedGenre) { displayError("Please select a music genre from the list."); return; }
+
+                // 3. UI Update: Clear previous, show loading
+                clearResultsAndErrors();
+                loadingIndicator.style.display = 'block';
+                getSuggestionsButton.disabled = true;
+                getSuggestionsButton.textContent = 'Thinking...';
+
+                // 4. Construct Prompt for AI (precise instructions)
+                const prompt = `
+                You are an AI assistant specialized in generating creative concepts for music videos.
+                Analyze the following song details:
+
+                **Lyrics:**
+                \`\`\`
+                ${lyrics}
+                \`\`\`
+
+                **Keywords/Theme:** ${keywords}
+                **Music Genre:** ${selectedGenre}
+
+                Based *only* on the provided text details (lyrics, keywords, genre), generate detailed and actionable music video suggestions. Structure your response *exactly* as follows, using markdown headers (##):
+
+                ## Concept / Key Visual
+                (Describe the core concept in 1-2 sentences. Then elaborate on the main narrative idea or the central visual motif for the MV in a short paragraph. Be descriptive and evoke a feeling.)
+
+                ## Requirements for MV
+                (List key practical requirements using bullet points. Include examples for:
+                *   Locations: (e.g., abandoned warehouse, sun-drenched beach, neon-lit city street)
+                *   Characters/Actors: (e.g., solo performer, couple, group of friends, specific archetypes)
+                *   Key Props: (e.g., vintage car, specific symbolic object, letter)
+                *   Visual Style/Effects: (e.g., fast cuts, slow motion, specific color grading like 'desaturated', lens flares, handheld camera feel))
+
+                ## Estimated Budget
+                (Provide a conceptual budget breakdown using bullet points. Describe what each level visually enables:)
+                *   **High Budget:** [Describe ambitious scope, e.g., multiple complex locations, VFX, large cast/crew, high-end cinematography]
+                *   **Mid Budget:** [Describe balanced scope, e.g., fewer locations but well-executed, smaller cast, key visual effects, solid cinematography]
+                *   **Low Budget:** [Describe focused scope, e.g., single location or simple concept, performance-focused, creative DIY visuals, relies on strong editing/performance]
+
+                ## Visual Demo (Key Image Descriptions)
+                (Describe 3 distinct, vivid visual scenes or key shots *as if describing a photograph*. Focus on composition, lighting, subject, action, and mood. DO NOT provide URLs or image data.)
+                1.  [Detailed description of Shot 1: e.g., Wide shot, golden hour light filtering through trees, protagonist walking alone on a path...]
+                2.  [Detailed description of Shot 2: e.g., Close-up, rain on a windowpane, character's reflection looking melancholic...]
+                3.  [Detailed description of Shot 3: e.g., Dynamic shot, low angle view of performer dancing energetically under city lights...]
+
+                ## Moodboard Influences
+                (Describe the overall aesthetic mood (e.g., dreamy, gritty, vibrant, melancholic). Then list 4-6 specific visual elements or stylistic references using bullet points. These could be films, art styles, photography types, textures, or general feelings. DO NOT provide URLs or image data.)
+                *   [Element 1 Description: e.g., The color palette of Wes Anderson films]
+                *   [Element 2 Description: e.g., Grainy texture of old Super 8 footage]
+                *   [Element 3 Description: e.g., Dramatic lighting found in film noir]
+                *   [Element 4 Description: e.g., Close-up shots focusing on hands and expressions]
+                *   [Optional Element 5 Description]
+                *   [Optional Element 6 Description]
+
+                ## Color Palette
+                (Suggest a primary color palette of 4-5 colors directly relevant to the MV's theme and mood. Provide the color name and its specific HEX code. Format *exactly* like this, separated by commas: Color Name (#XXXXXX), Another Color (#XXXXXX), ...)
+                Example: Midnight Blue (#191970), Electric Teal (#00FFFF), Muted Rose (#BC8F8F), Warm Sand (#C19A6B)
+
+                Adhere strictly to this format. Do not add any extra introduction, conclusion, or commentary outside the requested sections.
+                `;
+
+                // 5. Prepare API Request Body
+                const requestBody = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        temperature: 0.75, // Slightly more creative
+                        maxOutputTokens: 3072 // Allow for detailed response
+                    },
+                     safetySettings: [
+                       { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+                       { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+                       { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+                       { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+                     ]
+                };
+
+                // 6. Make API Call
+                try {
+                    console.log("Sending API request to:", API_URL);
+                    // console.log("Request Body:", JSON.stringify(requestBody, null, 2)); // Uncomment for deep debugging
+
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(requestBody),
+                    });
+
+                    const responseData = await response.json();
+                    // console.log("API Response Data:", responseData); // Uncomment for deep debugging
+
+                    if (!response.ok) {
+                        const errorDetail = responseData?.error?.message || `HTTP Error: ${response.status}`;
+                        const safetyFeedback = responseData?.promptFeedback?.blockReason;
+                        let errorMessage = `API Error: ${errorDetail}`;
+                        if (safetyFeedback) {
+                            errorMessage += ` (Reason: ${safetyFeedback})`;
+                        }
+                        console.error("API Error Details:", responseData);
+                        throw new Error(errorMessage);
+                    }
+
+                    // 7. Process Successful Response
+                    const candidate = responseData?.candidates?.[0];
+                    if (candidate?.content?.parts?.[0]?.text) {
+                        const generatedText = candidate.content.parts[0].text;
+                        // console.log("Generated Text:", generatedText); // Uncomment for debugging
+                        parseAndDisplayResults(generatedText);
+                    } else if (candidate?.finishReason && candidate.finishReason !== "STOP") {
+                         // Handle blocked content or other non-STOP reasons
+                         const reason = candidate.finishReason;
+                         const safetyRatings = candidate.safetyRatings?.map(r => `${r.category}: ${r.probability}`).join(', ');
+                         throw new Error(`Generation failed. Reason: ${reason}. ${safetyRatings ? `Safety Issues: [${safetyRatings}]` : ''}`);
+                    } else {
+                        throw new Error("Received an unexpected or empty response format from the AI.");
+                    }
+
+                } catch (error) {
+                    console.error("Error during fetch or processing:", error);
+                    displayError(`Failed to get suggestions. ${error.message}. Please check the console for more details.`);
+                } finally {
+                    // 8. UI Update: Hide loading, re-enable button
+                    loadingIndicator.style.display = 'none';
+                    getSuggestionsButton.disabled = false;
+                    getSuggestionsButton.textContent = 'Get Suggestions!';
+                }
+            }
+
+            // --- Parsing and Displaying Results ---
+            function parseAndDisplayResults(text) {
+                clearResultsAndErrors(); // Clear previous results first
+
+                const sections = {
+                    'Concept / Key Visual': 'result-concept',
+                    'Requirements for MV': 'result-requirements',
+                    'Estimated Budget': 'result-budget',
+                    'Visual Demo (Key Image Descriptions)': 'result-visuals',
+                    'Moodboard Influences': 'result-moodboard',
+                    'Color Palette': 'result-palette'
+                };
+
+                // Pre-process text to handle potential markdown variations like bold budget titles
+                text = text.replace(/^\s*\*\s*\*\*(High|Mid|Low) Budget\*\*/gm, '* $1 Budget:');
+
+                const lines = text.split('\n');
+                let currentSectionKey = null;
+                let contentBuffer = '';
+                let foundAnySection = false;
+
+                lines.forEach(line => {
+                    let matchedHeader = false;
+                    for (const title in sections) {
+                        // Match headers more robustly (allowing potential extra whitespace)
+                        const headerRegex = new RegExp(`^\\s*##\\s*${title.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\s*$`, 'i');
+                        if (headerRegex.test(line.trim())) {
+                            if (currentSectionKey && contentBuffer.trim()) {
+                                processSectionContent(sections[currentSectionKey], currentSectionKey, contentBuffer.trim());
+                                foundAnySection = true;
+                            }
+                            currentSectionKey = title; // Use the exact key from the sections object
+                            contentBuffer = '';
+                            matchedHeader = true;
+                            break;
+                        }
+                    }
+                    if (!matchedHeader && currentSectionKey) {
+                        contentBuffer += line + '\n';
+                    }
+                });
+
+                // Process the very last section found
+                if (currentSectionKey && contentBuffer.trim()) {
+                    processSectionContent(sections[currentSectionKey], currentSectionKey, contentBuffer.trim());
+                    foundAnySection = true;
+                }
+
+                if (foundAnySection) {
+                    resultsArea.style.display = 'block'; // Show results area
+                } else {
+                    displayError("Could not parse the AI response structure. Raw output logged to console.");
+                    console.warn("Raw AI Response Text (Parsing Failed):", text);
+                }
+            }
+
+            function processSectionContent(elementId, sectionTitle, content) {
+                 const sectionElement = document.getElementById(elementId);
+                 if (!sectionElement) {
+                     console.warn(`Section element not found: ${elementId}`);
+                     return;
+                 }
+                 const contentDiv = sectionElement.querySelector('.content');
+                 if (!contentDiv) {
+                     console.warn(`Content div not found in: ${elementId}`);
+                     // Try adding content directly to sectionElement as fallback? No, stick to structure.
+                     return;
+                 }
+
+                 // Clear previous content specifically for this section
+                 contentDiv.innerHTML = '';
+
+                 try {
+                     if (sectionTitle === 'Visual Demo (Key Image Descriptions)') {
+                         // Extract descriptions (assuming numbered list 1. 2. 3.)
+                         const descriptions = content.split(/^\s*[1-3]\.\s+/gm).filter(text => text.trim().length > 0).map(d => d.trim());
+                         if (descriptions.length > 0) {
+                             descriptions.forEach((desc, index) => {
+                                 createImagePlaceholder(contentDiv, desc, `visual-${index}-${Date.now()}`); // Add timestamp for uniqueness
+                             });
+                         } else {
+                             contentDiv.textContent = "No visual descriptions found in the expected format.\n\n" + content.trim(); // Fallback
+                         }
+
+                     } else if (sectionTitle === 'Moodboard Influences') {
+                         const moodboardDescElement = document.getElementById('moodboard-description');
+                         const moodboardImagesContainer = document.getElementById('moodboard-images');
+
+                         if (moodboardDescElement && moodboardImagesContainer) {
+                             moodboardImagesContainer.innerHTML = ''; // Clear previous images
+
+                             // Try to separate general description from bullet points
+                             const bulletPoints = content.split(/^\s*[\*\-]\s+/gm).filter(text => text.trim().length > 0).map(b => b.trim());
+                             let mainDescription = content.trim(); // Default to whole content
+
+                             if (bulletPoints.length > 0) {
+                                 const firstBulletIndex = content.indexOf(bulletPoints[0]);
+                                 if (firstBulletIndex > 0) {
+                                     mainDescription = content.substring(0, firstBulletIndex).trim();
+                                 } else {
+                                     // If bullets start immediately, find the first non-bullet line maybe? Or just show bullets.
+                                     mainDescription = ""; // Assume no preceding description if bullets start right away
+                                 }
+
+                                 bulletPoints.forEach((desc, index) => {
+                                     createImagePlaceholder(moodboardImagesContainer, desc, `mood-${index}-${Date.now()}`); // Add timestamp
+                                 });
+                             } else {
+                                 // No bullet points found, treat whole text as description
+                                  mainDescription = content.trim();
+                             }
+
+                             moodboardDescElement.textContent = mainDescription;
+                             // Hide description if empty
+                              moodboardDescElement.style.display = mainDescription ? 'block' : 'none';
+
+                         } else {
+                             contentDiv.textContent = content.trim(); // Fallback if elements not found
+                         }
+
+                     } else if (sectionTitle === 'Color Palette') {
+                         createColorSwatches(contentDiv, content.trim());
+                     } else {
+                         // For text-only sections (Concept, Requirements, Budget)
+                         // Simple conversion of bullet points for display
+                         const formattedContent = content.trim().replace(/^\s*[\*\-]\s+/gm, '• ');
+                         contentDiv.textContent = formattedContent;
+                     }
+
+                     sectionElement.style.display = 'block'; // Show the processed section
+                 } catch (error) {
+                      console.error(`Error processing section "${sectionTitle}":`, error);
+                      contentDiv.textContent = `Error displaying this section. Raw content:\n\n${content.trim()}`;
+                      sectionElement.style.display = 'block'; // Show section even with error
+                 }
+            }
+
+
+            function createImagePlaceholder(container, description, seedSuffix) {
+                 const figure = document.createElement('figure');
+                 figure.className = 'image-placeholder';
+
+                 const img = document.createElement('img');
+                 // Use a placeholder service like Picsum Photos with a seed based on description/index/timestamp
+                 // Encode the seed components to make them URL-safe
+                 const seed = encodeURIComponent(description.substring(0, 15) + seedSuffix);
+                 img.src = `https://picsum.photos/seed/${seed}/400/300`; // Request larger base image
+                 img.alt = description; // Use AI description as alt text
+                 img.loading = 'lazy'; // Lazy load images
+
+                 const figcaption = document.createElement('figcaption');
+                 figcaption.textContent = description;
+
+                 figure.appendChild(img);
+                 figure.appendChild(figcaption);
+                 container.appendChild(figure);
+            }
+
+            function createColorSwatches(container, text) {
+                 container.innerHTML = ''; // Clear previous swatches
+                 // Updated Regex to be more robust: captures name and hex (#xxx or #xxxxxx)
+                 const colorRegex = /([\w\s\-\/]+?)\s*\((#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\)/g;
+                 let match;
+                 let foundColors = false;
+
+                 while ((match = colorRegex.exec(text)) !== null) {
+                    foundColors = true;
+                    // Trim spaces and hyphens from the end of the color name if any
+                    const colorName = match[1].trim().replace(/[\s-]+$/, '');
+                    let hexCode = match[2].trim().toUpperCase();
+
+                     // Expand 3-digit hex to 6-digit
+                     if (hexCode.length === 4) {
+                         hexCode = '#' + hexCode[1] + hexCode[1] + hexCode[2] + hexCode[2] + hexCode[3] + hexCode[3];
+                     }
+
+                    if (hexCode.length !== 7) {
+                        console.warn(`Skipping invalid hex code format: ${match[2]} for ${colorName}`);
+                        continue; // Skip if hex is still not valid after potential expansion
+                    }
+
+
+                    const swatch = document.createElement('div');
+                    swatch.className = 'color-swatch';
+                    try {
+                         swatch.style.backgroundColor = hexCode;
+                         // Check contrast and set text color
+                         swatch.style.color = isColorDarkGuess(hexCode) ? '#FFFFFF' : '#000000';
+                    } catch (e) {
+                        console.warn(`CSS Error applying hex code ${hexCode} for ${colorName}:`, e);
+                        swatch.style.backgroundColor = '#CCCCCC'; // Fallback grey
+                        swatch.style.color = '#000000';
+                    }
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = colorName;
+                    const hexSpan = document.createElement('span');
+                    hexSpan.className = 'hex-code';
+                    hexSpan.textContent = hexCode;
+
+                    swatch.appendChild(nameSpan);
+                    swatch.appendChild(hexSpan);
+                    container.appendChild(swatch);
+                 }
+
+                 if (!foundColors) {
+                     // Fallback if regex fails: Display raw text, explaining the issue
+                     container.textContent = "Could not parse colors in the expected 'Name (#XXXXXX)' format.\nRaw AI Output:\n" + text.trim();
+                     console.warn("Color parsing failed for text:", text);
+                 }
+            }
+
+            // Simple guess if a HEX color is dark (for text contrast) - using luminance calculation
+            function isColorDarkGuess(hexColor) {
+                 if (!hexColor || !hexColor.startsWith('#')) return false;
+                 try {
+                     let hex = hexColor.substring(1);
+                     if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+                     if (hex.length !== 6) return false; // Invalid hex length
+
+                     const r = parseInt(hex.substring(0, 2), 16);
+                     const g = parseInt(hex.substring(2, 4), 16);
+                     const b = parseInt(hex.substring(4, 6), 16);
+                     // Calculate relative luminance (standard formula)
+                     const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+                     return luminance < 0.5; // Threshold: below 0.5 is generally considered dark
+                 } catch {
+                     return false; // Parsing error, assume light background
+                 }
+            }
+
+            function clearResultsAndErrors() {
+                // Hide all result sections and clear their content
+                const resultSections = resultsArea.querySelectorAll('.result-section');
+                resultSections.forEach(section => {
+                    section.style.display = 'none';
+                    const contentDiv = section.querySelector('.content');
+                    if (contentDiv) contentDiv.innerHTML = '';
+                     // Special clear for moodboard description paragraph
+                     if (section.id === 'result-moodboard') {
+                         const descP = section.querySelector('#moodboard-description');
+                         if(descP) descP.textContent = '';
+                     }
+                });
+                resultsArea.style.display = 'none'; // Hide the whole results container
+
+                // Clear and hide error message
+                errorMessageDiv.style.display = 'none';
+                errorMessageDiv.textContent = '';
+            }
+
+            function displayError(message) {
+                errorMessageDiv.textContent = message;
+                errorMessageDiv.style.display = 'block'; // Show error message
+                resultsArea.style.display = 'none'; // Ensure results area is hidden
+                loadingIndicator.style.display = 'none'; // Ensure loading is hidden
+            }
+
+            // --- Initial Setup ---
+            showPage('home'); // Show home page on load
+        });
+    </script>
+</body>
+</html>
