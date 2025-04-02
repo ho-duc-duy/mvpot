@@ -52,22 +52,11 @@
         }
 
         .logo-placeholder {
-            /* Placeholder styling - replace with your <img> */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100px; /* Adjust size as needed */
-            height: 50px; /* Adjust size as needed */
-            color: #a0d8f0;
-            font-weight: bold;
-            font-size: 1.2em;
-            text-align: center;
-            user-select: none; /* Prevent text selection */
-            /* If using an image: */
-            /* You ALREADY have an image tag, let's style it */
+            /* Style for your <img> tag */
             max-width: 120px; /* Limit logo width */
             max-height: 50px; /* Limit logo height */
             object-fit: contain; /* Keep aspect ratio */
+            user-select: none;
         }
 
 
@@ -201,8 +190,6 @@
          }
           .btn-secondary:hover {
              box-shadow: 0 4px 10px rgba(80, 80, 80, 0.3); /* Grey shadow */
-             /* Optional: Add animation for secondary too */
-             /* animation: gradientShift 4s ease infinite; */
          }
 
          .btn-warning { /* Record */
@@ -241,7 +228,6 @@
         .hero-container {
             position: relative;
             width: 100%;
-            /* Make it taller */
             height: 65vh; /* Use viewport height */
             min-height: 450px;
             max-height: 700px;
@@ -255,7 +241,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            /* Apply Gaussian Blur */
             filter: blur(4px) brightness(0.9); /* Add blur and slight darken */
             transform: scale(1.05); /* Slightly zoom in to hide blurred edges */
         }
@@ -336,7 +321,6 @@
         }
 
          .form-group select {
-             /* Appearance for cross-browser consistency */
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -347,7 +331,6 @@
             padding-right: 45px; /* Space for arrow */
             cursor: pointer;
          }
-          /* Style for disabled option */
          .form-group select option[disabled] {
             color: #999;
          }
@@ -368,7 +351,6 @@
              margin-bottom: 0; /* Remove bottom margin if in group */
         }
 
-        /* Style file input button appearance */
         input[type="file"]::file-selector-button {
             padding: 10px 18px;
             margin-right: 12px;
@@ -387,26 +369,70 @@
             transform: scale(0.98);
          }
 
+        /* Style for the (Optional) notice */
+        .optional-notice {
+            margin-left: 5px; /* Space after the button */
+            font-size: 0.9em;
+            color: #6c757d; /* Grey text */
+            font-style: italic;
+            vertical-align: middle; /* Align with button center */
+        }
+
         #record-status {
             margin-left: 15px;
             font-style: italic;
-            color: #6c757d; /* Default color */
+            /* color is set dynamically via JS */
             font-weight: 500;
+            display: inline-flex; /* Use flex to align animation and text */
+            align-items: center; /* Vertically center items */
+            min-height: 24px; /* Ensure space even when empty */
         }
-        #record-status.recording {
-             color: #dc3545; /* Red for recording */
-        }
-        #record-status.transcribing {
-             color: #007bff; /* Blue for transcribing phase */
-        }
-         #record-status.complete {
-             color: #28a745; /* Green for complete */
-         }
-         #record-status.error {
-             color: #dc3545; /* Red for errors */
-         }
+        /* Specific status colors (applied via JS to #record-status) */
+        #record-status.recording { color: #dc3545; }
+        #record-status.transcribing { color: #007bff; } /* Can be used if desired */
+        #record-status.complete { color: #28a745; }
+        #record-status.error { color: #dc3545; }
 
-         /* NEW: Style for transcript output area */
+
+        /* NEW: Recording Animation Styles */
+        .recording-dots {
+            display: inline-block; /* Initially hidden via inline style */
+            vertical-align: middle;
+            margin-right: 6px; /* Space between dots and status text */
+        }
+
+        .recording-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-left: 3px;
+            border-radius: 50%;
+            background-color: #dc3545; /* Red color for recording */
+            animation: blink 1.4s infinite both; /* Apply animation */
+        }
+
+        /* Stagger the animation for each dot */
+        .recording-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .recording-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .recording-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Keyframes for the blinking effect */
+        @keyframes blink {
+            0%, 80%, 100% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+        }
+
+         /* Style for transcript output area */
         #transcript-group {
             display: none; /* Hidden by default */
             margin-top: 20px; /* Space above the transcript box */
@@ -467,10 +493,49 @@
             margin-left: 25px; /* Indent lists */
             margin-top: 10px;
             margin-bottom: 10px;
+            padding-left: 0; /* Remove default padding if using custom bullets */
+            list-style: none; /* Remove default bullets */
         }
          .result-section .content li {
              margin-bottom: 8px; /* Space between list items */
+             position: relative; /* Needed for custom bullet positioning */
+             padding-left: 20px; /* Space for custom bullet */
          }
+         /* Custom bullet point styling */
+        .result-section .content li::before {
+            content: '•'; /* Bullet character */
+            color: #9E69AF; /* Theme color for bullet */
+            font-weight: bold;
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0; /* Adjust vertical alignment if needed */
+            width: 20px; /* Width of the bullet area */
+        }
+        /* Apply custom bullet styling within the text-only areas */
+        #result-concept .content,
+        #result-requirements .content,
+        #result-budget .content {
+             white-space: normal; /* Allow wrapping */
+        }
+        #result-requirements ul, #result-budget ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #result-requirements li, #result-budget li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        #result-requirements li::before, #result-budget li::before {
+            content: '▹'; /* Use a different bullet for lists */
+            color: #6E91D6; /* Another theme color */
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px; /* Adjust position */
+        }
+
 
         /* Image Placeholder Styles */
         .image-placeholder-container {
@@ -481,16 +546,16 @@
 
         /* Grid layout for placeholders */
         #result-visuals .image-placeholder-container {
-             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid: 3 columns on large screens */
+             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
         }
         #result-moodboard .image-placeholder-container {
-             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid: 4-5 columns on large screens */
+             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid */
         }
 
         .image-placeholder {
             border: 1px solid #dee2e6;
-            border-radius: 6px; /* Match button radius */
-            background-color: #f8f9fa; /* Light background */
+            border-radius: 6px;
+            background-color: #f8f9fa;
             overflow: hidden;
             text-align: center;
             color: #495057;
@@ -505,20 +570,20 @@
         .image-placeholder img {
             display: block;
             width: 100%;
-            height: 180px; /* Taller placeholders */
+            height: 180px;
             object-fit: cover;
-            background-color: #e9ecef; /* Fallback background */
+            background-color: #e9ecef;
             border-bottom: 1px solid #dee2e6;
         }
         #result-moodboard .image-placeholder img {
-             height: 140px; /* Slightly smaller height for moodboard */
+             height: 140px;
          }
 
         .image-placeholder figcaption {
             font-size: 0.9em;
-            padding: 10px 12px; /* More padding */
+            padding: 10px 12px;
             background-color: #fff;
-            min-height: 50px; /* Ensure some space for caption */
+            min-height: 50px;
             line-height: 1.4;
         }
 
@@ -539,9 +604,9 @@
             margin-top: 15px;
         }
         .color-swatch {
-            min-width: 110px; /* Ensure minimum width */
-            height: 80px; /* Taller swatch */
-            border-radius: 6px; /* Match other elements */
+            min-width: 110px;
+            height: 80px;
+            border-radius: 6px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
@@ -554,7 +619,7 @@
             padding: 8px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             transition: transform 0.2s ease;
-            flex-grow: 1; /* Allow swatches to grow */
+            flex-grow: 1;
         }
         .color-swatch:hover {
             transform: scale(1.05);
@@ -562,14 +627,14 @@
 
         .color-swatch span {
             display: block;
-            word-break: break-word; /* Break long color names */
+            word-break: break-word;
             max-width: 100%;
         }
         .color-swatch .hex-code {
-            margin-top: 8px; /* More space */
-            font-size: 1em; /* Larger hex code */
+            margin-top: 8px;
+            font-size: 1em;
             font-family: 'Courier New', Courier, monospace;
-            user-select: all; /* Make hex selectable */
+            user-select: all;
             opacity: 0.85;
         }
 
@@ -580,13 +645,13 @@
             color: #495057;
         }
         .spinner {
-            border: 5px solid rgba(0, 0, 0, 0.1); /* Thicker border */
-            width: 40px; /* Larger spinner */
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            width: 40px;
             height: 40px;
             border-radius: 50%;
-            border-left-color: #6E91D6; /* Use theme color */
-            margin: 15px auto; /* More margin */
-            animation: spin 1s linear infinite; /* Linear spin */
+            border-left-color: #6E91D6;
+            margin: 15px auto;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
@@ -599,7 +664,7 @@
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
-            padding: 18px 25px; /* More padding */
+            padding: 18px 25px;
             border-radius: 6px;
             margin: 25px 0;
             text-align: center;
@@ -629,12 +694,12 @@
             .main-nav ul {
                 justify-content: flex-start;
                 width: 100%;
-                padding-top: 10px; /* Space below logo */
-                flex-wrap: wrap; /* Allow nav items to wrap */
+                padding-top: 10px;
+                flex-wrap: wrap;
             }
              .main-nav ul li { margin-left: 0; margin-right: 15px; margin-bottom: 5px; }
              .main-nav ul li a { padding: 6px 10px; font-size: 1em; }
-            main { padding-top: 140px; /* Adjust for taller wrapped nav */ }
+            main { padding-top: 140px; }
 
             .hero-container { height: 55vh; min-height: 400px; }
             .hero-text-overlay { padding: 30px; }
@@ -654,7 +719,7 @@
                position: relative;
                bottom: auto;
                left: auto;
-               margin: 30px auto 0 auto; /* Center it with more margin */
+               margin: 30px auto 0 auto;
                display: block;
                width: fit-content;
             }
@@ -677,7 +742,7 @@
 
              /* Stack audio buttons vertically */
             .audio-input-group { flex-direction: column; align-items: stretch; }
-            .form-group input[type="file"] { margin-bottom: 10px; /* Space below file input */ }
+            .form-group input[type="file"] { margin-bottom: 10px; }
              .audio-input-group .btn { width: 100%; margin: 5px 0;} /* Full width audio buttons */
              #record-status { margin: 5px 0 10px 0; text-align: center; }
 
@@ -691,6 +756,20 @@
              .result-section { padding: 20px; }
              h1 { font-size: 1.7em; }
              h2 { font-size: 1.5em; }
+
+            /* Responsive adjustments for optional notice and status */
+            .optional-notice {
+                 margin-left: 0;
+                 margin-top: 5px;
+                 display: block;
+                 text-align: center;
+            }
+            #record-status {
+                  margin-left: 0;
+                  justify-content: center;
+                  width: 100%;
+                  margin-top: 5px;
+            }
         }
 
     </style>
@@ -716,7 +795,7 @@
                     <button id="explore-button" class="btn btn-primary">Explore now</button>
                 </div>
             </div>
-            <button class="btn btn-secondary btn-back" data-target="home">Go Back (to Home)</button> <!-- Usually hidden/disabled on Home -->
+            <button class="btn btn-secondary btn-back" data-target="home">Go Back (to Home)</button>
         </section>
 
         <!-- About Page Section -->
@@ -735,7 +814,7 @@
             <div class="content-container">
                 <h1>MV Assistant</h1>
 
-                <form id="feature-form" onsubmit="return false;"> <!-- Prevent default form submission -->
+                <form id="feature-form" onsubmit="return false;">
                     <div class="form-group">
                         <label for="lyrics-input">Music Lyrics:</label>
                         <textarea id="lyrics-input" rows="7" placeholder="Paste your complete song lyrics here..."></textarea>
@@ -748,7 +827,7 @@
 
                     <div class="form-group">
                         <label for="genre-select">Music Genre:</label>
-                        <select id="genre-select" required> <!-- Added required attribute -->
+                        <select id="genre-select" required>
                             <option value="" disabled selected>-- Select a Genre --</option>
                             <option value="RnB">RnB / Soul</option>
                             <option value="Folk">Folk / Acoustic</option>
@@ -766,16 +845,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="track-upload">Audio Input (Optional):</label>
+                        <label for="track-upload">Track Input (Optional):</label>
                         <div class="audio-input-group">
                              <input type="file" id="track-upload" accept="audio/*">
                              <button type="button" id="record-audio-button" class="btn btn-warning">Record Audio</button>
-                             <span id="record-status"></span>
+                             <span class="optional-notice">(Optional)</span>
+                             <span id="record-status">
+                                 <span id="recording-animation" class="recording-dots" style="display: none;"><span>.</span><span>.</span><span>.</span></span>
+                                 <span id="record-status-text"></span>
+                             </span>
                         </div>
                         <small>Note: Audio analysis (upload/record) requires browser support for recording & speech recognition. Suggestions are primarily based on text inputs + transcript.</small>
                     </div>
 
-                    <!-- NEW: Transcript Output Area -->
                     <div class="form-group" id="transcript-group" style="display: none;">
                         <label for="transcript-output">Singing Transcript (from recording):</label>
                         <textarea id="transcript-output" rows="4" readonly placeholder="Transcript will appear here after recording..."></textarea>
@@ -790,35 +872,28 @@
                     <div class="spinner"></div>
                 </div>
 
-                <div id="error-message" class="error-message"></div> <!-- Error message placeholder -->
+                <div id="error-message" class="error-message"></div>
 
                 <div id="results-area">
-                    <!-- AI suggestions will be populated here -->
                      <section id="result-concept" class="result-section"><h2>Concept / Key Visual</h2><div class="content"></div></section>
-                     <section id="result-requirements" class="result-section"><h2>Requirements for MV</h2><div class="content"></div></section>
-                     <section id="result-budget" class="result-section"><h2>Estimated Budget</h2><div class="content"></div></section>
+                     <section id="result-requirements" class="result-section"><h2>Requirements for MV</h2><div class="content"><ul></ul></div></section> <!-- Ensure list exists for bullets -->
+                     <section id="result-budget" class="result-section"><h2>Estimated Budget</h2><div class="content"><ul></ul></div></section> <!-- Ensure list exists for bullets -->
                      <section id="result-visuals" class="result-section">
                          <h2>Visual Demo (Key Image Ideas)</h2>
-                         <div class="content image-placeholder-container">
-                             <!-- Image placeholders will be added here by JS -->
-                         </div>
+                         <div class="content image-placeholder-container"></div>
                          <small>Note: Images are illustrative placeholders generated based on AI descriptions.</small>
                      </section>
                      <section id="result-moodboard" class="result-section">
                          <h2>Moodboard Influences</h2>
                           <div class="content">
-                              <p id="moodboard-description"></p> <!-- Text description here -->
-                              <div class="image-placeholder-container" id="moodboard-images">
-                                  <!-- Moodboard placeholders will be added here by JS -->
-                              </div>
+                              <p id="moodboard-description"></p>
+                              <div class="image-placeholder-container" id="moodboard-images"></div>
                          </div>
                           <small>Note: Images are illustrative placeholders generated based on AI descriptions.</small>
                      </section>
                      <section id="result-palette" class="result-section">
                          <h2>Color Palette</h2>
-                         <div class="content color-palette-display">
-                             <!-- Color swatches will be added here by JS -->
-                         </div>
+                         <div class="content color-palette-display"></div>
                      </section>
                 </div>
 
@@ -841,11 +916,12 @@
             const errorMessageDiv = document.getElementById('error-message');
             const recordAudioButton = document.getElementById('record-audio-button');
             const recordStatus = document.getElementById('record-status');
+            const recordingAnimation = document.getElementById('recording-animation');
+            const recordStatusText = document.getElementById('record-status-text');
             const lyricsInput = document.getElementById('lyrics-input');
             const keywordsInput = document.getElementById('keywords-input');
             const genreSelect = document.getElementById('genre-select');
             const trackUploadInput = document.getElementById('track-upload');
-            // NEW: Transcript elements
             const transcriptGroup = document.getElementById('transcript-group');
             const transcriptOutput = document.getElementById('transcript-output');
 
@@ -854,13 +930,12 @@
             let mediaRecorder;
             let audioChunks = [];
             let isRecording = false;
-            let recordedAudioBlob = null; // To store the final audio Blob
+            let recordedAudioBlob = null;
 
-            // NEW: Speech Recognition Variables
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             let recognition;
-            let finalTranscript = ''; // Accumulate final transcript parts
-            let isSpeechRecognitionSupported = !!SpeechRecognition; // Check support once
+            let finalTranscript = '';
+            let isSpeechRecognitionSupported = !!SpeechRecognition;
 
             // --- Page Navigation ---
             function showPage(pageId) {
@@ -880,7 +955,7 @@
                         link.classList.add('active');
                     }
                 });
-                window.scrollTo(0, 0); // Scroll to top on page change
+                window.scrollTo(0, 0);
             }
 
             navLinks.forEach(link => {
@@ -897,23 +972,20 @@
             backButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
-                    showPage('home'); // Always go back home
+                    showPage('home');
                 });
             });
 
              // --- Microphone Recording & Transcription Logic ---
              if (recordAudioButton) {
                  recordAudioButton.addEventListener('click', handleRecordButtonClick);
-                 // Disable button if APIs not supported
                  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                     recordStatus.textContent = 'Audio recording not supported.';
-                     recordStatus.className = 'error';
+                     updateRecordStatus('Audio recording not supported.', 'error');
                      recordAudioButton.disabled = true;
                  } else if (!isSpeechRecognitionSupported) {
-                     recordStatus.textContent = 'Speech recognition not supported.';
-                     recordStatus.className = 'error';
-                     // Allow recording, but warn transcription won't work
+                     updateRecordStatus('Speech recognition not supported.', 'error');
                      console.warn("Web Speech Recognition API not supported. Recording possible, but no transcription.");
+                     // Allow recording button to be enabled
                  }
              } else {
                  console.warn("Record audio button not found.");
@@ -926,14 +998,13 @@
                 }
 
                 if (!isRecording) {
-                    // Start Recording & Transcription
+                    // --- START of Recording Logic ---
                     try {
-                        // Clear previous states
                         recordedAudioBlob = null;
-                        trackUploadInput.value = ''; // Clear file input
-                        transcriptOutput.value = ''; // Clear old transcript
-                        finalTranscript = ''; // Reset accumulated transcript
-                        transcriptGroup.style.display = 'none'; // Hide transcript box initially
+                        trackUploadInput.value = '';
+                        transcriptOutput.value = '';
+                        finalTranscript = '';
+                        transcriptGroup.style.display = 'none';
                         updateRecordStatus('Requesting mic access...', '');
 
                         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -949,49 +1020,53 @@
                         mediaRecorder.onstop = () => {
                             if (audioChunks.length > 0) {
                                 recordedAudioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' });
-                                console.log("Recording finished. Blob:", recordedAudioBlob);
-                                // Status updated by recognition ending or here if no recognition
+                                console.log("Recording finished. Blob size:", recordedAudioBlob.size);
                                 if (!isSpeechRecognitionSupported || !recognition) {
+                                    // Update status only if recognition isn't handling it
                                      updateRecordStatus(`Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB).`, 'complete');
                                 }
                             } else {
                                 console.log("Recording stopped with no data.");
-                                updateRecordStatus('Recording stopped (no audio captured).', 'error');
+                                // Only update status if recognition isn't running or already finished
+                                if (!recognition || recognition.readyState !== 'listening') {
+                                     updateRecordStatus('Recording stopped (no audio captured).', 'error');
+                                }
                                 recordedAudioBlob = null;
                             }
-                            audioChunks = []; // Reset chunks
-                            stream.getTracks().forEach(track => track.stop()); // Stop mic light
-                            updateRecordingUI(false);
+                            audioChunks = [];
+                            stream.getTracks().forEach(track => track.stop());
+                            updateRecordingUI(false); // UI update AFTER state changes
                         };
 
                         mediaRecorder.onerror = (event) => {
                             console.error("MediaRecorder error:", event.error);
                             updateRecordStatus(`Recording error: ${event.error.name}`, 'error');
-                            if (recognition && recognition.readyState === 'listening') recognition.stop(); // Stop recognition on error too
+                            if (recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) recognition.stop();
                             stream.getTracks().forEach(track => track.stop());
                             updateRecordingUI(false);
                         };
 
-                        // --- Speech Recognition Setup (if supported) ---
+                        // --- Speech Recognition Setup ---
                         if (isSpeechRecognitionSupported) {
                             recognition = new SpeechRecognition();
-                            recognition.continuous = true; // Keep listening
-                            recognition.interimResults = true; // Show results as they come
-                            recognition.lang = 'en-US'; // Or make configurable
+                            recognition.continuous = true;
+                            recognition.interimResults = true;
+                            recognition.lang = 'en-US';
 
                             recognition.onresult = (event) => {
                                 let interimTranscript = '';
-                                finalTranscript = ''; // Rebuild final transcript from scratch each time
+                                finalTranscript = ''; // Rebuild final transcript
                                 for (let i = event.resultIndex; i < event.results.length; ++i) {
                                     if (event.results[i].isFinal) {
-                                        finalTranscript += event.results[i][0].transcript;
+                                        finalTranscript += event.results[i][0].transcript + ' '; // Add space between final parts
                                     } else {
                                         interimTranscript += event.results[i][0].transcript;
                                     }
                                 }
-                                transcriptOutput.value = finalTranscript + interimTranscript; // Show live updates
-                                if (transcriptOutput.value.trim()) {
-                                     transcriptGroup.style.display = 'block'; // Show box if there's content
+                                const currentFullTranscript = (finalTranscript + interimTranscript).trim();
+                                transcriptOutput.value = currentFullTranscript;
+                                if (currentFullTranscript) {
+                                     transcriptGroup.style.display = 'block';
                                 }
                             };
 
@@ -999,45 +1074,49 @@
                                 console.error("Speech Recognition Error:", event.error);
                                 let errorMsg = `Transcription error: ${event.error}`;
                                 if (event.error === 'no-speech') {
-                                    errorMsg = 'No speech detected during recording.';
+                                    errorMsg = 'No speech detected.';
                                 } else if (event.error === 'audio-capture') {
                                      errorMsg = 'Mic problem during transcription.';
                                 } else if (event.error === 'not-allowed') {
                                     errorMsg = 'Transcription permission denied.';
+                                } else if (event.error === 'network') {
+                                    errorMsg = 'Network error during transcription.';
                                 }
-                                updateRecordStatus(errorMsg, 'error');
-                                // Don't necessarily stop mediaRecorder here, let user decide
+                                // Update status ONLY if recording is still technically active
+                                // Otherwise, let mediaRecorder.onstop handle the final state
+                                if (isRecording) {
+                                     updateRecordStatus(errorMsg, 'error');
+                                }
                             };
 
                             recognition.onend = () => {
                                 console.log("Speech recognition ended.");
-                                // Final update after recognition stops
-                                transcriptOutput.value = finalTranscript.trim(); // Show only final, trimmed
-                                if (transcriptOutput.value.trim()) {
-                                    transcriptGroup.style.display = 'block';
-                                    updateRecordStatus('Recording & Transcription Complete.', 'complete');
-                                } else if (recordedAudioBlob) {
-                                    // If recording exists but no transcript
-                                     updateRecordStatus(`Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB). No transcript generated.`, 'complete');
-                                } else {
-                                     // If neither recording nor transcript
-                                     // Status likely already set by mediaRecorder.onstop or error handlers
+                                finalTranscript = finalTranscript.trim(); // Trim final result
+                                transcriptOutput.value = finalTranscript;
+                                // Determine final status based on whether recording also stopped and if there's a transcript/blob
+                                if (!isRecording) { // Check if mediaRecorder also stopped
+                                    if(finalTranscript) {
+                                        updateRecordStatus('Recording & Transcription Complete.', 'complete');
+                                    } else if (recordedAudioBlob) {
+                                         updateRecordStatus(`Recording complete. No transcript.`, 'complete');
+                                    } else {
+                                        // If neither, it was likely an error or stopped with no data
+                                        // Status should have been set by error handlers or mediaRecorder.onstop
+                                    }
                                 }
-                                // Recognition might end before mediaRecorder.onstop if user is silent
-                                // UI update for button state is handled in mediaRecorder.onstop or errors
+                                // If isRecording is still true here, recognition likely timed out or stopped early.
+                                // The 'recording' animation/status should persist via mediaRecorder.
                             };
 
                             recognition.start();
                             console.log("Speech recognition started.");
-                        } else {
-                             console.log("Speech recognition not supported, proceeding with audio recording only.");
                         }
 
                         // --- Start Recording ---
                         audioChunks = [];
                         mediaRecorder.start();
                         updateRecordingUI(true);
-                        updateRecordStatus(isSpeechRecognitionSupported ? 'Recording & Transcribing...' : 'Recording...', 'recording');
+                        updateRecordStatus('', 'recording'); // Show animation, clear text
 
                     } catch (err) {
                         console.error("Error accessing microphone or starting recording:", err);
@@ -1045,25 +1124,26 @@
                         updateRecordingUI(false);
                     }
                 } else {
-                    // Stop Recording & Transcription
-                    if (mediaRecorder && mediaRecorder.state === "recording") {
-                         mediaRecorder.stop(); // Triggers mediaRecorder.onstop
-                         if (recognition) { // Stop recognition if it's running
-                             recognition.stop(); // Triggers recognition.onend
-                         }
-                         updateRecordStatus('Stopping recording...', '');
-                    } else {
-                        // Handle edge case if button is "Stop" but recorder isn't active
-                        if (recognition) recognition.stop();
-                        updateRecordingUI(false);
-                        updateRecordStatus('Stopped.', '');
-                    }
+                    // --- Stop Recording & Transcription ---
+                   if (mediaRecorder && mediaRecorder.state === "recording") {
+                        updateRecordStatus('Stopping...', ''); // Indicate stopping
+                        mediaRecorder.stop(); // Triggers onstop
+                        if (recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) {
+                            recognition.stop(); // Triggers onend
+                        }
+                        // Final status/UI updates are handled within onstop/onend
+                   } else {
+                       // Handle edge case where UI is out of sync
+                       if (recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) recognition.stop();
+                       updateRecordingUI(false);
+                       updateRecordStatus('Stopped.', '');
+                   }
                 }
             }
 
             function updateRecordingUI(recording) {
                  if (!recordAudioButton) return;
-                 isRecording = recording;
+                 isRecording = recording; // Update global state
                  if (recording) {
                      recordAudioButton.textContent = 'Stop Recording';
                      recordAudioButton.classList.remove('btn-warning');
@@ -1072,29 +1152,39 @@
                      recordAudioButton.textContent = 'Record Audio';
                      recordAudioButton.classList.remove('btn-danger');
                      recordAudioButton.classList.add('btn-warning');
-                     // Status text is updated by specific handlers via updateRecordStatus
+                     // Explicitly hide animation when UI updates to non-recording state
+                     if(recordingAnimation) recordingAnimation.style.display = 'none';
                  }
              }
 
              function updateRecordStatus(message, statusClass = '') {
-                 recordStatus.textContent = message;
-                 recordStatus.className = statusClass; // Adds 'recording', 'complete', 'error', etc.
-             }
+                if (!recordStatus || !recordStatusText || !recordingAnimation) return;
 
-             // Clear recording/transcript status if user selects a file
+                recordStatusText.textContent = message;
+                recordStatus.className = statusClass; // Apply class for color
+
+                // Show animation and hide text ONLY when class is 'recording'
+                if (statusClass === 'recording') {
+                    recordingAnimation.style.display = 'inline-block';
+                    recordStatusText.textContent = ''; // Clear text while animating
+                } else {
+                    recordingAnimation.style.display = 'none';
+                }
+            }
+
              if(trackUploadInput) {
                  trackUploadInput.addEventListener('change', () => {
                      if (trackUploadInput.files.length > 0) {
                           if (isRecording && mediaRecorder && mediaRecorder.state === "recording") {
-                              mediaRecorder.stop(); // Stop ongoing recording
-                              if(recognition) recognition.stop(); // Stop ongoing transcription
+                              mediaRecorder.stop();
+                              if(recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) recognition.stop();
                           }
-                          updateRecordStatus(''); // Clear status message
-                          recordedAudioBlob = null; // Clear recorded blob
-                          transcriptOutput.value = ''; // Clear transcript text
+                          updateRecordStatus('', ''); // Clear status text & class
+                          recordedAudioBlob = null;
+                          transcriptOutput.value = '';
                           finalTranscript = '';
-                          transcriptGroup.style.display = 'none'; // Hide transcript box
-                          updateRecordingUI(false); // Ensure button is back to "Record" state
+                          transcriptGroup.style.display = 'none';
+                          updateRecordingUI(false); // Reset button
                      }
                  });
              }
@@ -1107,27 +1197,19 @@
 
             async function handleGetSuggestions() {
                 // --- !! EXTREME SECURITY WARNING !! ---
-                // --- !! API Key exposed client-side. HIGH RISK. !! ---
-                // --- !! DO NOT USE IN PRODUCTION ENVIRONMENT. !! ---
-                const GEMINI_API_KEY = "AIzaSyB5c-hp-QeKBpBTz8qwANe4j5Kc4dZ_bWM"; // <-- REPLACE or ideally, use a backend proxy
+                const GEMINI_API_KEY = "AIzaSyB5c-hp-QeKBpBTz8qwANe4j5Kc4dZ_bWM"; // <-- API Key Inserted
                 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
                 // 1. Get Form Data
                 const lyrics = lyricsInput.value.trim();
                 const keywords = keywordsInput.value.trim();
                 const selectedGenre = genreSelect.value;
-                const singingTranscript = transcriptOutput.value.trim(); // NEW: Get transcript
+                const singingTranscript = transcriptOutput.value.trim();
 
                 // 2. Validation
                 if (!lyrics) { displayError("Please provide the song lyrics."); return; }
                 if (!keywords) { displayError("Please enter some keywords or describe the theme."); return; }
                 if (!selectedGenre) { displayError("Please select a music genre from the list."); return; }
-                // Optional: Warn if API key isn't set (basic check)
-                 if (GEMINI_API_KEY === "YOUR_GEMINI_API_KEY" || !GEMINI_API_KEY) {
-                      displayError("API Key is missing. Please configure the script.");
-                      return;
-                 }
-
 
                 // 3. UI Update: Clear previous, show loading
                 clearResultsAndErrors();
@@ -1135,7 +1217,7 @@
                 getSuggestionsButton.disabled = true;
                 getSuggestionsButton.textContent = 'Thinking...';
 
-                // 4. Construct Prompt for AI (precise instructions, now including transcript)
+                // 4. Construct Prompt for AI
                 let prompt = `
                 You are an AI assistant specialized in generating creative concepts for music videos.
                 Analyze the following song details:
@@ -1146,7 +1228,6 @@
                 \`\`\`
                 `;
 
-                // NEW: Conditionally add transcript to prompt
                 if (singingTranscript) {
                     prompt += `
                 **Singing Transcript (from recording):**
@@ -1167,26 +1248,26 @@
                 (Describe the core concept in 1-2 sentences. Then elaborate on the main narrative idea or the central visual motif for the MV in a short paragraph. Be descriptive and evoke a feeling.)
 
                 ## Requirements for MV
-                (List key practical requirements using bullet points. Include examples for:
+                (List key practical requirements using bullet points (\*). Include examples for:
                 *   Locations: (e.g., abandoned warehouse, sun-drenched beach, neon-lit city street)
                 *   Characters/Actors: (e.g., solo performer, couple, group of friends, specific archetypes)
                 *   Key Props: (e.g., vintage car, specific symbolic object, letter)
                 *   Visual Style/Effects: (e.g., fast cuts, slow motion, specific color grading like 'desaturated', lens flares, handheld camera feel))
 
                 ## Estimated Budget
-                (Provide a conceptual budget breakdown using bullet points. Describe what each level visually enables:)
+                (Provide a conceptual budget breakdown using bullet points (\*). Describe what each level visually enables:)
                 *   **High Budget:** [Describe ambitious scope, e.g., multiple complex locations, VFX, large cast/crew, high-end cinematography]
                 *   **Mid Budget:** [Describe balanced scope, e.g., fewer locations but well-executed, smaller cast, key visual effects, solid cinematography]
                 *   **Low Budget:** [Describe focused scope, e.g., single location or simple concept, performance-focused, creative DIY visuals, relies on strong editing/performance]
 
                 ## Visual Demo (Key Image Descriptions)
-                (Describe 3 distinct, vivid visual scenes or key shots *as if describing a photograph*. Focus on composition, lighting, subject, action, and mood. DO NOT provide URLs or image data.)
+                (Describe 3 distinct, vivid visual scenes or key shots *as if describing a photograph*. Start each with '1.', '2.', '3.'. Focus on composition, lighting, subject, action, and mood. DO NOT provide URLs or image data.)
                 1.  [Detailed description of Shot 1: e.g., Wide shot, golden hour light filtering through trees, protagonist walking alone on a path...]
                 2.  [Detailed description of Shot 2: e.g., Close-up, rain on a windowpane, character's reflection looking melancholic...]
                 3.  [Detailed description of Shot 3: e.g., Dynamic shot, low angle view of performer dancing energetically under city lights...]
 
                 ## Moodboard Influences
-                (Describe the overall aesthetic mood (e.g., dreamy, gritty, vibrant, melancholic). Then list 4-6 specific visual elements or stylistic references using bullet points. These could be films, art styles, photography types, textures, or general feelings. DO NOT provide URLs or image data.)
+                (Describe the overall aesthetic mood (e.g., dreamy, gritty, vibrant, melancholic) in one sentence. Then list 4-6 specific visual elements or stylistic references using bullet points (\*). These could be films, art styles, photography types, textures, or general feelings. DO NOT provide URLs or image data.)
                 *   [Element 1 Description: e.g., The color palette of Wes Anderson films]
                 *   [Element 2 Description: e.g., Grainy texture of old Super 8 footage]
                 *   [Element 3 Description: e.g., Dramatic lighting found in film noir]
@@ -1202,13 +1283,13 @@
                 `;
 
                 // 5. Prepare API Request Body
-                 const requestBody = {
+                const requestBody = {
                     contents: [{ parts: [{ text: prompt }] }],
                     generationConfig: {
-                        temperature: 0.75, // Slightly more creative
-                        maxOutputTokens: 3072 // Allow for detailed response
+                        temperature: 0.75,
+                        maxOutputTokens: 3072
                     },
-                     safetySettings: [ // Keep safety settings
+                     safetySettings: [
                        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
                        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
                        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
@@ -1218,9 +1299,7 @@
 
                 // 6. Make API Call
                 try {
-                    console.log("Sending API request to:", API_URL);
-                    // console.log("Request Body:", JSON.stringify(requestBody, null, 2)); // Uncomment for deep debugging
-
+                    console.log("Sending API request...");
                     const response = await fetch(API_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -1228,15 +1307,12 @@
                     });
 
                     const responseData = await response.json();
-                    // console.log("API Response Data:", responseData); // Uncomment for deep debugging
 
                     if (!response.ok) {
                         const errorDetail = responseData?.error?.message || `HTTP Error: ${response.status}`;
                         const safetyFeedback = responseData?.promptFeedback?.blockReason;
                         let errorMessage = `API Error: ${errorDetail}`;
-                        if (safetyFeedback) {
-                            errorMessage += ` (Reason: ${safetyFeedback})`;
-                        }
+                        if (safetyFeedback) { errorMessage += ` (Reason: ${safetyFeedback})`; }
                         console.error("API Error Details:", responseData);
                         throw new Error(errorMessage);
                     }
@@ -1245,20 +1321,22 @@
                     const candidate = responseData?.candidates?.[0];
                     if (candidate?.content?.parts?.[0]?.text) {
                         const generatedText = candidate.content.parts[0].text;
-                        // console.log("Generated Text:", generatedText); // Uncomment for debugging
                         parseAndDisplayResults(generatedText);
                     } else if (candidate?.finishReason && candidate.finishReason !== "STOP") {
-                         // Handle blocked content or other non-STOP reasons
                          const reason = candidate.finishReason;
                          const safetyRatings = candidate.safetyRatings?.map(r => `${r.category}: ${r.probability}`).join(', ');
                          throw new Error(`Generation failed. Reason: ${reason}. ${safetyRatings ? `Safety Issues: [${safetyRatings}]` : ''}`);
                     } else {
+                        // Check for blocked prompt
+                        if (responseData?.promptFeedback?.blockReason) {
+                             throw new Error(`Request blocked by safety settings. Reason: ${responseData.promptFeedback.blockReason}`);
+                        }
                         throw new Error("Received an unexpected or empty response format from the AI.");
                     }
 
                 } catch (error) {
                     console.error("Error during fetch or processing:", error);
-                    displayError(`Failed to get suggestions. ${error.message}. Remember to replace 'YOUR_GEMINI_API_KEY' in the script! Check the console for more details.`);
+                    displayError(`Failed to get suggestions. ${error.message}. Please check the console for more details.`);
                 } finally {
                     // 8. UI Update: Hide loading, re-enable button
                     loadingIndicator.style.display = 'none';
@@ -1268,9 +1346,9 @@
             }
 
 
-            // --- Parsing and Displaying Results (No changes needed here, it parses based on headers) ---
+            // --- Parsing and Displaying Results ---
             function parseAndDisplayResults(text) {
-                clearResultsAndErrors(); // Clear previous results first
+                clearResultsAndErrors();
 
                 const sections = {
                     'Concept / Key Visual': 'result-concept',
@@ -1281,8 +1359,8 @@
                     'Color Palette': 'result-palette'
                 };
 
-                // Pre-process text to handle potential markdown variations like bold budget titles
-                text = text.replace(/^\s*\*\s*\*\*(High|Mid|Low) Budget\*\*/gm, '* $1 Budget:');
+                // Pre-process text to handle potential markdown variations
+                text = text.replace(/^\s*\*\s*\*\*(High|Mid|Low) Budget\*\*/gm, '* $1 Budget:'); // Bold budget titles
 
                 const lines = text.split('\n');
                 let currentSectionKey = null;
@@ -1292,14 +1370,13 @@
                 lines.forEach(line => {
                     let matchedHeader = false;
                     for (const title in sections) {
-                        // Match headers more robustly (allowing potential extra whitespace)
                         const headerRegex = new RegExp(`^\\s*##\\s*${title.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\s*$`, 'i');
                         if (headerRegex.test(line.trim())) {
                             if (currentSectionKey && contentBuffer.trim()) {
                                 processSectionContent(sections[currentSectionKey], currentSectionKey, contentBuffer.trim());
                                 foundAnySection = true;
                             }
-                            currentSectionKey = title; // Use the exact key from the sections object
+                            currentSectionKey = title;
                             contentBuffer = '';
                             matchedHeader = true;
                             break;
@@ -1310,113 +1387,103 @@
                     }
                 });
 
-                // Process the very last section found
                 if (currentSectionKey && contentBuffer.trim()) {
                     processSectionContent(sections[currentSectionKey], currentSectionKey, contentBuffer.trim());
                     foundAnySection = true;
                 }
 
                 if (foundAnySection) {
-                    resultsArea.style.display = 'block'; // Show results area
-                     // Scroll to results smoothly
-                     resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    resultsArea.style.display = 'block';
+                    resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
                     displayError("Could not parse the AI response structure. Raw output logged to console.");
                     console.warn("Raw AI Response Text (Parsing Failed):", text);
                 }
             }
 
-             function processSectionContent(elementId, sectionTitle, content) {
+            function processSectionContent(elementId, sectionTitle, content) {
                  const sectionElement = document.getElementById(elementId);
-                 if (!sectionElement) {
-                     console.warn(`Section element not found: ${elementId}`);
-                     return;
-                 }
+                 if (!sectionElement) return;
                  const contentDiv = sectionElement.querySelector('.content');
-                 if (!contentDiv) {
-                     console.warn(`Content div not found in: ${elementId}`);
-                     return;
-                 }
+                 if (!contentDiv) return;
 
-                 // Clear previous content specifically for this section
-                 contentDiv.innerHTML = '';
+                 contentDiv.innerHTML = ''; // Clear previous
 
                  try {
                      if (sectionTitle === 'Visual Demo (Key Image Descriptions)') {
-                         // Extract descriptions (assuming numbered list 1. 2. 3.)
-                         const descriptions = content.split(/^\s*[1-3]\.\s+/gm).filter(text => text.trim().length > 0).map(d => d.trim());
-                         if (descriptions.length > 0) {
-                             descriptions.forEach((desc, index) => {
-                                 createImagePlaceholder(contentDiv, desc, `visual-${index}-${Date.now()}`); // Add timestamp for uniqueness
-                             });
-                         } else {
-                            // Try splitting by newline if numbered list fails
-                            const fallbackDescriptions = content.split('\n').map(d => d.trim()).filter(d => d.length > 5); // Filter short/empty lines
-                            if (fallbackDescriptions.length > 0) {
-                                fallbackDescriptions.forEach((desc, index) => {
-                                     createImagePlaceholder(contentDiv, desc, `visual-fb-${index}-${Date.now()}`);
+                         const descriptions = content.split(/^\s*[1-3]\.\s+/gm).filter(Boolean).map(d => d.trim());
+                         const container = contentDiv.classList.contains('image-placeholder-container') ? contentDiv : contentDiv.querySelector('.image-placeholder-container');
+                         if(container){
+                             container.innerHTML = ''; // Clear specific container
+                             if (descriptions.length > 0) {
+                                 descriptions.forEach((desc, index) => {
+                                     createImagePlaceholder(container, desc, `visual-${index}-${Date.now()}`);
                                  });
-                            } else {
-                                 contentDiv.textContent = "No visual descriptions found in the expected format.\n\n" + content.trim(); // Fallback
-                            }
+                             } else {
+                                 container.innerHTML = `<p style="font-style: italic; color: #6c757d;">No specific visual descriptions found in the expected format.</p>`;
+                             }
                          }
-
                      } else if (sectionTitle === 'Moodboard Influences') {
                          const moodboardDescElement = document.getElementById('moodboard-description');
                          const moodboardImagesContainer = document.getElementById('moodboard-images');
-
                          if (moodboardDescElement && moodboardImagesContainer) {
-                             moodboardImagesContainer.innerHTML = ''; // Clear previous images
+                             moodboardImagesContainer.innerHTML = ''; // Clear images
 
-                             // Try to separate general description from bullet points
-                             const bulletPoints = content.split(/^\s*[\*\-]\s+/gm).filter(text => text.trim().length > 0).map(b => b.trim());
-                             let mainDescription = content.trim(); // Default to whole content
+                             const bulletPoints = content.split(/^\s*[\*\-]\s+/gm).filter(Boolean).map(b => b.trim());
+                             let mainDescription = content.trim();
+                             const firstBulletMatch = content.match(/^\s*[\*\-]\s+/m);
+                             const firstBulletIndex = firstBulletMatch ? firstBulletMatch.index : -1;
 
-                             if (bulletPoints.length > 0) {
-                                 // Find the start of the first bullet point robustly
-                                 const firstBulletMatch = content.match(/^\s*[\*\-]\s+/m); // Multiline match
-                                 const firstBulletIndex = firstBulletMatch ? firstBulletMatch.index : -1;
-
-                                 if (firstBulletIndex !== -1 && firstBulletIndex > 0) {
-                                     mainDescription = content.substring(0, firstBulletIndex).trim();
-                                 } else if (firstBulletIndex === 0) {
-                                      mainDescription = ""; // Bullets start immediately
-                                 } else {
-                                     // No bullets found, keep mainDescription as whole content
-                                 }
-
+                             if (firstBulletIndex !== -1) {
+                                 mainDescription = content.substring(0, firstBulletIndex).trim();
                                  bulletPoints.forEach((desc, index) => {
-                                     createImagePlaceholder(moodboardImagesContainer, desc, `mood-${index}-${Date.now()}`); // Add timestamp
+                                     createImagePlaceholder(moodboardImagesContainer, desc, `mood-${index}-${Date.now()}`);
                                  });
                              } else {
-                                 // No bullet points found, treat whole text as description
-                                  mainDescription = content.trim();
+                                // No bullets, treat all as description, no images
+                                 mainDescription = content.trim();
                              }
 
                              moodboardDescElement.textContent = mainDescription;
                              moodboardDescElement.style.display = mainDescription ? 'block' : 'none';
-
                          } else {
-                             contentDiv.textContent = content.trim(); // Fallback if elements not found
+                             contentDiv.textContent = content.trim(); // Fallback
                          }
-
                      } else if (sectionTitle === 'Color Palette') {
-                         createColorSwatches(contentDiv, content.trim());
+                         const paletteContainer = contentDiv.classList.contains('color-palette-display') ? contentDiv : contentDiv.querySelector('.color-palette-display');
+                         if(paletteContainer) createColorSwatches(paletteContainer, content.trim());
                      } else {
-                         // For text-only sections (Concept, Requirements, Budget)
-                         // Simple conversion of bullet points for display
-                         // Make bullet points look better
-                         const formattedContent = content.trim()
-                            .replace(/^\s*[\*\-]\s+/gm, '<span style="margin-right: 8px; font-weight: bold; color: #9E69AF;">•</span> ') // Style bullets
-                            .replace(/\n\s*\n/g, '\n'); // Reduce double newlines
-                         contentDiv.innerHTML = formattedContent; // Use innerHTML for the span
+                        // Handle text sections with potential bullet points (Requirements, Budget, Concept)
+                        let formattedContent = content.trim();
+                        // Check if it's a list section
+                        if (sectionTitle === 'Requirements for MV' || sectionTitle === 'Estimated Budget') {
+                             const listElement = contentDiv.querySelector('ul');
+                             if(listElement) {
+                                 listElement.innerHTML = ''; // Clear existing list items
+                                 const items = formattedContent.split(/^\s*[\*\-]\s+/gm).filter(Boolean).map(item => item.trim());
+                                 items.forEach(itemText => {
+                                     const li = document.createElement('li');
+                                     // Handle bold budget titles specifically
+                                     itemText = itemText.replace(/^\*\*(High|Mid|Low) Budget\*\*:\s*/, '<strong>$1 Budget:</strong> ');
+                                     li.innerHTML = itemText; // Use innerHTML to render potential <strong> tags
+                                     listElement.appendChild(li);
+                                 });
+                                 contentDiv.innerHTML = ''; // Clear the main div
+                                 contentDiv.appendChild(listElement); // Add the list back
+                             } else {
+                                 // Fallback if <ul> not found (shouldn't happen with HTML structure)
+                                 contentDiv.innerHTML = formattedContent.replace(/^\s*[\*\-]\s+/gm, '• ');
+                             }
+                         } else {
+                             // For Concept or other text-only sections without explicit lists expected
+                             contentDiv.textContent = formattedContent;
+                         }
                      }
-
-                     sectionElement.style.display = 'block'; // Show the processed section
+                     sectionElement.style.display = 'block';
                  } catch (error) {
                       console.error(`Error processing section "${sectionTitle}":`, error);
-                      contentDiv.textContent = `Error displaying this section. Raw content:\n\n${content.trim()}`;
-                      sectionElement.style.display = 'block'; // Show section even with error
+                      contentDiv.innerHTML = `<p style="color: red;">Error displaying this section.</p><pre>${content.trim()}</pre>`;
+                      sectionElement.style.display = 'block';
                  }
             }
 
@@ -1424,43 +1491,32 @@
             function createImagePlaceholder(container, description, seedSuffix) {
                  const figure = document.createElement('figure');
                  figure.className = 'image-placeholder';
-
                  const img = document.createElement('img');
-                 const seed = encodeURIComponent(description.substring(0, 15) + seedSuffix);
-                 img.src = `https://picsum.photos/seed/${seed}/400/300`; // Request larger base image
-                 img.alt = description; // Use AI description as alt text
-                 img.loading = 'lazy'; // Lazy load images
-
+                 const seed = encodeURIComponent(description.substring(0, 20) + seedSuffix); // Slightly longer seed part
+                 img.src = `https://picsum.photos/seed/${seed}/400/300`;
+                 img.alt = description;
+                 img.loading = 'lazy';
                  const figcaption = document.createElement('figcaption');
                  figcaption.textContent = description;
-
                  figure.appendChild(img);
                  figure.appendChild(figcaption);
                  container.appendChild(figure);
             }
 
             function createColorSwatches(container, text) {
-                 container.innerHTML = ''; // Clear previous swatches
-                 // Updated Regex: more flexible spacing, handles #xxx and #xxxxxx
+                 container.innerHTML = ''; // Clear previous
                  const colorRegex = /([\w\s\-\/]+?)\s*\(\s*(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\s*\)/g;
                  let match;
                  let foundColors = false;
 
                  while ((match = colorRegex.exec(text)) !== null) {
                     foundColors = true;
-                    // Trim spaces and hyphens from the end of the color name if any
                     const colorName = match[1].trim().replace(/[\s-]+$/, '');
                     let hexCode = match[2].trim().toUpperCase();
-
-                     // Expand 3-digit hex to 6-digit
                      if (hexCode.length === 4) {
                          hexCode = '#' + hexCode[1] + hexCode[1] + hexCode[2] + hexCode[2] + hexCode[3] + hexCode[3];
                      }
-
-                    if (hexCode.length !== 7) {
-                        console.warn(`Skipping invalid hex code format: ${match[2]} for ${colorName}`);
-                        continue; // Skip if hex is still not valid after potential expansion
-                    }
+                    if (hexCode.length !== 7) continue; // Skip invalid
 
                     const swatch = document.createElement('div');
                     swatch.className = 'color-swatch';
@@ -1468,46 +1524,32 @@
                          swatch.style.backgroundColor = hexCode;
                          swatch.style.color = isColorDarkGuess(hexCode) ? '#FFFFFF' : '#000000';
                     } catch (e) {
-                        console.warn(`CSS Error applying hex code ${hexCode} for ${colorName}:`, e);
-                        swatch.style.backgroundColor = '#CCCCCC'; // Fallback grey
-                        swatch.style.color = '#000000';
+                        swatch.style.backgroundColor = '#CCCCCC'; swatch.style.color = '#000000';
                     }
-
-                    const nameSpan = document.createElement('span');
-                    nameSpan.textContent = colorName;
-                    const hexSpan = document.createElement('span');
-                    hexSpan.className = 'hex-code';
-                    hexSpan.textContent = hexCode;
-
-                    swatch.appendChild(nameSpan);
-                    swatch.appendChild(hexSpan);
+                    const nameSpan = document.createElement('span'); nameSpan.textContent = colorName;
+                    const hexSpan = document.createElement('span'); hexSpan.className = 'hex-code'; hexSpan.textContent = hexCode;
+                    swatch.appendChild(nameSpan); swatch.appendChild(hexSpan);
                     container.appendChild(swatch);
                  }
 
                  if (!foundColors) {
-                     // Fallback if regex fails
-                     container.innerHTML = `<p style="font-style: italic; color: #6c757d;">Could not parse colors in the expected 'Name (#XXXXXX)' format.</p><p>Raw AI Output:</p><pre>${text.trim()}</pre>`;
+                     container.innerHTML = `<p style="font-style: italic; color: #6c757d;">Could not parse colors in the expected 'Name (#XXXXXX)' format.</p>`;
                      console.warn("Color parsing failed for text:", text);
                  }
             }
 
-             // Simple guess if a HEX color is dark (for text contrast) - using luminance calculation
             function isColorDarkGuess(hexColor) {
                  if (!hexColor || !hexColor.startsWith('#')) return false;
                  try {
                      let hex = hexColor.substring(1);
                      if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
-                     if (hex.length !== 6) return false; // Invalid hex length
-
+                     if (hex.length !== 6) return false;
                      const r = parseInt(hex.substring(0, 2), 16);
                      const g = parseInt(hex.substring(2, 4), 16);
                      const b = parseInt(hex.substring(4, 6), 16);
-                     // Calculate relative luminance (standard formula)
                      const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-                     return luminance < 0.5; // Threshold: below 0.5 is generally considered dark
-                 } catch {
-                     return false; // Parsing error, assume light background
-                 }
+                     return luminance < 0.5;
+                 } catch { return false; }
             }
 
             function clearResultsAndErrors() {
@@ -1515,20 +1557,21 @@
                 resultSections.forEach(section => {
                     section.style.display = 'none';
                     const contentDiv = section.querySelector('.content');
-                    if (contentDiv) contentDiv.innerHTML = '';
+                    if (contentDiv) contentDiv.innerHTML = ''; // Clear all content divs
+                    // Ensure specific containers within content divs are also cleared
                      if (section.id === 'result-moodboard') {
-                         const descP = section.querySelector('#moodboard-description');
-                         if(descP) descP.textContent = '';
-                         const imagesContainer = section.querySelector('#moodboard-images');
-                         if(imagesContainer) imagesContainer.innerHTML = ''; // Clear moodboard images too
+                         const descP = section.querySelector('#moodboard-description'); if(descP) descP.textContent = '';
+                         const imagesContainer = section.querySelector('#moodboard-images'); if(imagesContainer) imagesContainer.innerHTML = '';
                      }
                       if (section.id === 'result-visuals') {
-                          const imagesContainer = section.querySelector('.image-placeholder-container');
-                          if(imagesContainer) imagesContainer.innerHTML = ''; // Clear visual demo images
+                          const imagesContainer = section.querySelector('.image-placeholder-container'); if(imagesContainer) imagesContainer.innerHTML = '';
                      }
                       if (section.id === 'result-palette') {
-                           const paletteContainer = section.querySelector('.color-palette-display');
-                           if(paletteContainer) paletteContainer.innerHTML = ''; // Clear colors
+                           const paletteContainer = section.querySelector('.color-palette-display'); if(paletteContainer) paletteContainer.innerHTML = '';
+                      }
+                      // Ensure lists are cleared for sections that use them
+                      if(section.id === 'result-requirements' || section.id === 'result-budget') {
+                          const list = section.querySelector('ul'); if(list) list.innerHTML = '';
                       }
                 });
                 resultsArea.style.display = 'none';
@@ -1544,7 +1587,7 @@
             }
 
             // --- Initial Setup ---
-            showPage('home'); // Show home page on load
+            showPage('home');
         });
     </script>
 </body>
