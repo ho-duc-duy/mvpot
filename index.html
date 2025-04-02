@@ -52,7 +52,7 @@
         }
 
         .logo-placeholder {
-            /* Replace this div with an <img> tag when you have your logo */
+            /* Placeholder styling - replace with your <img> */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -63,8 +63,11 @@
             font-size: 1.2em;
             text-align: center;
             user-select: none; /* Prevent text selection */
-            /* If using an image:
-             img { max-width: 100%; max-height: 100%; object-fit: contain; } */
+            /* If using an image: */
+            /* You ALREADY have an image tag, let's style it */
+            max-width: 120px; /* Limit logo width */
+            max-height: 50px; /* Limit logo height */
+            object-fit: contain; /* Keep aspect ratio */
         }
 
 
@@ -387,8 +390,33 @@
         #record-status {
             margin-left: 15px;
             font-style: italic;
-            color: #dc3545; /* Red for recording */
+            color: #6c757d; /* Default color */
             font-weight: 500;
+        }
+        #record-status.recording {
+             color: #dc3545; /* Red for recording */
+        }
+        #record-status.transcribing {
+             color: #007bff; /* Blue for transcribing phase */
+        }
+         #record-status.complete {
+             color: #28a745; /* Green for complete */
+         }
+         #record-status.error {
+             color: #dc3545; /* Red for errors */
+         }
+
+         /* NEW: Style for transcript output area */
+        #transcript-group {
+            display: none; /* Hidden by default */
+            margin-top: 20px; /* Space above the transcript box */
+        }
+        #transcript-output {
+            background-color: #e9ecef; /* Slightly different background */
+            font-style: italic;
+            color: #495057;
+            min-height: 80px; /* Smaller height */
+            cursor: default; /* Indicate it's read-only */
         }
 
 
@@ -670,8 +698,7 @@
 <body>
 
     <nav class="main-nav">
-        <!-- Replace this div with your <img> tag -->
-        <img src="logofinal(white).png" alt="My Logo" class="logo-placeholder">
+        <img src="logofinal(white).png" alt="MV Assistant Logo" class="logo-placeholder">
         <ul>
             <li><a data-page="home" class="nav-link active">Home</a></li>
             <li><a data-page="about" class="nav-link">About</a></li>
@@ -684,13 +711,11 @@
         <section id="home-page" class="page active">
             <div class="hero-container">
                 <img src="heroimg.jpg" alt="Abstract music visuals" class="hero-image">
-                 <!-- Using Picsum for dynamic placeholder -->
                 <div class="hero-text-overlay">
                     <h1>Get your MV suggestion based on your lyrics!</h1>
                     <button id="explore-button" class="btn btn-primary">Explore now</button>
                 </div>
             </div>
-            <!-- Content below hero can be added here if needed -->
             <button class="btn btn-secondary btn-back" data-target="home">Go Back (to Home)</button> <!-- Usually hidden/disabled on Home -->
         </section>
 
@@ -747,7 +772,14 @@
                              <button type="button" id="record-audio-button" class="btn btn-warning">Record Audio</button>
                              <span id="record-status"></span>
                         </div>
-                        <small>Note: Audio analysis (upload/record) is not implemented in this demo's AI call. Suggestions based on text inputs.</small>
+                        <small>Note: Audio analysis (upload/record) requires browser support for recording & speech recognition. Suggestions are primarily based on text inputs + transcript.</small>
+                    </div>
+
+                    <!-- NEW: Transcript Output Area -->
+                    <div class="form-group" id="transcript-group" style="display: none;">
+                        <label for="transcript-output">Singing Transcript (from recording):</label>
+                        <textarea id="transcript-output" rows="4" readonly placeholder="Transcript will appear here after recording..."></textarea>
+                        <small>This text will be analyzed along with lyrics.</small>
                     </div>
 
                     <button type="button" id="get-suggestions-button" class="btn btn-primary">Get Suggestions!</button>
@@ -812,13 +844,23 @@
             const lyricsInput = document.getElementById('lyrics-input');
             const keywordsInput = document.getElementById('keywords-input');
             const genreSelect = document.getElementById('genre-select');
-            const trackUploadInput = document.getElementById('track-upload'); // Ref for file input
+            const trackUploadInput = document.getElementById('track-upload');
+            // NEW: Transcript elements
+            const transcriptGroup = document.getElementById('transcript-group');
+            const transcriptOutput = document.getElementById('transcript-output');
 
-            // --- Audio Recording Variables ---
+
+            // --- Audio Recording & Transcription Variables ---
             let mediaRecorder;
             let audioChunks = [];
             let isRecording = false;
-            let recordedAudioBlob = null; // To store the final Blob
+            let recordedAudioBlob = null; // To store the final audio Blob
+
+            // NEW: Speech Recognition Variables
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            let recognition;
+            let finalTranscript = ''; // Accumulate final transcript parts
+            let isSpeechRecognitionSupported = !!SpeechRecognition; // Check support once
 
             // --- Page Navigation ---
             function showPage(pageId) {
@@ -859,93 +901,169 @@
                 });
             });
 
-             // --- Microphone Recording Logic ---
+             // --- Microphone Recording & Transcription Logic ---
              if (recordAudioButton) {
                  recordAudioButton.addEventListener('click', handleRecordButtonClick);
+                 // Disable button if APIs not supported
+                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                     recordStatus.textContent = 'Audio recording not supported.';
+                     recordStatus.className = 'error';
+                     recordAudioButton.disabled = true;
+                 } else if (!isSpeechRecognitionSupported) {
+                     recordStatus.textContent = 'Speech recognition not supported.';
+                     recordStatus.className = 'error';
+                     // Allow recording, but warn transcription won't work
+                     console.warn("Web Speech Recognition API not supported. Recording possible, but no transcription.");
+                 }
              } else {
                  console.warn("Record audio button not found.");
              }
 
             async function handleRecordButtonClick() {
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    recordStatus.textContent = 'Recording not supported on this browser.';
-                    recordAudioButton.disabled = true;
+                    updateRecordStatus('Recording not supported.', 'error');
                     return;
                 }
 
                 if (!isRecording) {
-                    // Start Recording
+                    // Start Recording & Transcription
                     try {
-                        // Clear previous recording/file state if user clicks record
+                        // Clear previous states
                         recordedAudioBlob = null;
-                        trackUploadInput.value = ''; // Clear file input if user records instead
-                        recordStatus.textContent = 'Requesting mic access...';
+                        trackUploadInput.value = ''; // Clear file input
+                        transcriptOutput.value = ''; // Clear old transcript
+                        finalTranscript = ''; // Reset accumulated transcript
+                        transcriptGroup.style.display = 'none'; // Hide transcript box initially
+                        updateRecordStatus('Requesting mic access...', '');
 
                         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                         mediaRecorder = new MediaRecorder(stream);
 
+                        // --- Media Recorder Setup ---
                         mediaRecorder.ondataavailable = event => {
-                            if (event.data.size > 0) { // Only push if data exists
+                            if (event.data.size > 0) {
                                 audioChunks.push(event.data);
                             }
                         };
 
                         mediaRecorder.onstop = () => {
                             if (audioChunks.length > 0) {
-                                recordedAudioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' }); // Use a common web format
-                                const audioUrl = URL.createObjectURL(recordedAudioBlob);
-                                console.log("Recording finished. Blob:", recordedAudioBlob, "URL:", audioUrl);
-                                recordStatus.textContent = `Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB).`;
+                                recordedAudioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' });
+                                console.log("Recording finished. Blob:", recordedAudioBlob);
+                                // Status updated by recognition ending or here if no recognition
+                                if (!isSpeechRecognitionSupported || !recognition) {
+                                     updateRecordStatus(`Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB).`, 'complete');
+                                }
                             } else {
                                 console.log("Recording stopped with no data.");
-                                recordStatus.textContent = 'Recording stopped (no audio captured).';
-                                recordedAudioBlob = null; // Ensure blob is null if no data
+                                updateRecordStatus('Recording stopped (no audio captured).', 'error');
+                                recordedAudioBlob = null;
                             }
                             audioChunks = []; // Reset chunks
-
-                            // Stop tracks to turn off microphone light/indicator
-                            stream.getTracks().forEach(track => track.stop());
-                            updateRecordingUI(false); // Update UI after tracks are stopped
+                            stream.getTracks().forEach(track => track.stop()); // Stop mic light
+                            updateRecordingUI(false);
                         };
 
                         mediaRecorder.onerror = (event) => {
                             console.error("MediaRecorder error:", event.error);
-                            recordStatus.textContent = `Recording error: ${event.error.name}`;
-                            isRecording = false;
+                            updateRecordStatus(`Recording error: ${event.error.name}`, 'error');
+                            if (recognition && recognition.readyState === 'listening') recognition.stop(); // Stop recognition on error too
+                            stream.getTracks().forEach(track => track.stop());
                             updateRecordingUI(false);
-                            stream.getTracks().forEach(track => track.stop()); // Ensure mic is off
                         };
 
-                        audioChunks = []; // Clear previous recording chunks
+                        // --- Speech Recognition Setup (if supported) ---
+                        if (isSpeechRecognitionSupported) {
+                            recognition = new SpeechRecognition();
+                            recognition.continuous = true; // Keep listening
+                            recognition.interimResults = true; // Show results as they come
+                            recognition.lang = 'en-US'; // Or make configurable
+
+                            recognition.onresult = (event) => {
+                                let interimTranscript = '';
+                                finalTranscript = ''; // Rebuild final transcript from scratch each time
+                                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                                    if (event.results[i].isFinal) {
+                                        finalTranscript += event.results[i][0].transcript;
+                                    } else {
+                                        interimTranscript += event.results[i][0].transcript;
+                                    }
+                                }
+                                transcriptOutput.value = finalTranscript + interimTranscript; // Show live updates
+                                if (transcriptOutput.value.trim()) {
+                                     transcriptGroup.style.display = 'block'; // Show box if there's content
+                                }
+                            };
+
+                            recognition.onerror = (event) => {
+                                console.error("Speech Recognition Error:", event.error);
+                                let errorMsg = `Transcription error: ${event.error}`;
+                                if (event.error === 'no-speech') {
+                                    errorMsg = 'No speech detected during recording.';
+                                } else if (event.error === 'audio-capture') {
+                                     errorMsg = 'Mic problem during transcription.';
+                                } else if (event.error === 'not-allowed') {
+                                    errorMsg = 'Transcription permission denied.';
+                                }
+                                updateRecordStatus(errorMsg, 'error');
+                                // Don't necessarily stop mediaRecorder here, let user decide
+                            };
+
+                            recognition.onend = () => {
+                                console.log("Speech recognition ended.");
+                                // Final update after recognition stops
+                                transcriptOutput.value = finalTranscript.trim(); // Show only final, trimmed
+                                if (transcriptOutput.value.trim()) {
+                                    transcriptGroup.style.display = 'block';
+                                    updateRecordStatus('Recording & Transcription Complete.', 'complete');
+                                } else if (recordedAudioBlob) {
+                                    // If recording exists but no transcript
+                                     updateRecordStatus(`Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB). No transcript generated.`, 'complete');
+                                } else {
+                                     // If neither recording nor transcript
+                                     // Status likely already set by mediaRecorder.onstop or error handlers
+                                }
+                                // Recognition might end before mediaRecorder.onstop if user is silent
+                                // UI update for button state is handled in mediaRecorder.onstop or errors
+                            };
+
+                            recognition.start();
+                            console.log("Speech recognition started.");
+                        } else {
+                             console.log("Speech recognition not supported, proceeding with audio recording only.");
+                        }
+
+                        // --- Start Recording ---
+                        audioChunks = [];
                         mediaRecorder.start();
-                        isRecording = true;
                         updateRecordingUI(true);
-                        recordStatus.textContent = 'Recording... Click again to stop.';
+                        updateRecordStatus(isSpeechRecognitionSupported ? 'Recording & Transcribing...' : 'Recording...', 'recording');
 
                     } catch (err) {
-                        console.error("Error accessing microphone:", err);
-                        recordStatus.textContent = `Mic access error: ${err.name}`;
-                        isRecording = false; // Ensure state is correct
+                        console.error("Error accessing microphone or starting recording:", err);
+                        updateRecordStatus(`Mic access error: ${err.name}`, 'error');
                         updateRecordingUI(false);
                     }
                 } else {
-                    // Stop Recording
+                    // Stop Recording & Transcription
                     if (mediaRecorder && mediaRecorder.state === "recording") {
-                         mediaRecorder.stop();
-                         recordStatus.textContent = 'Stopping recording...';
-                         // State updates happen in the onstop handler
+                         mediaRecorder.stop(); // Triggers mediaRecorder.onstop
+                         if (recognition) { // Stop recognition if it's running
+                             recognition.stop(); // Triggers recognition.onend
+                         }
+                         updateRecordStatus('Stopping recording...', '');
                     } else {
-                        // Handle case where button is in stop state but recorder isn't active
-                        isRecording = false;
+                        // Handle edge case if button is "Stop" but recorder isn't active
+                        if (recognition) recognition.stop();
                         updateRecordingUI(false);
-                        recordStatus.textContent = 'Stopped.';
+                        updateRecordStatus('Stopped.', '');
                     }
                 }
             }
 
             function updateRecordingUI(recording) {
                  if (!recordAudioButton) return;
-                 isRecording = recording; // Update global state
+                 isRecording = recording;
                  if (recording) {
                      recordAudioButton.textContent = 'Stop Recording';
                      recordAudioButton.classList.remove('btn-warning');
@@ -954,19 +1072,29 @@
                      recordAudioButton.textContent = 'Record Audio';
                      recordAudioButton.classList.remove('btn-danger');
                      recordAudioButton.classList.add('btn-warning');
-                     // recordStatus text is set in onstop or onclick handlers
+                     // Status text is updated by specific handlers via updateRecordStatus
                  }
              }
 
-             // Clear recording status if user selects a file
+             function updateRecordStatus(message, statusClass = '') {
+                 recordStatus.textContent = message;
+                 recordStatus.className = statusClass; // Adds 'recording', 'complete', 'error', etc.
+             }
+
+             // Clear recording/transcript status if user selects a file
              if(trackUploadInput) {
                  trackUploadInput.addEventListener('change', () => {
                      if (trackUploadInput.files.length > 0) {
                           if (isRecording && mediaRecorder && mediaRecorder.state === "recording") {
-                              mediaRecorder.stop(); // Stop recording if user uploads
+                              mediaRecorder.stop(); // Stop ongoing recording
+                              if(recognition) recognition.stop(); // Stop ongoing transcription
                           }
-                          recordStatus.textContent = ''; // Clear recording status
+                          updateRecordStatus(''); // Clear status message
                           recordedAudioBlob = null; // Clear recorded blob
+                          transcriptOutput.value = ''; // Clear transcript text
+                          finalTranscript = '';
+                          transcriptGroup.style.display = 'none'; // Hide transcript box
+                          updateRecordingUI(false); // Ensure button is back to "Record" state
                      }
                  });
              }
@@ -981,20 +1109,25 @@
                 // --- !! EXTREME SECURITY WARNING !! ---
                 // --- !! API Key exposed client-side. HIGH RISK. !! ---
                 // --- !! DO NOT USE IN PRODUCTION ENVIRONMENT. !! ---
-                const GEMINI_API_KEY = "AIzaSyB5c-hp-QeKBpBTz8qwANe4j5Kc4dZ_bWM"; // <--- EXTREMELY INSECURE - VISIBLE TO ALL VISITORS
+                const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"; // <-- REPLACE or ideally, use a backend proxy
                 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
                 // 1. Get Form Data
                 const lyrics = lyricsInput.value.trim();
                 const keywords = keywordsInput.value.trim();
                 const selectedGenre = genreSelect.value;
-                // Note: Uploaded file (trackUploadInput.files[0]) and recorded audio (recordedAudioBlob) exist
-                // but ARE NOT USED in this specific API call structure.
+                const singingTranscript = transcriptOutput.value.trim(); // NEW: Get transcript
 
                 // 2. Validation
                 if (!lyrics) { displayError("Please provide the song lyrics."); return; }
                 if (!keywords) { displayError("Please enter some keywords or describe the theme."); return; }
                 if (!selectedGenre) { displayError("Please select a music genre from the list."); return; }
+                // Optional: Warn if API key isn't set (basic check)
+                 if (GEMINI_API_KEY === "YOUR_GEMINI_API_KEY" || !GEMINI_API_KEY) {
+                      displayError("API Key is missing. Please configure the script.");
+                      return;
+                 }
+
 
                 // 3. UI Update: Clear previous, show loading
                 clearResultsAndErrors();
@@ -1002,8 +1135,8 @@
                 getSuggestionsButton.disabled = true;
                 getSuggestionsButton.textContent = 'Thinking...';
 
-                // 4. Construct Prompt for AI (precise instructions)
-                const prompt = `
+                // 4. Construct Prompt for AI (precise instructions, now including transcript)
+                let prompt = `
                 You are an AI assistant specialized in generating creative concepts for music videos.
                 Analyze the following song details:
 
@@ -1011,11 +1144,24 @@
                 \`\`\`
                 ${lyrics}
                 \`\`\`
+                `;
 
+                // NEW: Conditionally add transcript to prompt
+                if (singingTranscript) {
+                    prompt += `
+                **Singing Transcript (from recording):**
+                (This is a raw transcript of the user singing/speaking. Analyze its emotional tone, rhythm, or key phrases if relevant to supplement the lyrics.)
+                \`\`\`
+                ${singingTranscript}
+                \`\`\`
+                `;
+                }
+
+                prompt += `
                 **Keywords/Theme:** ${keywords}
                 **Music Genre:** ${selectedGenre}
 
-                Based *only* on the provided text details (lyrics, keywords, genre), generate detailed and actionable music video suggestions. Structure your response *exactly* as follows, using markdown headers (##):
+                Based on *all* the provided text details (lyrics, keywords, genre, and the singing transcript if available), generate detailed and actionable music video suggestions. Structure your response *exactly* as follows, using markdown headers (##):
 
                 ## Concept / Key Visual
                 (Describe the core concept in 1-2 sentences. Then elaborate on the main narrative idea or the central visual motif for the MV in a short paragraph. Be descriptive and evoke a feeling.)
@@ -1056,13 +1202,13 @@
                 `;
 
                 // 5. Prepare API Request Body
-                const requestBody = {
+                 const requestBody = {
                     contents: [{ parts: [{ text: prompt }] }],
                     generationConfig: {
                         temperature: 0.75, // Slightly more creative
                         maxOutputTokens: 3072 // Allow for detailed response
                     },
-                     safetySettings: [
+                     safetySettings: [ // Keep safety settings
                        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
                        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
                        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
@@ -1112,7 +1258,7 @@
 
                 } catch (error) {
                     console.error("Error during fetch or processing:", error);
-                    displayError(`Failed to get suggestions. ${error.message}. Please check the console for more details.`);
+                    displayError(`Failed to get suggestions. ${error.message}. Remember to replace 'YOUR_GEMINI_API_KEY' in the script! Check the console for more details.`);
                 } finally {
                     // 8. UI Update: Hide loading, re-enable button
                     loadingIndicator.style.display = 'none';
@@ -1121,7 +1267,8 @@
                 }
             }
 
-            // --- Parsing and Displaying Results ---
+
+            // --- Parsing and Displaying Results (No changes needed here, it parses based on headers) ---
             function parseAndDisplayResults(text) {
                 clearResultsAndErrors(); // Clear previous results first
 
@@ -1171,13 +1318,15 @@
 
                 if (foundAnySection) {
                     resultsArea.style.display = 'block'; // Show results area
+                     // Scroll to results smoothly
+                     resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
                     displayError("Could not parse the AI response structure. Raw output logged to console.");
                     console.warn("Raw AI Response Text (Parsing Failed):", text);
                 }
             }
 
-            function processSectionContent(elementId, sectionTitle, content) {
+             function processSectionContent(elementId, sectionTitle, content) {
                  const sectionElement = document.getElementById(elementId);
                  if (!sectionElement) {
                      console.warn(`Section element not found: ${elementId}`);
@@ -1186,7 +1335,6 @@
                  const contentDiv = sectionElement.querySelector('.content');
                  if (!contentDiv) {
                      console.warn(`Content div not found in: ${elementId}`);
-                     // Try adding content directly to sectionElement as fallback? No, stick to structure.
                      return;
                  }
 
@@ -1202,7 +1350,15 @@
                                  createImagePlaceholder(contentDiv, desc, `visual-${index}-${Date.now()}`); // Add timestamp for uniqueness
                              });
                          } else {
-                             contentDiv.textContent = "No visual descriptions found in the expected format.\n\n" + content.trim(); // Fallback
+                            // Try splitting by newline if numbered list fails
+                            const fallbackDescriptions = content.split('\n').map(d => d.trim()).filter(d => d.length > 5); // Filter short/empty lines
+                            if (fallbackDescriptions.length > 0) {
+                                fallbackDescriptions.forEach((desc, index) => {
+                                     createImagePlaceholder(contentDiv, desc, `visual-fb-${index}-${Date.now()}`);
+                                 });
+                            } else {
+                                 contentDiv.textContent = "No visual descriptions found in the expected format.\n\n" + content.trim(); // Fallback
+                            }
                          }
 
                      } else if (sectionTitle === 'Moodboard Influences') {
@@ -1217,12 +1373,16 @@
                              let mainDescription = content.trim(); // Default to whole content
 
                              if (bulletPoints.length > 0) {
-                                 const firstBulletIndex = content.indexOf(bulletPoints[0]);
-                                 if (firstBulletIndex > 0) {
+                                 // Find the start of the first bullet point robustly
+                                 const firstBulletMatch = content.match(/^\s*[\*\-]\s+/m); // Multiline match
+                                 const firstBulletIndex = firstBulletMatch ? firstBulletMatch.index : -1;
+
+                                 if (firstBulletIndex !== -1 && firstBulletIndex > 0) {
                                      mainDescription = content.substring(0, firstBulletIndex).trim();
+                                 } else if (firstBulletIndex === 0) {
+                                      mainDescription = ""; // Bullets start immediately
                                  } else {
-                                     // If bullets start immediately, find the first non-bullet line maybe? Or just show bullets.
-                                     mainDescription = ""; // Assume no preceding description if bullets start right away
+                                     // No bullets found, keep mainDescription as whole content
                                  }
 
                                  bulletPoints.forEach((desc, index) => {
@@ -1234,8 +1394,7 @@
                              }
 
                              moodboardDescElement.textContent = mainDescription;
-                             // Hide description if empty
-                              moodboardDescElement.style.display = mainDescription ? 'block' : 'none';
+                             moodboardDescElement.style.display = mainDescription ? 'block' : 'none';
 
                          } else {
                              contentDiv.textContent = content.trim(); // Fallback if elements not found
@@ -1246,8 +1405,11 @@
                      } else {
                          // For text-only sections (Concept, Requirements, Budget)
                          // Simple conversion of bullet points for display
-                         const formattedContent = content.trim().replace(/^\s*[\*\-]\s+/gm, '• ');
-                         contentDiv.textContent = formattedContent;
+                         // Make bullet points look better
+                         const formattedContent = content.trim()
+                            .replace(/^\s*[\*\-]\s+/gm, '<span style="margin-right: 8px; font-weight: bold; color: #9E69AF;">•</span> ') // Style bullets
+                            .replace(/\n\s*\n/g, '\n'); // Reduce double newlines
+                         contentDiv.innerHTML = formattedContent; // Use innerHTML for the span
                      }
 
                      sectionElement.style.display = 'block'; // Show the processed section
@@ -1264,8 +1426,6 @@
                  figure.className = 'image-placeholder';
 
                  const img = document.createElement('img');
-                 // Use a placeholder service like Picsum Photos with a seed based on description/index/timestamp
-                 // Encode the seed components to make them URL-safe
                  const seed = encodeURIComponent(description.substring(0, 15) + seedSuffix);
                  img.src = `https://picsum.photos/seed/${seed}/400/300`; // Request larger base image
                  img.alt = description; // Use AI description as alt text
@@ -1281,8 +1441,8 @@
 
             function createColorSwatches(container, text) {
                  container.innerHTML = ''; // Clear previous swatches
-                 // Updated Regex to be more robust: captures name and hex (#xxx or #xxxxxx)
-                 const colorRegex = /([\w\s\-\/]+?)\s*\((#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\)/g;
+                 // Updated Regex: more flexible spacing, handles #xxx and #xxxxxx
+                 const colorRegex = /([\w\s\-\/]+?)\s*\(\s*(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\s*\)/g;
                  let match;
                  let foundColors = false;
 
@@ -1302,12 +1462,10 @@
                         continue; // Skip if hex is still not valid after potential expansion
                     }
 
-
                     const swatch = document.createElement('div');
                     swatch.className = 'color-swatch';
                     try {
                          swatch.style.backgroundColor = hexCode;
-                         // Check contrast and set text color
                          swatch.style.color = isColorDarkGuess(hexCode) ? '#FFFFFF' : '#000000';
                     } catch (e) {
                         console.warn(`CSS Error applying hex code ${hexCode} for ${colorName}:`, e);
@@ -1327,13 +1485,13 @@
                  }
 
                  if (!foundColors) {
-                     // Fallback if regex fails: Display raw text, explaining the issue
-                     container.textContent = "Could not parse colors in the expected 'Name (#XXXXXX)' format.\nRaw AI Output:\n" + text.trim();
+                     // Fallback if regex fails
+                     container.innerHTML = `<p style="font-style: italic; color: #6c757d;">Could not parse colors in the expected 'Name (#XXXXXX)' format.</p><p>Raw AI Output:</p><pre>${text.trim()}</pre>`;
                      console.warn("Color parsing failed for text:", text);
                  }
             }
 
-            // Simple guess if a HEX color is dark (for text contrast) - using luminance calculation
+             // Simple guess if a HEX color is dark (for text contrast) - using luminance calculation
             function isColorDarkGuess(hexColor) {
                  if (!hexColor || !hexColor.startsWith('#')) return false;
                  try {
@@ -1353,30 +1511,36 @@
             }
 
             function clearResultsAndErrors() {
-                // Hide all result sections and clear their content
                 const resultSections = resultsArea.querySelectorAll('.result-section');
                 resultSections.forEach(section => {
                     section.style.display = 'none';
                     const contentDiv = section.querySelector('.content');
                     if (contentDiv) contentDiv.innerHTML = '';
-                     // Special clear for moodboard description paragraph
                      if (section.id === 'result-moodboard') {
                          const descP = section.querySelector('#moodboard-description');
                          if(descP) descP.textContent = '';
+                         const imagesContainer = section.querySelector('#moodboard-images');
+                         if(imagesContainer) imagesContainer.innerHTML = ''; // Clear moodboard images too
                      }
+                      if (section.id === 'result-visuals') {
+                          const imagesContainer = section.querySelector('.image-placeholder-container');
+                          if(imagesContainer) imagesContainer.innerHTML = ''; // Clear visual demo images
+                     }
+                      if (section.id === 'result-palette') {
+                           const paletteContainer = section.querySelector('.color-palette-display');
+                           if(paletteContainer) paletteContainer.innerHTML = ''; // Clear colors
+                      }
                 });
-                resultsArea.style.display = 'none'; // Hide the whole results container
-
-                // Clear and hide error message
+                resultsArea.style.display = 'none';
                 errorMessageDiv.style.display = 'none';
                 errorMessageDiv.textContent = '';
             }
 
             function displayError(message) {
                 errorMessageDiv.textContent = message;
-                errorMessageDiv.style.display = 'block'; // Show error message
-                resultsArea.style.display = 'none'; // Ensure results area is hidden
-                loadingIndicator.style.display = 'none'; // Ensure loading is hidden
+                errorMessageDiv.style.display = 'block';
+                resultsArea.style.display = 'none';
+                loadingIndicator.style.display = 'none';
             }
 
             // --- Initial Setup ---
