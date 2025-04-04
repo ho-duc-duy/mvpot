@@ -662,8 +662,7 @@
         const backButtons = document.querySelectorAll('.btn-back');
         const getSuggestionsButton = document.getElementById('get-suggestions-button');
         const resultsArea = document.getElementById('results-area');
-        // const loadingIndicator = document.getElementById('loading-indicator'); // No longer inline
-        const loadingOverlay = document.getElementById('loading-overlay'); // New reference for overlay
+        const loadingOverlay = document.getElementById('loading-overlay');
         const errorMessageDiv = document.getElementById('error-message');
         const recordAudioButton = document.getElementById('record-audio-button');
         const recordStatus = document.getElementById('record-status');
@@ -1182,9 +1181,14 @@ ${basePromptStructure}
             }
         }
 
-        // --- *** Unsplash Image Function (with robust fallback) *** ---
+
+        // --- *** Unsplash Image Function (with robust fallback and key rotation) *** ---
         // --- !! SECURITY WARNING: KEYS EMBEDDED !! ---
-        const UNSPLASH_ACCESS_KEY = 'tKEVJi06udyaqpZiOkTKrpLNw6uZfT81dLdfvDcotAM'; // <-- INSECURE UNSPLASH KEY
+        const UNSPLASH_KEYS = [
+            'tKEVJi06udyaqpZiOkTKrpLNw6uZfT81dLdfvDcotAM', // Original Key
+            'C_PlMOR6NzRK37Om1B0Ewq3byIawwRo6sLOHT4iQLo4'  // New Alternate Key
+        ];
+        let unsplashKeyIndex = 0; // Index to track the next key to use
         // --- !! END WARNING !! ---
 
         async function createImagePlaceholder(container, description, seedSuffix) {
@@ -1214,13 +1218,20 @@ ${basePromptStructure}
              figure.appendChild(figcaption);
              container.appendChild(figure);
 
-             // Check if key is missing or looks like a placeholder
-             if (!UNSPLASH_ACCESS_KEY || UNSPLASH_ACCESS_KEY.startsWith('YOUR_') || UNSPLASH_ACCESS_KEY.length < 20) {
-                 console.warn("Unsplash Key invalid or missing. Using placeholder image.");
-                 setFallbackImage(img, figcaption, description, seedSuffix, 'no-key', placeholderHeight);
-                 return;
-             }
+             // --- Key Rotation and Validation ---
+             const currentKeyIndex = unsplashKeyIndex; // Store index used for this request
+             const currentUnsplashKey = UNSPLASH_KEYS[currentKeyIndex];
+             unsplashKeyIndex = (unsplashKeyIndex + 1) % UNSPLASH_KEYS.length; // Increment index for the *next* call
 
+             // Check if the selected key is valid
+             if (!currentUnsplashKey || currentUnsplashKey.startsWith('YOUR_') || currentUnsplashKey.length < 20) {
+                 console.warn(`Selected Unsplash Key (index ${currentKeyIndex}) is invalid or missing. Using placeholder.`);
+                 setFallbackImage(img, figcaption, description, seedSuffix, 'no-key', placeholderHeight);
+                 return; // Don't proceed to fetch
+             }
+             console.log(`Using Unsplash key index: ${currentKeyIndex}`); // Log which key index is used
+
+             // --- Unsplash API Fetch ---
              try {
                 // Sanitize and shorten query
                 let query = description.replace(/<[^>]*>/g, '').replace(/[^a-zA-Z0-9\s,.]/g, '').trim(); // Remove HTML and most symbols
@@ -1231,19 +1242,19 @@ ${basePromptStructure}
                     return;
                  }
 
-                const searchUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}`;
-                console.log(`Fetching Unsplash: Query='${query}', URL='${searchUrl}'`);
+                // Use the selected key for the API call
+                const searchUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape&client_id=${currentUnsplashKey}`;
+                console.log(`Fetching Unsplash: Query='${query}', URL='${searchUrl.replace(currentUnsplashKey, '***KEY***')}'`); // Hide key in log
 
                 const response = await fetch(searchUrl);
                 const responseData = await response.json(); // Read body once
 
                 console.log(`Unsplash Response Status: ${response.status}, OK: ${response.ok}`);
-                // console.log("Unsplash Response Data:", responseData); // Optional: Log full response
 
                 if (!response.ok) {
                     let errorMsg = `Unsplash API error: ${response.status}`;
                     if (responseData && responseData.errors) errorMsg += ` - ${responseData.errors[0]}`;
-                    console.error(errorMsg, `for query "${query}"`);
+                    console.error(errorMsg, `for query "${query}" using key index ${currentKeyIndex}`);
                     setFallbackImage(img, figcaption, description, seedSuffix, 'api-error', placeholderHeight);
                     return; // Stop here on API error
                  }
@@ -1265,7 +1276,7 @@ ${basePromptStructure}
                     setFallbackImage(img, figcaption, description, seedSuffix, 'not-found', placeholderHeight);
                 }
              } catch (error) {
-                console.error(`Failed to fetch/process Unsplash image for "${description}":`, error);
+                console.error(`Failed to fetch/process Unsplash image for "${description}" using key index ${currentKeyIndex}:`, error);
                 setFallbackImage(img, figcaption, description, seedSuffix, 'fetch-error', placeholderHeight);
              }
         }
@@ -1352,7 +1363,7 @@ ${basePromptStructure}
                         imageContainer = document.createElement('div');
                         imageContainer.className = 'image-placeholder-container';
                         imageContainer.id = 'moodboard-images';
-                         imageContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(180px, 1fr))';
+                         imageContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(160px, 1fr))'; // Adjusted moodboard grid
                         contentDiv.appendChild(imageContainer); // Add it to the content div
                     }
                     imageContainer.innerHTML = '';
