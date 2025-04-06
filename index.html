@@ -1,10 +1,25 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title will be updated by JS -->
-    <title data-lang-en="MV Suggestion Tool" data-lang-es="Herramienta de Sugerencias MV">MV Suggestion Tool</title>
+    <title
+        data-lang-en="MV Suggestion Tool"
+        data-lang-es="Herramienta de Sugerencias MV"
+        data-lang-fr="Outil de Suggestion MV"
+        data-lang-de="MV-Vorschlagstool"
+        data-lang-zhcn="MV建议工具"
+        data-lang-ja="MV提案ツール"
+        data-lang-pt="Ferramenta de Sugestão de MV"
+        data-lang-ru="Инструмент предложений для MV"
+        data-lang-hi="एमवी सुझाव उपकरण"
+        data-lang-ar="أداة اقتراحات MV"
+        data-lang-ko="MV 제안 도구"
+        data-lang-vi="Công cụ gợi ý MV"
+        data-lang-it="Strumento Suggerimenti MV"
+    >MV Suggestion Tool</title>
     <style>
         /* Basic Reset & Defaults */
         * {
@@ -59,6 +74,17 @@
             /* Add data attributes for translation */
             data-lang-en="Generating creative suggestions..."
             data-lang-es="Generando sugerencias creativas..."
+            data-lang-fr="Génération de suggestions créatives..."
+            data-lang-de="Kreative Vorschläge werden generiert..."
+            data-lang-zhcn="正在生成创意建议..."
+            data-lang-ja="クリエイティブな提案を生成中..."
+            data-lang-pt="Gerando sugestões criativas..."
+            data-lang-ru="Генерация творческих предложений..."
+            data-lang-hi="रचनात्मक सुझाव उत्पन्न किए जा रहे हैं..."
+            data-lang-ar="جارٍ إنشاء اقتراحات إبداعية..."
+            data-lang-ko="창의적인 제안 생성 중..."
+            data-lang-vi="Đang tạo các đề xuất sáng tạo..."
+            data-lang-it="Generazione di suggerimenti creativi..."
         }
         .loading-spinner { /* Renamed from just 'spinner' */
             border: 5px solid rgba(0, 0, 0, 0.1);
@@ -151,6 +177,17 @@
             /* Add data attributes */
             data-lang-en="Language:"
             data-lang-es="Idioma:"
+            data-lang-fr="Langue :"
+            data-lang-de="Sprache:"
+            data-lang-zhcn="语言："
+            data-lang-ja="言語："
+            data-lang-pt="Idioma:"
+            data-lang-ru="Язык:"
+            data-lang-hi="भाषा:"
+            data-lang-ar="اللغة:"
+            data-lang-ko="언어:"
+            data-lang-vi="Ngôn ngữ:"
+            data-lang-it="Lingua:"
         }
         #settings-box select {
             padding: 5px 8px;
@@ -357,6 +394,17 @@
             /* Add data attributes */
             data-lang-en="Get your MV suggestion based on your lyrics!"
             data-lang-es="¡Obtén sugerencias para tu MV basadas en tus letras!"
+            data-lang-fr="Obtenez des suggestions de MV basées sur vos paroles !"
+            data-lang-de="Erhalte MV-Vorschläge basierend auf deinen Texten!"
+            data-lang-zhcn="根据您的歌词获取MV建议！"
+            data-lang-ja="歌詞に基づいてMVの提案をゲット！"
+            data-lang-pt="Obtenha sugestões de MV com base nas suas letras!"
+            data-lang-ru="Получите предложения для вашего клипа на основе текста песни!"
+            data-lang-hi="अपने गीत के बोलों के आधार पर अपना एमवी सुझाव प्राप्त करें!"
+            data-lang-ar="احصل على اقتراح الفيديو الموسيقي الخاص بك بناءً على كلمات الأغنية!"
+            data-lang-ko="가사를 바탕으로 뮤직비디오 제안을 받아보세요!"
+            data-lang-vi="Nhận đề xuất MV dựa trên lời bài hát của bạn!"
+            data-lang-it="Ottieni suggerimenti per il tuo MV basati sui tuoi testi!"
         }
 
         /* About Page Specific */
@@ -369,6 +417,17 @@
             /* Add data attributes */
             data-lang-en="Welcome to the MV Assistant! We are passionate about helping artists translate their musical creations into compelling visual stories. Crafting the perfect music video concept can be challenging, requiring a blend of artistic vision and practical planning. Our AI-powered tool is designed to bridge that gap. By analyzing your lyrics, keywords, and genre, MV Assistant generates tailored suggestions for music video concepts, requirements, budget estimations, visual inspirations, and color palettes. We aim to streamline the creative process, providing a launchpad for your ideas and empowering you to bring your music to life visually, whether you're an indie artist or part of a larger production. Let's make something amazing together!"
             data-lang-es="¡Bienvenido al Asistente de MV! Nos apasiona ayudar a los artistas a traducir sus creaciones musicales en historias visuales convincentes. Crear el concepto perfecto para un video musical puede ser desafiante, requiriendo una mezcla de visión artística y planificación práctica. Nuestra herramienta impulsada por IA está diseñada para cerrar esa brecha. Al analizar tus letras, palabras clave y género, el Asistente de MV genera sugerencias personalizadas para conceptos de videos musicales, requisitos, estimaciones de presupuesto, inspiraciones visuales y paletas de colores. Nuestro objetivo es agilizar el proceso creativo, proporcionando una plataforma de lanzamiento para tus ideas y empoderándote para dar vida visual a tu música, ya seas un artista independiente o parte de una producción más grande. ¡Hagamos algo increíble juntos!"
+            data-lang-fr="Bienvenue sur MV Assistant ! Nous sommes passionnés par l'aide aux artistes pour traduire leurs créations musicales en histoires visuelles captivantes. Concevoir le concept de clip vidéo parfait peut être difficile, nécessitant un mélange de vision artistique et de planification pratique. Notre outil basé sur l'IA est conçu pour combler cette lacune. En analysant vos paroles, mots-clés et genre, MV Assistant génère des suggestions personnalisées pour les concepts de clips vidéo, les exigences, les estimations de budget, les inspirations visuelles et les palettes de couleurs. Notre objectif est de rationaliser le processus créatif, en fournissant une rampe de lancement pour vos idées et en vous permettant de donner vie à votre musique visuellement, que vous soyez un artiste indépendant ou partie d'une production plus importante. Faisons quelque chose d'incroyable ensemble !"
+            data-lang-de="Willkommen beim MV Assistant! Unsere Leidenschaft ist es, Künstlern dabei zu helfen, ihre musikalischen Kreationen in fesselnde visuelle Geschichten zu übersetzen. Das perfekte Musikvideokonzept zu entwickeln kann herausfordernd sein und erfordert eine Mischung aus künstlerischer Vision und praktischer Planung. Unser KI-gestütztes Tool wurde entwickelt, um diese Lücke zu schließen. Durch die Analyse Ihrer Texte, Schlüsselwörter und Genres generiert der MV Assistant maßgeschneiderte Vorschläge für Musikvideokonzepte, Anforderungen, Budgetschätzungen, visuelle Inspirationen und Farbpaletten. Unser Ziel ist es, den kreativen Prozess zu optimieren, eine Startrampe für Ihre Ideen bereitzustellen und Sie zu befähigen, Ihre Musik visuell zum Leben zu erwecken, egal ob Sie ein Indie-Künstler oder Teil einer größeren Produktion sind. Lassen Sie uns gemeinsam etwas Großartiges schaffen!"
+            data-lang-zhcn="欢迎来到 MV 助手！我们热衷于帮助艺术家将他们的音乐创作转化为引人入胜的视觉故事。制作完美的音乐视频概念可能具有挑战性，需要艺术视野和实际规划的结合。我们的人工智能工具旨在弥合这一差距。通过分析您的歌词、关键词和流派，MV 助手会生成量身定制的音乐视频概念、要求、预算估算、视觉灵感和调色板建议。我们的目标是简化创作过程，为您的想法提供一个启动平台，并使您能够将音乐以视觉方式呈现出来，无论您是独立艺术家还是大型制作团队的一员。让我们一起创造一些惊人的东西吧！"
+            data-lang-ja="MVアシスタントへようこそ！私たちは、アーティストが音楽作品を魅力的なビジュアルストーリーに変換するお手伝いをすることに情熱を注いでいます。完璧なミュージックビデオのコンセプトを作り上げることは、芸術的なビジョンと実践的な計画の融合を必要とする、困難な作業となる場合があります。当社のAI搭載ツールは、そのギャップを埋めるために設計されています。あなたの歌詞、キーワード、ジャンルを分析することにより、MVアシスタントはミュージックビデオのコンセプト、要件、予算の見積もり、視覚的なインスピレーション、カラーパレットに関するカスタマイズされた提案を生成します。私たちは、インディーズアーティストであろうと大規模なプロダクションの一部であろうと、あなたのアイデアの出発点を提供し、あなたの音楽を視覚的に実現する力を与えることで、創造的なプロセスを合理化することを目指しています。一緒に素晴らしいものを作りましょう！"
+            data-lang-pt="Bem-vindo ao Assistente de MV! Somos apaixonados por ajudar artistas a traduzir suas criações musicais em histórias visuais envolventes. Criar o conceito perfeito de videoclipe pode ser desafiador, exigindo uma mistura de visão artística e planejamento prático. Nossa ferramenta alimentada por IA foi projetada para preencher essa lacuna. Ao analisar suas letras, palavras-chave e gênero, o Assistente de MV gera sugestões personalizadas para conceitos de videoclipe, requisitos, estimativas de orçamento, inspirações visuais e paletas de cores. Nosso objetivo é agilizar o processo criativo, fornecendo uma plataforma de lançamento para suas ideias e capacitando você a dar vida à sua música visualmente, seja você um artista independente ou parte de uma produção maior. Vamos fazer algo incrível juntos!"
+            data-lang-ru="Добро пожаловать в MV Assistant! Мы увлечены помощью артистам в превращении их музыкальных творений в захватывающие визуальные истории. Создание идеальной концепции музыкального видео может быть сложной задачей, требующей сочетания художественного видения и практического планирования. Наш инструмент на базе ИИ разработан для преодоления этого разрыва. Анализируя ваши тексты песен, ключевые слова и жанр, MV Assistant генерирует индивидуальные предложения по концепциям музыкальных видео, требованиям, оценкам бюджета, визуальным источникам вдохновения и цветовым палитрам. Мы стремимся упростить творческий процесс, предоставляя стартовую площадку для ваших идей и давая вам возможность воплотить вашу музыку в жизнь визуально, независимо от того, являетесь ли вы независимым артистом или частью более крупного производства. Давайте вместе создадим что-то потрясающее!"
+            data-lang-hi="एमवी असिस्टेंट में आपका स्वागत है! हम कलाकारों को उनकी संगीत रचनाओं को सम्मोहक दृश्य कहानियों में बदलने में मदद करने के प्रति जुनून रखते हैं। सही संगीत वीडियो अवधारणा तैयार करना चुनौतीपूर्ण हो सकता है, जिसके लिए कलात्मक दृष्टि और व्यावहारिक योजना के मिश्रण की आवश्यकता होती है। हमारा एआई-संचालित उपकरण उस अंतर को पाटने के लिए डिज़ाइन किया गया है। आपके गीत, कीवर्ड और शैली का विश्लेषण करके, एमवी असिस्टेंट संगीत वीडियो अवधारणाओं, आवश्यकताओं, बजट अनुमानों, दृश्य प्रेरणाओं और रंग पट्टियों के लिए अनुरूप सुझाव उत्पन्न करता है। हमारा लक्ष्य रचनात्मक प्रक्रिया को सुव्यवस्थित करना है, आपके विचारों के लिए एक लॉन्चपैड प्रदान करना और आपको अपनी संगीत को दृष्टिगत रूप से जीवंत करने के लिए सशक्त बनाना है, चाहे आप एक इंडी कलाकार हों या बड़े उत्पादन का हिस्सा हों। आइए मिलकर कुछ अद्भुत बनाएं!"
+            data-lang-ar="مرحبًا بك في مساعد MV! نحن متحمسون لمساعدة الفنانين على ترجمة إبداعاتهم الموسيقية إلى قصص مرئية مقنعة. قد يكون صياغة مفهوم الفيديو الموسيقي المثالي أمرًا صعبًا، ويتطلب مزيجًا من الرؤية الفنية والتخطيط العملي. تم تصميم أداتنا المدعومة بالذكاء الاصطناعي لسد هذه الفجوة. من خلال تحليل كلمات الأغاني والكلمات الرئيسية والنوع، يقوم مساعد MV بإنشاء اقتراحات مخصصة لمفاهيم الفيديو الموسيقي والمتطلبات وتقديرات الميزانية والإلهام المرئي ولوحات الألوان. نهدف إلى تبسيط العملية الإبداعية، وتوفير منصة انطلاق لأفكارك وتمكينك من إحياء موسيقاك بصريًا، سواء كنت فنانًا مستقلاً أو جزءًا من إنتاج أكبر. دعونا نصنع شيئًا رائعًا معًا!"
+            data-lang-ko="MV 어시스턴트에 오신 것을 환영합니다! 우리는 아티스트가 음악 창작물을 매력적인 시각적 스토리로 변환하는 데 열정을 쏟고 있습니다. 완벽한 뮤직 비디오 컨셉을 만드는 것은 예술적 비전과 실용적인 계획의 조화가 필요한 어려운 작업일 수 있습니다. 당사의 AI 기반 도구는 이러한 격차를 해소하기 위해 설계되었습니다. 가사, 키워드 및 장르를 분석하여 MV 어시스턴트는 뮤직 비디오 컨셉, 요구 사항, 예산 추정, 시각적 영감 및 색상 팔레트에 대한 맞춤형 제안을 생성합니다. 인디 아티스트이든 대규모 프로덕션의 일부이든 관계없이 아이디어를 위한 발판을 제공하고 음악을 시각적으로 생생하게 구현할 수 있도록 지원하여 창의적인 프로세스를 간소화하는 것을 목표로 합니다. 함께 놀라운 것을 만들어 봅시다!"
+            data-lang-vi="Chào mừng bạn đến với Trợ lý MV! Chúng tôi đam mê giúp các nghệ sĩ chuyển đổi những sáng tạo âm nhạc của họ thành những câu chuyện hình ảnh hấp dẫn. Việc tạo ra ý tưởng video âm nhạc hoàn hảo có thể đầy thử thách, đòi hỏi sự kết hợp giữa tầm nhìn nghệ thuật và kế hoạch thực tế. Công cụ hỗ trợ AI của chúng tôi được thiết kế để thu hẹp khoảng cách đó. Bằng cách phân tích lời bài hát, từ khóa và thể loại của bạn, Trợ lý MV tạo ra các đề xuất phù hợp cho các khái niệm video âm nhạc, yêu cầu, ước tính ngân sách, nguồn cảm hứng trực quan và bảng màu. Chúng tôi mong muốn hợp lý hóa quy trình sáng tạo, cung cấp bệ phóng cho ý tưởng của bạn và trao quyền cho bạn để đưa âm nhạc của mình vào cuộc sống một cách trực quan, cho dù bạn là một nghệ sĩ độc lập hay là một phần của một nhà sản xuất lớn hơn. Hãy cùng nhau tạo ra điều gì đó tuyệt vời!"
+            data-lang-it="Benvenuti in MV Assistant! Siamo appassionati nell'aiutare gli artisti a tradurre le loro creazioni musicali in storie visive avvincenti. Creare il concetto perfetto per un video musicale può essere impegnativo, richiedendo una miscela di visione artistica e pianificazione pratica. Il nostro strumento basato sull'intelligenza artificiale è progettato per colmare questa lacuna. Analizzando i tuoi testi, parole chiave e genere, MV Assistant genera suggerimenti su misura per concetti di video musicali, requisiti, stime di budget, ispirazioni visive e palette di colori. Il nostro obiettivo è semplificare il processo creativo, fornendo un trampolino di lancio per le tue idee e consentendoti di dare vita alla tua musica visivamente, che tu sia un artista indipendente o parte di una produzione più ampia. Facciamo qualcosa di straordinario insieme!"
         }
 
         /* Feature Page Specific */
@@ -603,20 +662,90 @@
 
     <!-- Loading Overlay Div -->
     <div id="loading-overlay">
-        <p data-lang-en="Generating creative suggestions..." data-lang-es="Generando sugerencias creativas...">Generating creative suggestions...</p>
+        <p
+            data-lang-en="Generating creative suggestions..."
+            data-lang-es="Generando sugerencias creativas..."
+            data-lang-fr="Génération de suggestions créatives..."
+            data-lang-de="Kreative Vorschläge werden generiert..."
+            data-lang-zhcn="正在生成创意建议..."
+            data-lang-ja="クリエイティブな提案を生成中..."
+            data-lang-pt="Gerando sugestões criativas..."
+            data-lang-ru="Генерация творческих предложений..."
+            data-lang-hi="रचनात्मक सुझाव उत्पन्न किए जा रहे हैं..."
+            data-lang-ar="جارٍ إنشاء اقتراحات إبداعية..."
+            data-lang-ko="창의적인 제안 생성 중..."
+            data-lang-vi="Đang tạo các đề xuất sáng tạo..."
+            data-lang-it="Generazione di suggerimenti creativi..."
+        >Generating creative suggestions...</p>
         <div class="loading-spinner"></div>
     </div>
 
     <nav class="main-nav">
         <img src="logofinal(white).png" alt="MV Assistant Logo" class="logo-placeholder" onerror="this.alt='Logo'; this.style.backgroundColor='#555'; this.style.color='white'; this.src=''; this.style.display='inline-block';">
         <ul>
-            <li><a data-page="home" class="nav-link active" data-lang-en="Home" data-lang-es="Inicio">Home</a></li>
-            <li><a data-page="about" class="nav-link" data-lang-en="About" data-lang-es="Acerca de">About</a></li>
-            <li><a data-page="feature" class="nav-link" data-lang-en="Feature" data-lang-es="Función">Feature</a></li>
+            <li><a data-page="home" class="nav-link active"
+                   data-lang-en="Home"
+                   data-lang-es="Inicio"
+                   data-lang-fr="Accueil"
+                   data-lang-de="Startseite"
+                   data-lang-zhcn="首页"
+                   data-lang-ja="ホーム"
+                   data-lang-pt="Início"
+                   data-lang-ru="Главная"
+                   data-lang-hi="होम"
+                   data-lang-ar="الرئيسية"
+                   data-lang-ko="홈"
+                   data-lang-vi="Trang chủ"
+                   data-lang-it="Home"
+                >Home</a></li>
+            <li><a data-page="about" class="nav-link"
+                   data-lang-en="About"
+                   data-lang-es="Acerca de"
+                   data-lang-fr="À propos"
+                   data-lang-de="Über uns"
+                   data-lang-zhcn="关于"
+                   data-lang-ja="概要"
+                   data-lang-pt="Sobre"
+                   data-lang-ru="О нас"
+                   data-lang-hi="हमारे बारे में"
+                   data-lang-ar="حول"
+                   data-lang-ko="소개"
+                   data-lang-vi="Giới thiệu"
+                   data-lang-it="Chi siamo"
+                >About</a></li>
+            <li><a data-page="feature" class="nav-link"
+                   data-lang-en="Feature"
+                   data-lang-es="Función"
+                   data-lang-fr="Fonctionnalité"
+                   data-lang-de="Funktion"
+                   data-lang-zhcn="功能"
+                   data-lang-ja="機能"
+                   data-lang-pt="Recurso"
+                   data-lang-ru="Функция"
+                   data-lang-hi="विशेषता"
+                   data-lang-ar="ميزة"
+                   data-lang-ko="기능"
+                   data-lang-vi="Tính năng"
+                   data-lang-it="Funzionalità"
+                >Feature</a></li>
         </ul>
         <!-- Settings Box for Language -->
         <div id="settings-box">
-            <label for="language-select" data-lang-en="Language:" data-lang-es="Idioma:">Language:</label>
+            <label for="language-select"
+                data-lang-en="Language:"
+                data-lang-es="Idioma:"
+                data-lang-fr="Langue :"
+                data-lang-de="Sprache:"
+                data-lang-zhcn="语言："
+                data-lang-ja="言語："
+                data-lang-pt="Idioma:"
+                data-lang-ru="Язык:"
+                data-lang-hi="भाषा:"
+                data-lang-ar="اللغة:"
+                data-lang-ko="언어:"
+                data-lang-vi="Ngôn ngữ:"
+                data-lang-it="Lingua:"
+            >Language:</label>
             <select id="language-select">
                 <option value="en">English</option>
                 <option value="es">Español (Spanish)</option>
@@ -628,6 +757,9 @@
                 <option value="ru">Русский (Russian)</option>
                 <option value="hi">हिन्दी (Hindi)</option>
                 <option value="ar">العربية (Arabic)</option>
+                <option value="ko">한국어 (Korean)</option>
+                <option value="vi">Tiếng Việt (Vietnamese)</option>
+                <option value="it">Italiano (Italian)</option>
                 <!-- Add more languages as needed -->
             </select>
         </div>
@@ -639,8 +771,36 @@
             <div class="hero-container">
                 <img src="heroimg.jpg" alt="Abstract music visuals" class="hero-image" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#ccc';">
                 <div class="hero-text-overlay">
-                    <h1 data-lang-en="Get your MV suggestion based on your lyrics!" data-lang-es="¡Obtén sugerencias para tu MV basadas en tus letras!">Get your MV suggestion based on your lyrics!</h1>
-                    <button id="explore-button" class="btn btn-primary" data-lang-en="Explore now" data-lang-es="Explorar ahora">Explore now</button>
+                    <h1
+                        data-lang-en="Get your MV suggestion based on your lyrics!"
+                        data-lang-es="¡Obtén sugerencias para tu MV basadas en tus letras!"
+                        data-lang-fr="Obtenez des suggestions de MV basées sur vos paroles !"
+                        data-lang-de="Erhalte MV-Vorschläge basierend auf deinen Texten!"
+                        data-lang-zhcn="根据您的歌词获取MV建议！"
+                        data-lang-ja="歌詞に基づいてMVの提案をゲット！"
+                        data-lang-pt="Obtenha sugestões de MV com base nas suas letras!"
+                        data-lang-ru="Получите предложения для вашего клипа на основе текста песни!"
+                        data-lang-hi="अपने गीत के बोलों के आधार पर अपना एमवी सुझाव प्राप्त करें!"
+                        data-lang-ar="احصل على اقتراح الفيديو الموسيقي الخاص بك بناءً على كلمات الأغنية!"
+                        data-lang-ko="가사를 바탕으로 뮤직비디오 제안을 받아보세요!"
+                        data-lang-vi="Nhận đề xuất MV dựa trên lời bài hát của bạn!"
+                        data-lang-it="Ottieni suggerimenti per il tuo MV basati sui tuoi testi!"
+                    >Get your MV suggestion based on your lyrics!</h1>
+                    <button id="explore-button" class="btn btn-primary"
+                            data-lang-en="Explore now"
+                            data-lang-es="Explorar ahora"
+                            data-lang-fr="Explorer maintenant"
+                            data-lang-de="Jetzt erkunden"
+                            data-lang-zhcn="立即探索"
+                            data-lang-ja="今すぐ探索"
+                            data-lang-pt="Explore agora"
+                            data-lang-ru="Исследовать сейчас"
+                            data-lang-hi="अभी अन्वेषण करें"
+                            data-lang-ar="استكشف الآن"
+                            data-lang-ko="지금 탐색"
+                            data-lang-vi="Khám phá ngay"
+                            data-lang-it="Esplora ora"
+                        >Explore now</button>
                 </div>
             </div>
         </section>
@@ -648,33 +808,172 @@
         <!-- About Page Section -->
         <section id="about-page" class="page">
             <div class="content-container">
-                <h2 data-lang-en="About Us" data-lang-es="Acerca de Nosotros">About Us</h2>
-                <p data-lang-en="Welcome to the MV Assistant! We are passionate about helping artists translate their musical creations into compelling visual stories. Crafting the perfect music video concept can be challenging, requiring a blend of artistic vision and practical planning. Our AI-powered tool is designed to bridge that gap. By analyzing your lyrics, keywords, and genre, MV Assistant generates tailored suggestions for music video concepts, requirements, budget estimations, visual inspirations, and color palettes. We aim to streamline the creative process, providing a launchpad for your ideas and empowering you to bring your music to life visually, whether you're an indie artist or part of a larger production. Let's make something amazing together!"
-                   data-lang-es="¡Bienvenido al Asistente de MV! Nos apasiona ayudar a los artistas a traducir sus creaciones musicales en historias visuales convincentes. Crear el concepto perfecto para un video musical puede ser desafiante, requiriendo una mezcla de visión artística y planificación práctica. Nuestra herramienta impulsada por IA está diseñada para cerrar esa brecha. Al analizar tus letras, palabras clave y género, el Asistente de MV genera sugerencias personalizadas para conceptos de videos musicales, requisitos, estimaciones de presupuesto, inspiraciones visuales y paletas de colores. Nuestro objetivo es agilizar el proceso creativo, proporcionando una plataforma de lanzamiento para tus ideas y empoderándote para dar vida visual a tu música, ya seas un artista independiente o parte de una producción más grande. ¡Hagamos algo increíble juntos!">
+                <h2
+                    data-lang-en="About Us"
+                    data-lang-es="Acerca de Nosotros"
+                    data-lang-fr="À propos de nous"
+                    data-lang-de="Über uns"
+                    data-lang-zhcn="关于我们"
+                    data-lang-ja="私たちについて"
+                    data-lang-pt="Sobre Nós"
+                    data-lang-ru="О нас"
+                    data-lang-hi="हमारे बारे में"
+                    data-lang-ar="معلومات عنا"
+                    data-lang-ko="회사 소개"
+                    data-lang-vi="Về chúng tôi"
+                    data-lang-it="Chi siamo"
+                >About Us</h2>
+                <p
+                   data-lang-en="Welcome to the MV Assistant! We are passionate about helping artists translate their musical creations into compelling visual stories. Crafting the perfect music video concept can be challenging, requiring a blend of artistic vision and practical planning. Our AI-powered tool is designed to bridge that gap. By analyzing your lyrics, keywords, and genre, MV Assistant generates tailored suggestions for music video concepts, requirements, budget estimations, visual inspirations, and color palettes. We aim to streamline the creative process, providing a launchpad for your ideas and empowering you to bring your music to life visually, whether you're an indie artist or part of a larger production. Let's make something amazing together!"
+                   data-lang-es="¡Bienvenido al Asistente de MV! Nos apasiona ayudar a los artistas a traducir sus creaciones musicales en historias visuales convincentes. Crear el concepto perfecto para un video musical puede ser desafiante, requiriendo una mezcla de visión artística y planificación práctica. Nuestra herramienta impulsada por IA está diseñada para cerrar esa brecha. Al analizar tus letras, palabras clave y género, el Asistente de MV genera sugerencias personalizadas para conceptos de videos musicales, requisitos, estimaciones de presupuesto, inspiraciones visuales y paletas de colores. Nuestro objetivo es agilizar el proceso creativo, proporcionando una plataforma de lanzamiento para tus ideas y empoderándote para dar vida visual a tu música, ya seas un artista independiente o parte de una producción más grande. ¡Hagamos algo increíble juntos!"
+                   data-lang-fr="Bienvenue sur MV Assistant ! Nous sommes passionnés par l'aide aux artistes pour traduire leurs créations musicales en histoires visuelles captivantes. Concevoir le concept de clip vidéo parfait peut être difficile, nécessitant un mélange de vision artistique et de planification pratique. Notre outil basé sur l'IA est conçu pour combler cette lacune. En analysant vos paroles, mots-clés et genre, MV Assistant génère des suggestions personnalisées pour les concepts de clips vidéo, les exigences, les estimations de budget, les inspirations visuelles et les palettes de couleurs. Notre objectif est de rationaliser le processus créatif, en fournissant une rampe de lancement pour vos idées et en vous permettant de donner vie à votre musique visuellement, que vous soyez un artiste indépendant ou partie d'une production plus importante. Faisons quelque chose d'incroyable ensemble !"
+                   data-lang-de="Willkommen beim MV Assistant! Unsere Leidenschaft ist es, Künstlern dabei zu helfen, ihre musikalischen Kreationen in fesselnde visuelle Geschichten zu übersetzen. Das perfekte Musikvideokonzept zu entwickeln kann herausfordernd sein und erfordert eine Mischung aus künstlerischer Vision und praktischer Planung. Unser KI-gestütztes Tool wurde entwickelt, um diese Lücke zu schließen. Durch die Analyse Ihrer Texte, Schlüsselwörter und Genres generiert der MV Assistant maßgeschneiderte Vorschläge für Musikvideokonzepte, Anforderungen, Budgetschätzungen, visuelle Inspirationen und Farbpaletten. Unser Ziel ist es, den kreativen Prozess zu optimieren, eine Startrampe für Ihre Ideen bereitzustellen und Sie zu befähigen, Ihre Musik visuell zum Leben zu erwecken, egal ob Sie ein Indie-Künstler oder Teil einer größeren Produktion sind. Lassen Sie uns gemeinsam etwas Großartiges schaffen!"
+                   data-lang-zhcn="欢迎来到 MV 助手！我们热衷于帮助艺术家将他们的音乐创作转化为引人入胜的视觉故事。制作完美的音乐视频概念可能具有挑战性，需要艺术视野和实际规划的结合。我们的人工智能工具旨在弥合这一差距。通过分析您的歌词、关键词和流派，MV 助手会生成量身定制的音乐视频概念、要求、预算估算、视觉灵感和调色板建议。我们的目标是简化创作过程，为您的想法提供一个启动平台，并使您能够将音乐以视觉方式呈现出来，无论您是独立艺术家还是大型制作团队的一员。让我们一起创造一些惊人的东西吧！"
+                   data-lang-ja="MVアシスタントへようこそ！私たちは、アーティストが音楽作品を魅力的なビジュアルストーリーに変換するお手伝いをすることに情熱を注いでいます。完璧なミュージックビデオのコンセプトを作り上げることは、芸術的なビジョンと実践的な計画の融合を必要とする、困難な作業となる場合があります。当社のAI搭載ツールは、そのギャップを埋めるために設計されています。あなたの歌詞、キーワード、ジャンルを分析することにより、MVアシスタントはミュージックビデオのコンセプト、要件、予算の見積もり、視覚的なインスピレーション、カラーパレットに関するカスタマイズされた提案を生成します。私たちは、インディーズアーティストであろうと大規模なプロダクションの一部であろうと、あなたのアイデアの出発点を提供し、あなたの音楽を視覚的に実現する力を与えることで、創造的なプロセスを合理化することを目指しています。一緒に素晴らしいものを作りましょう！"
+                   data-lang-pt="Bem-vindo ao Assistente de MV! Somos apaixonados por ajudar artistas a traduzir suas criações musicais em histórias visuais envolventes. Criar o conceito perfeito de videoclipe pode ser desafiador, exigindo uma mistura de visão artística e planejamento prático. Nossa ferramenta alimentada por IA foi projetada para preencher essa lacuna. Ao analisar suas letras, palavras-chave e gênero, o Assistente de MV gera sugestões personalizadas para conceitos de videoclipe, requisitos, estimativas de orçamento, inspirações visuais e paletas de cores. Nosso objetivo é agilizar o processo créativo, fornecendo uma plataforma de lançamento para suas ideias e capacitando você a dar vida à sua música visualmente, seja você um artista independente ou parte de uma produção maior. Vamos fazer algo incrível juntos!"
+                   data-lang-ru="Добро пожаловать в MV Assistant! Мы увлечены помощью артистам в превращении их музыкальных творений в захватывающие визуальные истории. Создание идеальной концепции музыкального видео может быть сложной задачей, требующей сочетания художественного видения и практического планирования. Наш инструмент на базе ИИ разработан для преодоления этого разрыва. Анализируя ваши тексты песен, ключевые слова и жанр, MV Assistant генерирует индивидуальные предложения по концепциям музыкальных видео, требованиям, оценкам бюджета, визуальным источникам вдохновения и цветовым палитрам. Мы стремимся упростить творческий процесс, предоставляя стартовую площадку для ваших идей и давая вам возможность воплотить вашу музыку в жизнь визуально, независимо от того, являетесь ли вы независимым артистом или частью более крупного производства. Давайте вместе создадим что-то потрясающее!"
+                   data-lang-hi="एमवी असिस्टेंट में आपका स्वागत है! हम कलाकारों को उनकी संगीत रचनाओं को सम्मोहक दृश्य कहानियों में बदलने में मदद करने के प्रति जुनून रखते हैं। सही संगीत वीडियो अवधारणा तैयार करना चुनौतीपूर्ण हो सकता है, जिसके लिए कलात्मक दृष्टि और व्यावहारिक योजना के मिश्रण की आवश्यकता होती है। हमारा एआई-संचालित उपकरण उस अंतर को पाटने के लिए डिज़ाइन किया गया है। आपके गीत, कीवर्ड और शैली का विश्लेषण करके, एमवी असिस्टेंट संगीत वीडियो अवधारणाओं, आवश्यकताओं, बजट अनुमानों, दृश्य प्रेरणाओं और रंग पट्टियों के लिए अनुरूप सुझाव उत्पन्न करता है। हमारा लक्ष्य रचनात्मक प्रक्रिया को सुव्यवस्थित करना है, आपके विचारों के लिए एक लॉन्चपैड प्रदान करना और आपको अपनी संगीत को दृष्टिगत रूप से जीवंत करने के लिए सशक्त बनाना है, चाहे आप एक इंडी कलाकार हों या बड़े उत्पादन का हिस्सा हों। आइए मिलकर कुछ अद्भुत बनाएं!"
+                   data-lang-ar="مرحبًا بك في مساعد MV! نحن متحمسون لمساعدة الفنانين على ترجمة إبداعاتهم الموسيقية إلى قصص مرئية مقنعة. قد يكون صياغة مفهوم الفيديو الموسيقي المثالي أمرًا صعبًا، ويتطلب مزيجًا من الرؤية الفنية والتخطيط العملي. تم تصميم أداتنا المدعومة بالذكاء الاصطناعي لسد هذه الفجوة. من خلال تحليل كلمات الأغاني والكلمات الرئيسية والنوع، يقوم مساعد MV بإنشاء اقتراحات مخصصة لمفاهيم الفيديو الموسيقي والمتطلبات وتقديرات الميزانية والإلهام المرئي ولوحات الألوان. نهدف إلى تبسيط العملية الإبداعية، وتوفير منصة انطلاق لأفكارك وتمكينك من إحياء موسيقاك بصريًا، سواء كنت فنانًا مستقلاً أو جزءًا من إنتاج أكبر. دعونا نصنع شيئًا رائعًا معًا!"
+                   data-lang-ko="MV 어시스턴트에 오신 것을 환영합니다! 우리는 아티스트가 음악 창작물을 매력적인 시각적 스토리로 변환하는 데 열정을 쏟고 있습니다. 완벽한 뮤직 비디오 컨셉을 만드는 것은 예술적 비전과 실용적인 계획의 조화가 필요한 어려운 작업일 수 있습니다. 당사의 AI 기반 도구는 이러한 격차를 해소하기 위해 설계되었습니다. 가사, 키워드 및 장르를 분석하여 MV 어시스턴트는 뮤직 비디오 컨셉, 요구 사항, 예산 추정, 시각적 영감 및 색상 팔레트에 대한 맞춤형 제안을 생성합니다. 인디 아티스트이든 대규모 프로덕션의 일부이든 관계없이 아이디어를 위한 발판을 제공하고 음악을 시각적으로 생생하게 구현할 수 있도록 지원하여 창의적인 프로세스를 간소화하는 것을 목표로 합니다. 함께 놀라운 것을 만들어 봅시다!"
+                   data-lang-vi="Chào mừng bạn đến với Trợ lý MV! Chúng tôi đam mê giúp các nghệ sĩ chuyển đổi những sáng tạo âm nhạc của họ thành những câu chuyện hình ảnh hấp dẫn. Việc tạo ra ý tưởng video âm nhạc hoàn hảo có thể đầy thử thách, đòi hỏi sự kết hợp giữa tầm nhìn nghệ thuật và kế hoạch thực tế. Công cụ hỗ trợ AI của chúng tôi được thiết kế để thu hẹp khoảng cách đó. Bằng cách phân tích lời bài hát, từ khóa và thể loại của bạn, Trợ lý MV tạo ra các đề xuất phù hợp cho các khái niệm video âm nhạc, yêu cầu, ước tính ngân sách, nguồn cảm hứng trực quan và bảng màu. Chúng tôi mong muốn hợp lý hóa quy trình sáng tạo, cung cấp bệ phóng cho ý tưởng của bạn và trao quyền cho bạn để đưa âm nhạc của mình vào cuộc sống một cách trực quan, cho dù bạn là một nghệ sĩ độc lập hay là một phần của một nhà sản xuất lớn hơn. Hãy cùng nhau tạo ra điều gì đó tuyệt vời!"
+                    data-lang-it="Benvenuti in MV Assistant! Siamo appassionati nell'aiutare gli artisti a tradurre le loro creazioni musicali in storie visive avvincenti. Creare il concetto perfetto per un video musicale può essere impegnativo, richiedendo una miscela di visione artistica e pianificazione pratica. Il nostro strumento basato sull'intelligenza artificiale è progettato per colmare questa lacuna. Analizzando i tuoi testi, parole chiave e genere, MV Assistant genera suggerimenti su misura per concetti di video musicali, requisiti, stime di budget, ispirazioni visive e palette di colori. Il nostro obiettivo è semplificare il processo creativo, fornendo un trampolino di lancio per le tue idee e consentendoti di dare vita alla tua musica visivamente, che tu sia un artista indipendente o parte di una produzione più ampia. Facciamo qualcosa di straordinario insieme!"
+                >
                     Welcome to the MV Assistant! ... Let's make something amazing together!
                 </p>
             </div>
-            <button class="btn btn-secondary btn-back" data-target="home" data-lang-en="Go Back" data-lang-es="Volver">Go Back</button>
+            <button class="btn btn-secondary btn-back" data-target="home"
+                    data-lang-en="Go Back"
+                    data-lang-es="Volver"
+                    data-lang-fr="Retour"
+                    data-lang-de="Zurück"
+                    data-lang-zhcn="返回"
+                    data-lang-ja="戻る"
+                    data-lang-pt="Voltar"
+                    data-lang-ru="Назад"
+                    data-lang-hi="वापस जाएं"
+                    data-lang-ar="العودة"
+                    data-lang-ko="뒤로 가기"
+                    data-lang-vi="Quay lại"
+                    data-lang-it="Indietro"
+                >Go Back</button>
         </section>
 
         <!-- Feature Page Section -->
         <section id="feature-page" class="page">
             <div class="content-container">
-                <h1 data-lang-en="MV Assistant" data-lang-es="Asistente de MV">MV Assistant</h1>
+                <h1
+                    data-lang-en="MV Assistant"
+                    data-lang-es="Asistente de MV"
+                    data-lang-fr="Assistant MV"
+                    data-lang-de="MV-Assistent"
+                    data-lang-zhcn="MV 助手"
+                    data-lang-ja="MVアシスタント"
+                    data-lang-pt="Assistente de MV"
+                    data-lang-ru="Ассистент MV"
+                    data-lang-hi="एमवी सहायक"
+                    data-lang-ar="مساعد MV"
+                    data-lang-ko="MV 어시스턴트"
+                    data-lang-vi="Trợ lý MV"
+                    data-lang-it="Assistente MV"
+                >MV Assistant</h1>
 
                 <form id="feature-form" onsubmit="return false;">
                     <div class="form-group">
-                        <label for="lyrics-input" data-lang-en="Music Lyrics:" data-lang-es="Letra de la Música:">Music Lyrics:</label>
-                        <textarea id="lyrics-input" rows="7" data-lang-en-placeholder="Paste your complete song lyrics here..." data-lang-es-placeholder="Pega la letra completa de tu canción aquí..." placeholder="Paste your complete song lyrics here..." required></textarea>
+                        <label for="lyrics-input"
+                            data-lang-en="Music Lyrics:"
+                            data-lang-es="Letra de la Música:"
+                            data-lang-fr="Paroles de la musique :"
+                            data-lang-de="Songtext:"
+                            data-lang-zhcn="歌词："
+                            data-lang-ja="歌詞："
+                            data-lang-pt="Letra da Música:"
+                            data-lang-ru="Текст песни:"
+                            data-lang-hi="संगीत के बोल:"
+                            data-lang-ar="كلمات الأغنية:"
+                            data-lang-ko="노래 가사:"
+                            data-lang-vi="Lời bài hát:"
+                            data-lang-it="Testo della canzone:"
+                        >Music Lyrics:</label>
+                        <textarea id="lyrics-input" rows="7"
+                            data-lang-en-placeholder="Paste your complete song lyrics here..."
+                            data-lang-es-placeholder="Pega la letra completa de tu canción aquí..."
+                            data-lang-fr-placeholder="Collez ici les paroles complètes de votre chanson..."
+                            data-lang-de-placeholder="Fügen Sie hier Ihren vollständigen Songtext ein..."
+                            data-lang-zhcn-placeholder="在此处粘贴完整的歌词..."
+                            data-lang-ja-placeholder="ここに完全な歌詞を貼り付けてください..."
+                            data-lang-pt-placeholder="Cole a letra completa da sua música aqui..."
+                            data-lang-ru-placeholder="Вставьте сюда полный текст вашей песни..."
+                            data-lang-hi-placeholder="अपने पूरे गाने के बोल यहाँ पेस्ट करें..."
+                            data-lang-ar-placeholder="الصق كلمات أغنيتك الكاملة هنا ..."
+                            data-lang-ko-placeholder="전체 노래 가사를 여기에 붙여넣으세요..."
+                            data-lang-vi-placeholder="Dán toàn bộ lời bài hát của bạn vào đây..."
+                            data-lang-it-placeholder="Incolla qui il testo completo della tua canzone..."
+                            placeholder="Paste your complete song lyrics here..." required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="keywords-input" data-lang-en="Keywords / Theme:" data-lang-es="Palabras Clave / Tema:">Keywords / Theme:</label>
-                        <input type="text" id="keywords-input" data-lang-en-placeholder="e.g., nostalgic, summer vibe, urban decay, overcoming struggle, first love" data-lang-es-placeholder="ej., nostálgico, ambiente de verano, decadencia urbana, superación, primer amor" placeholder="e.g., nostalgic, summer vibe, urban decay, overcoming struggle, first love" required>
+                        <label for="keywords-input"
+                            data-lang-en="Keywords / Theme:"
+                            data-lang-es="Palabras Clave / Tema:"
+                            data-lang-fr="Mots-clés / Thème :"
+                            data-lang-de="Schlüsselwörter / Thema:"
+                            data-lang-zhcn="关键词/主题："
+                            data-lang-ja="キーワード / テーマ："
+                            data-lang-pt="Palavras-chave / Tema:"
+                            data-lang-ru="Ключевые слова / Тема:"
+                            data-lang-hi="कीवर्ड / थीम:"
+                            data-lang-ar="الكلمات المفتاحية / الموضوع:"
+                            data-lang-ko="키워드 / 테마:"
+                            data-lang-vi="Từ khóa / Chủ đề:"
+                            data-lang-it="Parole chiave / Tema:"
+                        >Keywords / Theme:</label>
+                        <input type="text" id="keywords-input"
+                            data-lang-en-placeholder="e.g., nostalgic, summer vibe, urban decay, overcoming struggle, first love"
+                            data-lang-es-placeholder="ej., nostálgico, ambiente de verano, decadencia urbana, superación, primer amor"
+                            data-lang-fr-placeholder="ex., nostalgique, ambiance estivale, décadence urbaine, surmonter les difficultés, premier amour"
+                            data-lang-de-placeholder="z.B. nostalgisch, Sommerstimmung, städtischer Verfall, Kampf überwinden, erste Liebe"
+                            data-lang-zhcn-placeholder="例如，怀旧、夏日氛围、城市衰败、克服困难、初恋"
+                            data-lang-ja-placeholder="例：ノスタルジック、夏の雰囲気、都市の荒廃、苦難の克服、初恋"
+                            data-lang-pt-placeholder="ex.: nostálgico, vibe de verão, decadência urbana, superação, primeiro amor"
+                            data-lang-ru-placeholder="напр., ностальгия, летняя атмосфера, городской упадок, преодоление трудностей, первая любовь"
+                            data-lang-hi-placeholder="उदा., उदासीन, गर्मी का माहौल, शहरी क्षय, संघर्ष पर काबू पाना, पहला प्यार"
+                            data-lang-ar-placeholder="مثال: حنين، أجواء صيفية، اضمحلال حضري، التغلب على الصراع، الحب الأول"
+                            data-lang-ko-placeholder="예: 향수, 여름 분위기, 도시 쇠퇴, 고난 극복, 첫사랑"
+                            data-lang-vi-placeholder="ví dụ: hoài cổ, không khí mùa hè, suy tàn đô thị, vượt qua khó khăn, tình đầu"
+                            data-lang-it-placeholder="es., nostalgico, atmosfera estiva, degrado urbano, superare le difficoltà, primo amore"
+                            placeholder="e.g., nostalgic, summer vibe, urban decay, overcoming struggle, first love" required>
                     </div>
                     <div class="form-group">
-                        <label for="genre-select" data-lang-en="Music Genre:" data-lang-es="Género Musical:">Music Genre:</label>
+                        <label for="genre-select"
+                            data-lang-en="Music Genre:"
+                            data-lang-es="Género Musical:"
+                            data-lang-fr="Genre musical :"
+                            data-lang-de="Musikgenre:"
+                            data-lang-zhcn="音乐流派："
+                            data-lang-ja="音楽ジャンル："
+                            data-lang-pt="Gênero Musical:"
+                            data-lang-ru="Музыкальный жанр:"
+                            data-lang-hi="संगीत शैली:"
+                            data-lang-ar="نوع الموسيقى:"
+                            data-lang-ko="음악 장르:"
+                            data-lang-vi="Thể loại âm nhạc:"
+                            data-lang-it="Genere musicale:"
+                        >Music Genre:</label>
                         <select id="genre-select" required>
-                            <option value="" disabled selected data-lang-en="-- Select a Genre --" data-lang-es="-- Selecciona un Género --">-- Select a Genre --</option>
+                            <option value="" disabled selected
+                                data-lang-en="-- Select a Genre --"
+                                data-lang-es="-- Selecciona un Género --"
+                                data-lang-fr="-- Sélectionnez un genre --"
+                                data-lang-de="-- Wähle ein Genre --"
+                                data-lang-zhcn="-- 选择流派 --"
+                                data-lang-ja="-- ジャンルを選択 --"
+                                data-lang-pt="-- Selecione um Gênero --"
+                                data-lang-ru="-- Выберите жанр --"
+                                data-lang-hi="-- एक शैली चुनें --"
+                                data-lang-ar="-- اختر نوعًا --"
+                                data-lang-ko="-- 장르 선택 --"
+                                data-lang-vi="-- Chọn một thể loại --"
+                                data-lang-it="-- Seleziona un genere --"
+                            >-- Select a Genre --</option>
                             <option value="RnB">RnB / Soul</option>
                             <option value="Folk">Folk / Acoustic</option>
                             <option value="Rock">Rock (Alternative, Hard Rock, etc.)</option>
@@ -690,84 +989,360 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="track-upload" data-lang-en="Track Input (Optional):" data-lang-es="Entrada de Pista (Opcional):">Track Input (Optional):</label>
+                        <label for="track-upload"
+                            data-lang-en="Track Input (Optional):"
+                            data-lang-es="Entrada de Pista (Opcional):"
+                            data-lang-fr="Entrée de piste (facultatif) :"
+                            data-lang-de="Track-Eingabe (Optional):"
+                            data-lang-zhcn="音轨输入（可选）："
+                            data-lang-ja="トラック入力（任意）："
+                            data-lang-pt="Entrada da Faixa (Opcional):"
+                            data-lang-ru="Ввод трека (Необязательно):"
+                            data-lang-hi="ट्रैक इनपुट (वैकल्पिक):"
+                            data-lang-ar="إدخال المسار (اختياري):"
+                            data-lang-ko="트랙 입력 (선택 사항):"
+                            data-lang-vi="Nhập bản nhạc (Tùy chọn):"
+                            data-lang-it="Input traccia (Opzionale):"
+                        >Track Input (Optional):</label>
                         <div class="audio-input-group">
                              <input type="file" id="track-upload" accept="audio/*">
-                             <button type="button" id="record-audio-button" class="btn btn-warning" data-lang-en="Record Audio" data-lang-es="Grabar Audio">Record Audio</button>
-                             <span class="optional-notice" data-lang-en="(Optional)" data-lang-es="(Opcional)">(Optional)</span>
+                             <button type="button" id="record-audio-button" class="btn btn-warning"
+                                data-lang-en-record="Record Audio"
+                                data-lang-es-record="Grabar Audio"
+                                data-lang-fr-record="Enregistrer l'audio"
+                                data-lang-de-record="Audio aufnehmen"
+                                data-lang-zhcn-record="录制音频"
+                                data-lang-ja-record="音声を録音"
+                                data-lang-pt-record="Gravar Áudio"
+                                data-lang-ru-record="Записать аудио"
+                                data-lang-hi-record="ऑडियो रिकॉर्ड करें"
+                                data-lang-ar-record="تسجيل الصوت"
+                                data-lang-ko-record="오디오 녹음"
+                                data-lang-vi-record="Ghi âm"
+                                data-lang-it-record="Registra Audio"
+                                data-lang-en-stop="Stop Recording"
+                                data-lang-es-stop="Detener Grabación"
+                                data-lang-fr-stop="Arrêter l'enregistrement"
+                                data-lang-de-stop="Aufnahme stoppen"
+                                data-lang-zhcn-stop="停止录制"
+                                data-lang-ja-stop="録音停止"
+                                data-lang-pt-stop="Parar Gravação"
+                                data-lang-ru-stop="Остановить запись"
+                                data-lang-hi-stop="रिकॉर्डिंग रोकें"
+                                data-lang-ar-stop="إيقاف التسجيل"
+                                data-lang-ko-stop="녹음 중지"
+                                data-lang-vi-stop="Dừng ghi âm"
+                                data-lang-it-stop="Interrompi Registrazione"
+                             >Record Audio</button>
+                             <span class="optional-notice"
+                                data-lang-en="(Optional)"
+                                data-lang-es="(Opcional)"
+                                data-lang-fr="(Facultatif)"
+                                data-lang-de="(Optional)"
+                                data-lang-zhcn="（可选）"
+                                data-lang-ja="（任意）"
+                                data-lang-pt="(Opcional)"
+                                data-lang-ru="(Необязательно)"
+                                data-lang-hi="(वैकल्पिक)"
+                                data-lang-ar="(اختياري)"
+                                data-lang-ko="(선택 사항)"
+                                data-lang-vi="(Tùy chọn)"
+                                data-lang-it="(Opzionale)"
+                             >(Optional)</span>
                              <span id="record-status" class="record-status-base">
                                  <span id="recording-animation" class="recording-dots" style="display: none;"><span></span><span></span><span></span></span>
                                  <span id="record-status-text"></span>
                              </span>
                         </div>
-                        <small data-lang-en="Note: Audio analysis (upload/record) requires browser support for recording & speech recognition. Suggestions are primarily based on text inputs + transcript."
-                               data-lang-es="Nota: El análisis de audio (carga/grabación) requiere soporte del navegador para grabación y reconocimiento de voz. Las sugerencias se basan principalmente en entradas de texto + transcripción.">
+                        <small
+                            data-lang-en="Note: Audio analysis (upload/record) requires browser support for recording & speech recognition. Suggestions are primarily based on text inputs + transcript."
+                            data-lang-es="Nota: El análisis de audio (carga/grabación) requiere soporte del navegador para grabación y reconocimiento de voz. Las sugerencias se basan principalmente en entradas de texto + transcripción."
+                            data-lang-fr="Note : L'analyse audio (téléchargement/enregistrement) nécessite la prise en charge du navigateur pour l'enregistrement et la reconnaissance vocale. Les suggestions sont principalement basées sur les entrées de texte + la transcription."
+                            data-lang-de="Hinweis: Die Audioanalyse (Upload/Aufnahme) erfordert Browserunterstützung für Aufnahme und Spracherkennung. Vorschläge basieren hauptsächlich auf Texteingaben + Transkript."
+                            data-lang-zhcn="注意：音频分析（上传/录制）需要浏览器支持录音和语音识别。建议主要基于文本输入+转录稿。"
+                            data-lang-ja="注：オーディオ分析（アップロード/録音）には、録音と音声認識のためのブラウザサポートが必要です。提案は主にテキスト入力+トランスクリプトに基づいています。"
+                            data-lang-pt="Nota: A análise de áudio (upload/gravação) requer suporte do navegador para gravação e reconhecimento de fala. As sugestões baseiam-se principalmente nas entradas de texto + transcrição."
+                            data-lang-ru="Примечание: Аудиоанализ (загрузка/запись) требует поддержки браузером записи и распознавания речи. Предложения в основном основаны на текстовых вводах + транскрипции."
+                            data-lang-hi="नोट: ऑडियो विश्लेषण (अपलोड/रिकॉर्ड) के लिए रिकॉर्डिंग और वाक् पहचान के लिए ब्राउज़र समर्थन की आवश्यकता होती है। सुझाव मुख्य रूप से पाठ इनपुट + प्रतिलेख पर आधारित होते हैं।"
+                            data-lang-ar="ملاحظة: يتطلب تحليل الصوت (التحميل / التسجيل) دعم المتصفح للتسجيل والتعرف على الكلام. تستند الاقتراحات بشكل أساسي إلى إدخالات النص + النسخة."
+                            data-lang-ko="참고: 오디오 분석(업로드/녹음)에는 녹음 및 음성 인식을 위한 브라우저 지원이 필요합니다. 제안은 주로 텍스트 입력 + 대본을 기반으로 합니다."
+                            data-lang-vi="Lưu ý: Phân tích âm thanh (tải lên/ghi âm) yêu cầu trình duyệt hỗ trợ ghi âm & nhận dạng giọng nói. Các đề xuất chủ yếu dựa trên đầu vào văn bản + bản ghi."
+                            data-lang-it="Nota: l'analisi audio (caricamento/registrazione) richiede il supporto del browser per la registrazione e il riconoscimento vocale. I suggerimenti si basano principalmente sugli input di testo + trascrizione."
+                        >
                             Note: Audio analysis (upload/record) requires browser support...
                         </small>
                     </div>
                     <div class="form-group" id="transcript-group" style="display: none;">
-                        <label for="transcript-output" data-lang-en="Singing Transcript (from recording):" data-lang-es="Transcripción del Canto (de grabación):">Singing Transcript (from recording):</label>
-                        <textarea id="transcript-output" rows="4" readonly data-lang-en-placeholder="Transcript will appear here after recording..." data-lang-es-placeholder="La transcripción aparecerá aquí después de grabar..." placeholder="Transcript will appear here after recording..."></textarea>
-                        <small data-lang-en="This text will be analyzed along with lyrics." data-lang-es="Este texto se analizará junto con la letra.">This text will be analyzed along with lyrics.</small>
+                        <label for="transcript-output"
+                            data-lang-en="Singing Transcript (from recording):"
+                            data-lang-es="Transcripción del Canto (de grabación):"
+                            data-lang-fr="Transcription du chant (depuis l'enregistrement) :"
+                            data-lang-de="Gesangstranskript (aus Aufnahme):"
+                            data-lang-zhcn="演唱转录稿（来自录音）："
+                            data-lang-ja="歌唱トランスクリプト（録音より）："
+                            data-lang-pt="Transcrição do Canto (da gravação):"
+                            data-lang-ru="Транскрипция пения (из записи):"
+                            data-lang-hi="गायन प्रतिलेख (रिकॉर्डिंग से):"
+                            data-lang-ar="نسخة الغناء (من التسجيل):"
+                            data-lang-ko="노래 대본 (녹음에서):"
+                            data-lang-vi="Bản ghi lời hát (từ ghi âm):"
+                            data-lang-it="Trascrizione canto (da registrazione):"
+                        >Singing Transcript (from recording):</label>
+                        <textarea id="transcript-output" rows="4" readonly
+                            data-lang-en-placeholder="Transcript will appear here after recording..."
+                            data-lang-es-placeholder="La transcripción aparecerá aquí después de grabar..."
+                            data-lang-fr-placeholder="La transcription apparaîtra ici après l'enregistrement..."
+                            data-lang-de-placeholder="Das Transkript wird hier nach der Aufnahme angezeigt..."
+                            data-lang-zhcn-placeholder="录音后转录稿将显示在此处..."
+                            data-lang-ja-placeholder="録音後にトランスクリプトがここに表示されます..."
+                            data-lang-pt-placeholder="A transcrição aparecerá aqui após a gravação..."
+                            data-lang-ru-placeholder="Транскрипция появится здесь после записи..."
+                            data-lang-hi-placeholder="रिकॉर्डिंग के बाद प्रतिलेख यहाँ दिखाई देगा..."
+                            data-lang-ar-placeholder="ستظهر النسخة هنا بعد التسجيل ..."
+                            data-lang-ko-placeholder="녹음 후 여기에 대본이 표시됩니다..."
+                            data-lang-vi-placeholder="Bản ghi sẽ xuất hiện ở đây sau khi ghi âm..."
+                            data-lang-it-placeholder="La trascrizione apparirà qui dopo la registrazione..."
+                            placeholder="Transcript will appear here after recording..."></textarea>
+                        <small
+                            data-lang-en="This text will be analyzed along with lyrics."
+                            data-lang-es="Este texto se analizará junto con la letra."
+                            data-lang-fr="Ce texte sera analysé avec les paroles."
+                            data-lang-de="Dieser Text wird zusammen mit dem Songtext analysiert."
+                            data-lang-zhcn="此文本将与歌词一起分析。"
+                            data-lang-ja="このテキストは歌詞とともに分析されます。"
+                            data-lang-pt="Este texto será analisado juntamente com a letra."
+                            data-lang-ru="Этот текст будет проанализирован вместе с текстом песни."
+                            data-lang-hi="इस पाठ का विश्लेषण गीत के बोलों के साथ किया जाएगा।"
+                            data-lang-ar="سيتم تحليل هذا النص مع كلمات الأغنية."
+                            data-lang-ko="이 텍스트는 가사와 함께 분석됩니다."
+                            data-lang-vi="Văn bản này sẽ được phân tích cùng với lời bài hát."
+                            data-lang-it="Questo testo verrà analizzato insieme al testo della canzone."
+                        >This text will be analyzed along with lyrics.</small>
                     </div>
 
                     <!-- UPDATED BUTTON -->
-                    <button type="button" id="generate-concept-button" class="btn btn-primary" data-lang-en="Generate Concept" data-lang-es="Generar Concepto">Generate Concept</button>
+                    <button type="button" id="generate-concept-button" class="btn btn-primary"
+                        data-lang-en="Generate Concept"
+                        data-lang-es="Generar Concepto"
+                        data-lang-fr="Générer le concept"
+                        data-lang-de="Konzept generieren"
+                        data-lang-zhcn="生成概念"
+                        data-lang-ja="コンセプトを生成"
+                        data-lang-pt="Gerar Conceito"
+                        data-lang-ru="Сгенерировать концепцию"
+                        data-lang-hi="अवधारणा उत्पन्न करें"
+                        data-lang-ar="إنشاء المفهوم"
+                        data-lang-ko="컨셉 생성"
+                        data-lang-vi="Tạo ý tưởng"
+                        data-lang-it="Genera Concetto"
+                    >Generate Concept</button>
                 </form>
 
-                <div id="error-message" class="error-message"></div>
+                <div id="error-message" class="error-message"
+                    data-lang-en="An error occurred. Please try again."
+                    data-lang-es="Ocurrió un error. Inténtalo de nuevo."
+                    data-lang-fr="Une erreur s'est produite. Veuillez réessayer."
+                    data-lang-de="Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+                    data-lang-zhcn="发生错误。请再试一次。"
+                    data-lang-ja="エラーが発生しました。もう一度お試しください。"
+                    data-lang-pt="Ocorreu um erro. Por favor, tente novamente."
+                    data-lang-ru="Произошла ошибка. Пожалуйста, попробуйте еще раз."
+                    data-lang-hi="एक त्रुटि हुई। कृपया पुन: प्रयास करें।"
+                    data-lang-ar="حدث خطأ. يرجى المحاولة مرة أخرى."
+                    data-lang-ko="오류가 발생했습니다. 다시 시도하십시오."
+                    data-lang-vi="Đã xảy ra lỗi. Vui lòng thử lại."
+                    data-lang-it="Si è verificato un errore. Per favore riprova."
+                ></div>
 
                 <!-- Area for Initial Concept and Action Buttons -->
                 <div id="initial-concept-area" style="display: none;">
                     <section id="result-concept" class="result-section">
                          <!-- Add data attributes -->
-                         <h2 data-lang-en="Concept / Key Visual" data-lang-es="Concepto / Visual Clave">Concept / Key Visual</h2>
+                         <h2
+                            data-lang-en="Concept / Key Visual"
+                            data-lang-es="Concepto / Visual Clave"
+                            data-lang-fr="Concept / Visuel clé"
+                            data-lang-de="Konzept / Schlüsselbild"
+                            data-lang-zhcn="概念/关键视觉"
+                            data-lang-ja="コンセプト / キービジュアル"
+                            data-lang-pt="Conceito / Visual Chave"
+                            data-lang-ru="Концепция / Ключевой визуал"
+                            data-lang-hi="अवधारणा / मुख्य दृश्य"
+                            data-lang-ar="المفهوم / الصورة المرئية الرئيسية"
+                            data-lang-ko="컨셉 / 주요 비주얼"
+                            data-lang-vi="Ý tưởng / Hình ảnh chủ đạo"
+                            data-lang-it="Concetto / Visual chiave"
+                         >Concept / Key Visual</h2>
                          <div class="content"><p></p></div>
                     </section>
-                    <button id="explore-more-button" class="btn btn-secondary" data-lang-en="Explore More" data-lang-es="Explorar Más">Explore More</button>
-                    <button id="regenerate-button" class="btn btn-secondary" data-lang-en="Re-Generate Concept" data-lang-es="Re-Generar Concepto">Re-Generate Concept</button>
+                    <button id="explore-more-button" class="btn btn-secondary"
+                        data-lang-en="Explore More"
+                        data-lang-es="Explorar Más"
+                        data-lang-fr="Explorer plus"
+                        data-lang-de="Mehr entdecken"
+                        data-lang-zhcn="探索更多"
+                        data-lang-ja="さらに探索"
+                        data-lang-pt="Explorar Mais"
+                        data-lang-ru="Узнать больше"
+                        data-lang-hi="और अन्वेषण करें"
+                        data-lang-ar="استكشاف المزيد"
+                        data-lang-ko="더 알아보기"
+                        data-lang-vi="Khám phá thêm"
+                        data-lang-it="Esplora di più"
+                    >Explore More</button>
+                    <button id="regenerate-button" class="btn btn-secondary"
+                        data-lang-en="Re-Generate Concept"
+                        data-lang-es="Re-Generar Concepto"
+                        data-lang-fr="Régénérer le concept"
+                        data-lang-de="Konzept neu generieren"
+                        data-lang-zhcn="重新生成概念"
+                        data-lang-ja="コンセプトを再生成"
+                        data-lang-pt="Gerar Conceito Novamente"
+                        data-lang-ru="Перегенерировать концепцию"
+                        data-lang-hi="अवधारणा पुनः उत्पन्न करें"
+                        data-lang-ar="إعادة إنشاء المفهوم"
+                        data-lang-ko="컨셉 다시 생성"
+                        data-lang-vi="Tạo lại ý tưởng"
+                        data-lang-it="Rigenera Concetto"
+                    >Re-Generate Concept</button>
                 </div>
 
                 <!-- Area for Detailed Results (shown after "Explore More") -->
                 <div id="detailed-results-area" style="display: none;">
                      <section id="result-requirements" class="result-section">
                           <!-- Add data attributes -->
-                         <h2 data-lang-en="Requirements for MV" data-lang-es="Requisitos para el MV">Requirements for MV</h2>
+                         <h2
+                            data-lang-en="Requirements for MV"
+                            data-lang-es="Requisitos para el MV"
+                            data-lang-fr="Exigences pour le MV"
+                            data-lang-de="Anforderungen für MV"
+                            data-lang-zhcn="MV要求"
+                            data-lang-ja="MVの要件"
+                            data-lang-pt="Requisitos para o MV"
+                            data-lang-ru="Требования к MV"
+                            data-lang-hi="एमवी के लिए आवश्यकताएँ"
+                            data-lang-ar="متطلبات الفيديو الموسيقي"
+                            data-lang-ko="MV 요구 사항"
+                            data-lang-vi="Yêu cầu đối với MV"
+                            data-lang-it="Requisiti per il MV"
+                         >Requirements for MV</h2>
                          <div class="content"><ul></ul></div>
                      </section>
                      <section id="result-budget" class="result-section">
                           <!-- Add data attributes -->
-                         <h2 data-lang-en="Estimated Budget" data-lang-es="Presupuesto Estimado">Estimated Budget</h2>
+                         <h2
+                            data-lang-en="Estimated Budget"
+                            data-lang-es="Presupuesto Estimado"
+                            data-lang-fr="Budget estimé"
+                            data-lang-de="Geschätztes Budget"
+                            data-lang-zhcn="预估预算"
+                            data-lang-ja="推定予算"
+                            data-lang-pt="Orçamento Estimado"
+                            data-lang-ru="Предполагаемый бюджет"
+                            data-lang-hi="अनुमानित बजट"
+                            data-lang-ar="الميزانية المقدرة"
+                            data-lang-ko="예상 예산"
+                            data-lang-vi="Ngân sách ước tính"
+                            data-lang-it="Budget Stimato"
+                         >Estimated Budget</h2>
                          <div class="content"><div class="budget-columns-container"></div></div>
                      </section>
                      <section id="result-visuals" class="result-section">
                            <!-- Add data attributes -->
-                         <h2 data-lang-en="Visual Demo (Key Image Ideas)" data-lang-es="Demo Visual (Ideas de Imágenes Clave)">Visual Demo (Key Image Ideas)</h2>
+                         <h2
+                            data-lang-en="Visual Demo (Key Image Ideas)"
+                            data-lang-es="Demo Visual (Ideas de Imágenes Clave)"
+                            data-lang-fr="Démo visuelle (Idées d'images clés)"
+                            data-lang-de="Visuelle Demo (Schlüsselbild-Ideen)"
+                            data-lang-zhcn="视觉演示（关键图像创意）"
+                            data-lang-ja="ビジュアルデモ（キーイメージアイデア）"
+                            data-lang-pt="Demonstração Visual (Ideias de Imagens Chave)"
+                            data-lang-ru="Визуальное демо (Идеи ключевых изображений)"
+                            data-lang-hi="दृश्य डेमो (मुख्य छवि विचार)"
+                            data-lang-ar="عرض مرئي (أفكار الصور الرئيسية)"
+                            data-lang-ko="비주얼 데모 (주요 이미지 아이디어)"
+                            data-lang-vi="Minh họa hình ảnh (Ý tưởng hình ảnh chính)"
+                            data-lang-it="Demo visiva (Idee Immagini Chiave)"
+                         >Visual Demo (Key Image Ideas)</h2>
                          <div class="content">
                              <div class="image-placeholder-container"></div>
                          </div>
                          <!-- Add data attributes -->
-                         <small data-lang-en="Note: Images are illustrative examples fetched based on AI descriptions. Actual MV visuals require specific direction."
-                                data-lang-es="Nota: Las imágenes son ejemplos ilustrativos obtenidos según las descripciones de la IA. Los visuales reales del MV requieren dirección específica.">
+                         <small
+                            data-lang-en="Note: Images are illustrative examples fetched based on AI descriptions. Actual MV visuals require specific direction."
+                            data-lang-es="Nota: Las imágenes son ejemplos ilustrativos obtenidos según las descripciones de la IA. Los visuales reales del MV requieren dirección específica."
+                            data-lang-fr="Note : Les images sont des exemples illustratifs récupérés sur la base des descriptions de l'IA. Les visuels réels du MV nécessitent une direction spécifique."
+                            data-lang-de="Hinweis: Bilder sind illustrative Beispiele, die auf KI-Beschreibungen basieren. Tatsächliche MV-Visuals erfordern spezifische Anweisungen."
+                            data-lang-zhcn="注意：图片是根据 AI 描述获取的说明性示例。实际的 MV 视觉效果需要具体指导。"
+                            data-lang-ja="注：画像はAIの説明に基づいて取得された説明的な例です。実際のMVビジュアルには特定の指示が必要です。"
+                            data-lang-pt="Nota: As imagens são exemplos ilustrativos obtidos com base nas descrições da IA. Os visuais reais do MV exigem direção específica."
+                            data-lang-ru="Примечание: Изображения являются иллюстративными примерами, полученными на основе описаний ИИ. Фактические визуальные эффекты MV требуют конкретного руководства."
+                            data-lang-hi="नोट: छवियां एआई विवरणों के आधार पर प्राप्त किए गए उदाहरण हैं। वास्तविक एमवी दृश्यों के लिए विशिष्ट दिशा की आवश्यकता होती है।"
+                            data-lang-ar="ملاحظة: الصور هي أمثلة توضيحية تم جلبها بناءً على أوصاف الذكاء الاصطناعي. تتطلب مرئيات الفيديو الموسيقي الفعلية توجيهًا محددًا."
+                            data-lang-ko="참고: 이미지는 AI 설명을 기반으로 가져온 예시입니다. 실제 MV 비주얼에는 구체적인 지시가 필요합니다."
+                            data-lang-vi="Lưu ý: Hình ảnh là ví dụ minh họa được tìm nạp dựa trên mô tả của AI. Hình ảnh MV thực tế yêu cầu chỉ đạo cụ thể."
+                            data-lang-it="Nota: le immagini sono esempi illustrativi recuperati in base alle descrizioni dell'IA. Le visualizzazioni effettive del MV richiedono una direzione specifica."
+                         >
                                 Note: Images are illustrative examples...
                           </small>
                      </section>
                      <section id="result-moodboard" class="result-section">
                            <!-- Add data attributes -->
-                         <h2 data-lang-en="Moodboard Influences" data-lang-es="Influencias del Moodboard">Moodboard Influences</h2>
+                         <h2
+                            data-lang-en="Moodboard Influences"
+                            data-lang-es="Influencias del Moodboard"
+                            data-lang-fr="Influences du Moodboard"
+                            data-lang-de="Moodboard-Einflüsse"
+                            data-lang-zhcn="情绪板影响"
+                            data-lang-ja="ムードボードの影響"
+                            data-lang-pt="Influências do Moodboard"
+                            data-lang-ru="Влияния мудборда"
+                            data-lang-hi="मूडबोर्ड प्रभाव"
+                            data-lang-ar="تأثيرات لوحة المزاج"
+                            data-lang-ko="무드보드 영향"
+                            data-lang-vi="Ảnh hưởng từ Moodboard"
+                            data-lang-it="Influenze Moodboard"
+                         >Moodboard Influences</h2>
                           <div class="content">
                               <p id="moodboard-description"></p>
                               <div class="image-placeholder-container" id="moodboard-images"></div>
                          </div>
                           <!-- Add data attributes -->
-                          <small data-lang-en="Note: Images are illustrative examples fetched based on AI descriptions. Actual MV visuals require specific direction."
-                                 data-lang-es="Nota: Las imágenes son ejemplos ilustrativos obtenidos según las descripciones de la IA. Los visuales reales del MV requieren dirección específica.">
+                          <small
+                                data-lang-en="Note: Images are illustrative examples fetched based on AI descriptions. Actual MV visuals require specific direction."
+                                data-lang-es="Nota: Las imágenes son ejemplos ilustrativos obtenidos según las descripciones de la IA. Los visuales reales del MV requieren dirección específica."
+                                data-lang-fr="Note : Les images sont des exemples illustratifs récupérés sur la base des descriptions de l'IA. Les visuels réels du MV nécessitent une direction spécifique."
+                                data-lang-de="Hinweis: Bilder sind illustrative Beispiele, die auf KI-Beschreibungen basieren. Tatsächliche MV-Visuals erfordern spezifische Anweisungen."
+                                data-lang-zhcn="注意：图片是根据 AI 描述获取的说明性示例。实际的 MV 视觉效果需要具体指导。"
+                                data-lang-ja="注：画像はAIの説明に基づいて取得された説明的な例です。実際のMVビジュアルには特定の指示が必要です。"
+                                data-lang-pt="Nota: As imagens são exemplos ilustrativos obtidos com base nas descrições da IA. Os visuais reais do MV exigem direção específica."
+                                data-lang-ru="Примечание: Изображения являются иллюстративными примерами, полученными на основе описаний ИИ. Фактические визуальные эффекты MV требуют конкретного руководства."
+                                data-lang-hi="नोट: छवियां एआई विवरणों के आधार पर प्राप्त किए गए उदाहरण हैं। वास्तविक एमवी दृश्यों के लिए विशिष्ट दिशा की आवश्यकता होती है।"
+                                data-lang-ar="ملاحظة: الصور هي أمثلة توضيحية تم جلبها بناءً على أوصاف الذكاء الاصطناعي. تتطلب مرئيات الفيديو الموسيقي الفعلية توجيهًا محددًا."
+                                data-lang-ko="참고: 이미지는 AI 설명을 기반으로 가져온 예시입니다. 실제 MV 비주얼에는 구체적인 지시가 필요합니다."
+                                data-lang-vi="Lưu ý: Hình ảnh là ví dụ minh họa được tìm nạp dựa trên mô tả của AI. Hình ảnh MV thực tế yêu cầu chỉ đạo cụ thể."
+                                data-lang-it="Nota: le immagini sono esempi illustrativi recuperati in base alle descrizioni dell'IA. Le visualizzazioni effettive del MV richiedono una direzione specifica."
+                          >
                                 Note: Images are illustrative examples...
                           </small>
                      </section>
                      <section id="result-palette" class="result-section">
                            <!-- Add data attributes -->
-                         <h2 data-lang-en="Color Palette" data-lang-es="Paleta de Colores">Color Palette</h2>
+                         <h2
+                            data-lang-en="Color Palette"
+                            data-lang-es="Paleta de Colores"
+                            data-lang-fr="Palette de couleurs"
+                            data-lang-de="Farbpalette"
+                            data-lang-zhcn="调色板"
+                            data-lang-ja="カラーパレット"
+                            data-lang-pt="Paleta de Cores"
+                            data-lang-ru="Цветовая палитра"
+                            data-lang-hi="रंग पैलेट"
+                            data-lang-ar="لوحة الألوان"
+                            data-lang-ko="색상 팔레트"
+                            data-lang-vi="Bảng màu"
+                            data-lang-it="Palette colori"
+                         >Color Palette</h2>
                          <div class="content">
                             <div class="color-palette-display"></div>
                          </div>
@@ -775,7 +1350,21 @@
                 </div>
 
             </div>
-             <button class="btn btn-secondary btn-back" data-target="home" data-lang-en="Go Back" data-lang-es="Volver">Go Back</button>
+             <button class="btn btn-secondary btn-back" data-target="home"
+                data-lang-en="Go Back"
+                data-lang-es="Volver"
+                data-lang-fr="Retour"
+                data-lang-de="Zurück"
+                data-lang-zhcn="返回"
+                data-lang-ja="戻る"
+                data-lang-pt="Voltar"
+                data-lang-ru="Назад"
+                data-lang-hi="वापस जाएं"
+                data-lang-ar="العودة"
+                data-lang-ko="뒤로 가기"
+                data-lang-vi="Quay lại"
+                data-lang-it="Indietro"
+             >Go Back</button>
         </section>
     </main>
 
@@ -844,12 +1433,14 @@
         }
 
         // --- Loading Overlay Control ---
-        function showLoading(messageKey = "Generating creative suggestions...") { // Use key or default text
+        function showLoading(messageKey = "Generating creative suggestions...") {
              if (!loadingOverlay) return;
              const textElement = loadingOverlay.querySelector('p');
              if (textElement) {
-                 // Try to get translated message, fallback to English or the key itself
-                 const translatedMessage = textElement.dataset['lang' + currentLang] || textElement.dataset['langEn'] || messageKey;
+                 // Try to get translated message using the current language code
+                 const datasetKey = formatDatasetKey(currentLang); // e.g., langFr, langZhcn
+                 const fallbackKey = formatDatasetKey('en'); // langEn
+                 const translatedMessage = textElement.dataset[datasetKey] || textElement.dataset[fallbackKey] || messageKey;
                  textElement.textContent = translatedMessage;
              }
              loadingOverlay.classList.add('show');
@@ -869,20 +1460,20 @@
         }
 
 
-        // --- Microphone Recording Logic (Unchanged) ---
+        // --- Microphone Recording Logic ---
         if (recordAudioButton) {
             recordAudioButton.addEventListener('click', handleRecordButtonClick);
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                updateRecordStatus('Audio recording not supported.', 'error');
+                updateRecordStatus('Audio recording not supported.', 'error'); // TODO: Translate this status?
                 recordAudioButton.disabled = true;
             } else if (!isSpeechRecognitionSupported) {
-                updateRecordStatus('Speech recognition not supported.', 'error');
+                updateRecordStatus('Speech recognition not supported.', 'error'); // TODO: Translate this status?
             }
         }
 
-        async function handleRecordButtonClick() { /* ... Same as before ... */
+        async function handleRecordButtonClick() {
              if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                updateRecordStatus('Recording not supported by browser.', 'error');
+                updateRecordStatus('Recording not supported by browser.', 'error'); // TODO: Translate
                 return;
             }
             if (!isRecording) {
@@ -890,91 +1481,200 @@
                 try {
                     recordedAudioBlob = null; trackUploadInput.value = ''; transcriptOutput.value = '';
                     finalTranscript = ''; transcriptGroup.style.display = 'none';
-                    updateRecordStatus('Requesting mic access...', '');
+                    updateRecordStatus('Requesting mic access...', ''); // TODO: Translate
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    updateRecordStatus('', 'recording');
+                    updateRecordStatus('', 'recording'); // Status will be handled by UI update
                     mediaRecorder = new MediaRecorder(stream);
                     mediaRecorder.ondataavailable = event => { if (event.data.size > 0) audioChunks.push(event.data); };
                     mediaRecorder.onstop = () => {
                         if (audioChunks.length > 0) {
                             recordedAudioBlob = new Blob(audioChunks, { type: 'audio/webm;codecs=opus' });
-                            if (!recognition || (recognition && recognition.readyState !== 'listening' && recognition.readyState !== 'pending')) {
-                                updateRecordStatus(`Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB).`, 'complete');
+                            if (!recognition || !recognition.recognizing) { // Check if recognition is also done
+                                updateRecordStatus(`Recording complete (${(recordedAudioBlob.size / 1024).toFixed(1)} KB).`, 'complete'); // TODO: Translate
                             }
                         } else {
-                             if (!recognition || (recognition && recognition.readyState !== 'listening' && recognition.readyState !== 'pending')) {
-                                updateRecordStatus('Stopped (no audio captured).', 'error');
-                            } recordedAudioBlob = null;
+                             if (!recognition || !recognition.recognizing) {
+                                updateRecordStatus('Stopped (no audio captured).', 'error'); // TODO: Translate
+                             }
+                             recordedAudioBlob = null;
                         }
-                        audioChunks = []; stream.getTracks().forEach(track => track.stop()); updateRecordingUI(false);
+                        audioChunks = [];
+                        stream.getTracks().forEach(track => track.stop());
+                        updateRecordingUI(false);
                     };
-                     mediaRecorder.onerror = (event) => { console.error("MediaRecorder error:", event.error); updateRecordStatus(`Recording error: ${event.error.name}`, 'error'); if (recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) { recognition.stop(); } stream.getTracks().forEach(track => track.stop()); updateRecordingUI(false); };
+                     mediaRecorder.onerror = (event) => {
+                        console.error("MediaRecorder error:", event.error);
+                        updateRecordStatus(`Recording error: ${event.error.name}`, 'error'); // TODO: Translate
+                        if (recognition && recognition.recognizing) { recognition.abort(); } // Use abort()
+                        stream.getTracks().forEach(track => track.stop());
+                        updateRecordingUI(false);
+                     };
 
                     if (isSpeechRecognitionSupported) {
-                        recognition = new SpeechRecognition(); recognition.continuous = true; recognition.interimResults = true; recognition.lang = languageSelect.value || 'en-US'; // Use selected lang for speech rec
+                        recognition = new SpeechRecognition();
+                        recognition.continuous = true;
+                        recognition.interimResults = true;
+                        // Set language for speech recognition based on current selection
+                        const bcp47Map = { 'zh-CN': 'zh-CN', 'vi': 'vi-VN', 'ko': 'ko-KR', 'hi': 'hi-IN', 'ar': 'ar-SA', /* Add others as needed, check browser compatibility */ };
+                        recognition.lang = bcp47Map[currentLang] || (currentLang.includes('-') ? currentLang : `${currentLang}-${currentLang.toUpperCase()}`);
+                        console.log("SpeechRecognition language set to:", recognition.lang);
+
                         recognition.onresult = (event) => {
                             let interimTranscript = ''; finalTranscript = '';
-                            for (let i = event.resultIndex; i < event.results.length; ++i) { if (event.results[i].isFinal) { finalTranscript += event.results[i][0].transcript + ' '; } else { interimTranscript += event.results[i][0].transcript; } }
-                            const currentFullTranscript = (finalTranscript + interimTranscript).trim(); transcriptOutput.value = currentFullTranscript; if (currentFullTranscript) { transcriptGroup.style.display = 'block'; }
+                            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                                if (event.results[i].isFinal) {
+                                    finalTranscript += event.results[i][0].transcript + ' ';
+                                } else {
+                                    interimTranscript += event.results[i][0].transcript;
+                                }
+                            }
+                            const currentFullTranscript = (finalTranscript + interimTranscript).trim();
+                            transcriptOutput.value = currentFullTranscript;
+                            if (currentFullTranscript) { transcriptGroup.style.display = 'block'; }
                         };
-                        recognition.onerror = (event) => { console.error("Speech Recognition Error:", event.error); let errorMsg = `Transcription error: ${event.error}`; /* ... error messages ... */ if (isRecording) { updateRecordStatus(errorMsg, 'error'); } else { updateRecordStatus('Transcription issue occurred.', 'error'); } };
-                        recognition.onend = () => { console.log("Speech recognition ended."); finalTranscript = finalTranscript.trim(); transcriptOutput.value = finalTranscript; if (!isRecording) { /* ... update status based on results ... */ if (finalTranscript && recordedAudioBlob) updateRecordStatus('Recording & Transcription Complete.', 'complete'); else if (finalTranscript && !recordedAudioBlob) updateRecordStatus('Transcription Complete (No Recording Saved).', 'complete'); else if (!finalTranscript && recordedAudioBlob) updateRecordStatus(`Recording complete. No transcript generated.`, 'complete'); else { if (!recordStatus || !recordStatus.classList.contains('error')) updateRecordStatus('Stopped.', ''); } } };
-                        recognition.start(); updateRecordStatus('', 'transcribing');
-                    } else { updateRecordStatus('', 'recording'); }
-                    audioChunks = []; mediaRecorder.start(); updateRecordingUI(true);
-                } catch (err) { console.error("Error accessing microphone:", err); /* ... error handling ... */ updateRecordStatus( /* errorMsg */ 'Mic access error.', 'error'); updateRecordingUI(false); }
+                        recognition.onerror = (event) => {
+                            console.error("Speech Recognition Error:", event.error);
+                            let errorMsg = `Transcription error: ${event.error}`;
+                            // Avoid duplicate 'error' status if recording already failed
+                            if (!recordStatus || !recordStatus.classList.contains('error')) {
+                                updateRecordStatus(errorMsg, 'error'); // TODO: Translate based on error type?
+                            }
+                        };
+                        recognition.onstart = () => {
+                            console.log("Speech recognition started.");
+                            updateRecordStatus('', 'transcribing'); // Indicate transcription is active
+                        };
+                        recognition.onend = () => {
+                            console.log("Speech recognition ended.");
+                            finalTranscript = finalTranscript.trim();
+                            transcriptOutput.value = finalTranscript;
+                             if (!isRecording) { // Update status only if recording has also stopped
+                                if (finalTranscript && recordedAudioBlob) {
+                                    updateRecordStatus('Recording & Transcription Complete.', 'complete'); // TODO: Translate
+                                } else if (finalTranscript && !recordedAudioBlob) {
+                                    updateRecordStatus('Transcription Complete (No Recording Saved).', 'complete'); // TODO: Translate
+                                } else if (!finalTranscript && recordedAudioBlob) {
+                                    updateRecordStatus(`Recording complete. No transcript generated.`, 'complete'); // TODO: Translate
+                                } else if (!recordStatus.classList.contains('error')) {
+                                     updateRecordStatus('Stopped.', ''); // TODO: Translate
+                                }
+                             }
+                        };
+                        recognition.start(); // Start speech recognition
+                    } else {
+                         updateRecordStatus('', 'recording'); // No transcription status if not supported
+                    }
+
+                    audioChunks = [];
+                    mediaRecorder.start();
+                    updateRecordingUI(true);
+
+                } catch (err) {
+                    console.error("Error accessing microphone:", err);
+                    let errorMsg = 'Microphone access denied or not available.'; // TODO: Translate
+                    if (err.name === 'NotAllowedError') { errorMsg = 'Microphone permission denied.'; }
+                    else if (err.name === 'NotFoundError') { errorMsg = 'No microphone found.'; }
+                    updateRecordStatus(errorMsg, 'error');
+                    updateRecordingUI(false);
+                }
             } else { // Stop Recording
-                if (mediaRecorder && mediaRecorder.state === "recording") { updateRecordStatus('Stopping...', ''); mediaRecorder.stop(); }
-                if (recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) { recognition.stop(); }
+                if (mediaRecorder && mediaRecorder.state === "recording") {
+                    updateRecordStatus('Stopping...', ''); // TODO: Translate
+                    mediaRecorder.stop();
+                }
+                if (recognition && recognition.recognizing) { // Check if recognition is active before stopping
+                    recognition.stop();
+                }
+                // UI update happens in onstop/onend handlers
             }
         }
 
-        function updateRecordingUI(recording) { /* ... Same as before ... */
+        function updateRecordingUI(recording) {
             if (!recordAudioButton) return;
             isRecording = recording;
-            const recordText = recording ? recordAudioButton.dataset.langEnStop || 'Stop Recording' : recordAudioButton.dataset.langEnRecord || 'Record Audio'; // Base text
-            const currentRecordText = recordAudioButton.dataset['lang' + currentLang + (recording ? 'Stop' : 'Record')] || recordText;
+
+            // Get translated button text
+            const recordKey = formatDatasetKey(currentLang, 'record'); // e.g., langFrRecord
+            const stopKey = formatDatasetKey(currentLang, 'stop');     // e.g., langFrStop
+            const baseRecordKey = formatDatasetKey('en', 'record');   // langEnRecord
+            const baseStopKey = formatDatasetKey('en', 'stop');       // langEnStop
+
+            const buttonText = recording
+                ? (recordAudioButton.dataset[stopKey] || recordAudioButton.dataset[baseStopKey] || 'Stop Recording')
+                : (recordAudioButton.dataset[recordKey] || recordAudioButton.dataset[baseRecordKey] || 'Record Audio');
+
+            recordAudioButton.textContent = buttonText;
 
             if (recording) {
-                recordAudioButton.textContent = currentRecordText;
-                recordAudioButton.classList.remove('btn-warning'); recordAudioButton.classList.add('btn-danger');
+                recordAudioButton.classList.remove('btn-warning');
+                recordAudioButton.classList.add('btn-danger');
                 if(recordingAnimation) recordingAnimation.style.display = 'inline-block';
             } else {
-                recordAudioButton.textContent = currentRecordText;
-                recordAudioButton.classList.remove('btn-danger'); recordAudioButton.classList.add('btn-warning');
+                recordAudioButton.classList.remove('btn-danger');
+                recordAudioButton.classList.add('btn-warning');
                 if(recordingAnimation) recordingAnimation.style.display = 'none';
             }
          }
 
-        function updateRecordStatus(message, statusClass = '') { /* ... Same as before ... */
+        function updateRecordStatus(message, statusClass = '') {
             if (!recordStatus || !recordStatusText || !recordingAnimation) return;
-            recordStatusText.textContent = message; // Add translation here if needed for status messages
-            recordStatus.className = 'record-status-base'; if (statusClass) { recordStatus.classList.add(statusClass); }
-            if (statusClass === 'recording' || statusClass === 'transcribing') { recordingAnimation.style.display = 'inline-block'; if(statusClass === 'recording') recordStatusText.textContent = ''; } else { recordingAnimation.style.display = 'none'; }
+            // Note: Status messages here are not currently translated via data attributes.
+            // This could be added if needed by mapping status keys ('recording', 'transcribing', etc.) to data-lang attributes.
+            recordStatusText.textContent = message;
+            recordStatus.className = 'record-status-base'; // Reset classes first
+            if (statusClass) {
+                recordStatus.classList.add(statusClass);
+            }
+            // Show animation for recording/transcribing, hide message text during pure recording
+            if (statusClass === 'recording' || statusClass === 'transcribing') {
+                recordingAnimation.style.display = 'inline-block';
+                if(statusClass === 'recording') recordStatusText.textContent = ''; // Hide text like "Recording..."
+            } else {
+                recordingAnimation.style.display = 'none';
+            }
          }
 
-        if(trackUploadInput) { /* ... Same file input clearing logic as before ... */
+        if(trackUploadInput) {
              trackUploadInput.addEventListener('change', () => {
                  if (trackUploadInput.files.length > 0) {
-                     if (isRecording && mediaRecorder && mediaRecorder.state === "recording") { mediaRecorder.stop(); if(recognition && (recognition.readyState === 'listening' || recognition.readyState === 'pending')) recognition.stop(); }
-                     updateRecordStatus('', ''); recordedAudioBlob = null; transcriptOutput.value = ''; finalTranscript = ''; transcriptGroup.style.display = 'none'; updateRecordingUI(false); console.log("File selected, cleared recording state.");
+                     // If recording is active, stop it
+                     if (isRecording && mediaRecorder && mediaRecorder.state === "recording") {
+                         mediaRecorder.stop();
+                         if(recognition && recognition.recognizing) recognition.abort(); // Use abort() for immediate stop
+                     }
+                     // Reset recording state variables and UI
+                     updateRecordStatus('', '');
+                     recordedAudioBlob = null;
+                     transcriptOutput.value = '';
+                     finalTranscript = '';
+                     transcriptGroup.style.display = 'none';
+                     updateRecordingUI(false); // Ensure button is reset
+                     console.log("File selected, cleared recording state.");
                  }
              });
         }
 
         // --- Gemini API Call Helper ---
         async function callGeminiAPI(promptText, loadingMessageKey = "Generating creative suggestions...") {
-            // --- !! SECURITY WARNING REMAINS !! ---
-            const GEMINI_API_KEY = "AIzaSyB5c-hp-QeKBpBTz8qwANe4j5Kc4dZ_bWM"; // <-- INSECURE - FOR STUDY ONLY
+            // --- !! INSECURE API KEY - FOR DEVELOPMENT/STUDY ONLY !! ---
+            // Replace with your actual key, BUT DO NOT DEPLOY THIS TO A PUBLIC WEBSITE!
+            // Use a backend proxy to protect your key in production.
+            const GEMINI_API_KEY = "AIzaSyB5c-hp-QeKBpBTz8qwANe4j5Kc4dZ_bWM"; // <-- INSECURE - REPLACE/REMOVE FOR PRODUCTION
+            // --- !! END SECURITY WARNING !! ---
+
+            if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_GEMINI_API_KEY_HERE") {
+                 displayError("API Key is missing or invalid. Please configure it in the script."); // TODO: Translate
+                 return null;
+            }
+
             const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
-            // --- !! END WARNING !! ---
 
             showLoading(loadingMessageKey); // Show loading with appropriate message
 
             const requestBody = {
                 contents: [{ parts: [{ text: promptText }] }],
-                generationConfig: { temperature: 0.75, maxOutputTokens: 4096 },
-                safetySettings: [ /* Standard safety settings */
+                generationConfig: { temperature: 0.75, maxOutputTokens: 4096 }, // Increased max tokens
+                safetySettings: [
                    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
                    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
                    { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
@@ -992,34 +1692,48 @@
                 const responseData = await response.json();
                 console.log("Raw API Response:", responseData);
 
-                // --- Error Handling ---
-                if (!response.ok || responseData?.error || responseData?.promptFeedback?.blockReason) {
-                    const errorDetail = responseData?.error?.message || `HTTP Error: ${response.status}`;
-                    const safetyFeedback = responseData?.promptFeedback?.blockReason;
-                    let errorMessage = `Gemini API Error: ${errorDetail}`;
-                    if (safetyFeedback) { errorMessage += ` (Reason: ${safetyFeedback})`; }
-                    console.error("Gemini API Error Details:", responseData);
-                    throw new Error(errorMessage);
+                // --- Improved Error Handling ---
+                if (!response.ok) {
+                     const errorDetail = responseData?.error?.message || `HTTP Error: ${response.status}`;
+                     console.error("Gemini API HTTP Error:", response.status, responseData);
+                     throw new Error(`API request failed: ${errorDetail}`);
+                }
+                if (responseData?.promptFeedback?.blockReason) {
+                     console.error("Gemini API Content Filtered:", responseData.promptFeedback);
+                     throw new Error(`Content blocked by safety filters. Reason: ${responseData.promptFeedback.blockReason}`);
+                }
+                if (responseData?.error) {
+                     console.error("Gemini API Error Response:", responseData.error);
+                     throw new Error(`API returned an error: ${responseData.error.message}`);
                 }
 
-                const candidate = responseData?.candidates?.[0];
-                if (!candidate) { throw new Error("No response candidate found from the AI."); }
 
-                if (candidate.finishReason && candidate.finishReason !== "STOP" && candidate.finishReason !== "MAX_TOKENS") {
-                    throw new Error(`Generation failed or was stopped. Reason: ${candidate.finishReason}.`);
+                const candidate = responseData?.candidates?.[0];
+                if (!candidate) {
+                    console.error("No response candidate found:", responseData);
+                    throw new Error("No response candidate found from the AI.");
+                }
+
+                // Check finish reason more comprehensively
+                 if (candidate.finishReason && !["STOP", "MAX_TOKENS"].includes(candidate.finishReason)) {
+                    console.warn(`Generation finished with reason: ${candidate.finishReason}`);
+                    // Optionally throw error or just return potentially partial text
+                    // throw new Error(`Generation stopped unexpectedly. Reason: ${candidate.finishReason}.`);
                 }
 
                 if (candidate?.content?.parts?.[0]?.text) {
                     console.log("Received Gemini response text.");
-                    return candidate.content.parts[0].text; // Return the generated text on success
+                    return candidate.content.parts[0].text.trim(); // Return the generated text on success
                  } else {
-                    console.error("Unexpected response format:", responseData);
+                    console.error("Unexpected response format or empty text:", responseData);
                     throw new Error("Received an unexpected or empty response format from the AI.");
                  }
 
             } catch (error) {
                 console.error("Error during Gemini fetch or processing:", error);
-                displayError(`Failed to get suggestions. ${error.message}. Please check the console.`);
+                // Display a more user-friendly translated error message
+                const baseMsg = "Failed to get suggestions."; // TODO: Translate this base part
+                displayError(`${baseMsg} ${error.message}. Check console for details.`);
                 return null; // Indicate failure
             } finally {
                 hideLoading();
@@ -1033,7 +1747,7 @@
             const selectedGenre = genreSelect.value;
             const singingTranscript = transcriptOutput.value.trim();
 
-            // Validation
+            // Validation - TODO: Translate validation messages
             if (!lyrics) { displayError("Please provide the song lyrics."); return; }
             if (!keywords) { displayError("Please enter some keywords or describe the theme."); return; }
             if (!selectedGenre) { displayError("Please select a music genre from the list."); return; }
@@ -1044,6 +1758,7 @@
             clearResultsAndErrors(); // Clear previous results/errors
 
             // --- *** PROMPT for ONLY Concept *** ---
+            // Use English for the prompt itself as the AI model understands it best
             const prompt = `
 You are an AI assistant specialized in generating creative concepts for music videos.
 Analyze the following song details:
@@ -1060,9 +1775,11 @@ Generate **ONLY** the "Concept / Key Visual" section for a music video based on 
 Structure your response *exactly* like this, starting directly with the header:
 
 ## Concept / Key Visual
-(Provide a concise, compelling core concept description here. Mention 1-2 key visual motifs or scenes that capture the essence.)
+(Provide a concise, compelling core concept description here in well-written English. Mention 1-2 key visual motifs or scenes that capture the essence.)
 `;
-            const generatedText = await callGeminiAPI(prompt, "Generating concept..."); // Use helper
+            // Translate the loading message key if needed
+            const loadingMsgKey = "Generating concept..."; // TODO: Translate key if desired
+            const generatedText = await callGeminiAPI(prompt, loadingMsgKey);
 
             if (generatedText) {
                 parseAndDisplayResults(generatedText); // This will only populate the concept section
@@ -1077,6 +1794,7 @@ Structure your response *exactly* like this, starting directly with the header:
         // --- Explore More Details ---
         async function handleExploreMore() {
             if (!currentInputs) {
+                 // TODO: Translate this error message
                 displayError("Cannot explore more without generating a concept first.");
                 return;
             }
@@ -1085,6 +1803,7 @@ Structure your response *exactly* like this, starting directly with the header:
 
             // --- *** PROMPT for Remaining Details *** ---
              const { lyrics, keywords, selectedGenre, singingTranscript } = currentInputs;
+             // Use English for the prompt
              const prompt = `
 You are an AI assistant specialized in generating creative concepts for music videos.
 You previously generated a concept based on the following song details:
@@ -1098,33 +1817,34 @@ ${singingTranscript ? `\n**Singing Transcript:**\n\`\`\`\n${singingTranscript}\n
 **Music Genre:** ${selectedGenre}
 
 Now, provide the **remaining detailed sections** for the music video based on the *original* song details provided above.
-Structure your response *exactly* like this, using markdown headers (##) for each section, and excluding the 'Concept / Key Visual' section:
+Structure your response *exactly* like this, using markdown headers (##) for each section, and excluding the 'Concept / Key Visual' section. Use clear, well-written English for all content:
 
 ## Requirements for MV
-(List specific, practical requirements: Location(s), Casting, Props, Wardrobe, Cinematography, VFX, Editing Style.)
+(List specific, practical requirements as bullet points: Location(s), Casting ideas, Key Props, Wardrobe style, Cinematography notes, potential VFX, Editing Style suggestions.)
 
 ## Estimated Budget
-(Provide Low, Mid, High conceptual breakdowns with rough USD ranges and cost factors.)
+(Provide **Low Budget**, **Mid Budget**, and **High Budget** conceptual breakdowns using bold titles like **Low Budget:**. Include rough USD ranges (e.g., $1k-$5k, $10k-$25k, $50k+) and brief descriptions of what each budget level might realistically cover for this concept.)
 
 ## Visual Demo (Key Image Descriptions)
-(Describe **exactly 3** distinct key shots/visuals using numbered points (1., 2., 3.).)
+(Describe **exactly 3** distinct key shots/visuals using numbered points (1., 2., 3.). Make these descriptions vivid and image-focused.)
 
 ## Moodboard Influences
-(Describe overall mood. Then list **exactly 5** specific visual elements/influences using bullet points (*).)
+(First, provide a short sentence describing the overall mood/atmosphere. Then, list **exactly 5** specific visual elements, styles, or reference points (like film genres, art movements, specific aesthetics) as bullet points (*) that would inform the moodboard.)
 
 ## Color Palette
-(Suggest 4-6 key colors: Color Name (#XXXXXX), Another Color (#XXXXXX), ...)
+(Suggest 4-6 key colors relevant to the concept and mood. Format *strictly* as: Color Name (#XXXXXX), Another Color (#XXXXXX), ... List only the color names and hex codes.)
 
-Adhere strictly to this format and provide detailed, relevant content for each requested section based on the input song details.
+Adhere strictly to this format and provide detailed, relevant content in English for each requested section based on the input song details. Ensure budget ranges are plausible. Ensure color format is exact.
 `;
-
-            const generatedText = await callGeminiAPI(prompt, "Fetching details..."); // Use helper
+            // Translate the loading message key if needed
+            const loadingMsgKey = "Fetching details..."; // TODO: Translate key if desired
+            const generatedText = await callGeminiAPI(prompt, loadingMsgKey);
 
             if (generatedText) {
                 parseAndDisplayResults(generatedText); // Populate the detail sections
                 detailedResultsArea.style.display = 'block';
                 detailedResultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                 // Keep explore button disabled for this concept
+                 // Keep explore button disabled after successful fetch for this concept run
             } else {
                  if(exploreMoreButton) exploreMoreButton.disabled = false; // Re-enable if API call failed
             }
@@ -1136,11 +1856,11 @@ Adhere strictly to this format and provide detailed, relevant content for each r
             handleGenerateConcept(); // Start the process over
         }
 
-        // --- Parsing and Displaying Results (Slightly Modified) ---
+        // --- Parsing and Displaying Results (Relies on English Headers from Prompt) ---
         function parseAndDisplayResults(text) {
-            // No need to clear here, clearing happens before API calls
             console.log("Parsing AI response...");
-            const sections = { // Keep all sections defined
+            // IMPORTANT: These keys MUST match the English headers requested in the prompts
+            const sections = {
                 'Concept / Key Visual': 'result-concept',
                 'Requirements for MV': 'result-requirements',
                 'Estimated Budget': 'result-budget',
@@ -1157,242 +1877,629 @@ Adhere strictly to this format and provide detailed, relevant content for each r
             lines.forEach(line => {
                 let matchedHeader = false;
                 for (const title in sections) {
+                    // Regex to match headers like "## Section Title" allowing optional spaces
                     const headerRegex = new RegExp(`^\\s*##\\s*${title.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\s*$`, 'i');
                     if (headerRegex.test(line.trim())) {
+                        // Process the previous section's content if buffer isn't empty
                         if (currentSectionKey && contentBuffer.trim()) {
                             processSectionContent(sections[currentSectionKey], currentSectionKey, contentBuffer.trim());
                             foundAnySection = true;
                         }
+                        // Start the new section
                         currentSectionKey = title;
-                        contentBuffer = '';
+                        contentBuffer = ''; // Reset buffer for the new section
                         matchedHeader = true;
-                        break;
+                        break; // Found the header for this line
                     }
                 }
+                // If it's not a header line and we are inside a section, add to buffer
                 if (!matchedHeader && currentSectionKey) {
                     contentBuffer += line + '\n';
                 }
             });
 
+            // Process the last section's content
             if (currentSectionKey && contentBuffer.trim()) {
                 processSectionContent(sections[currentSectionKey], currentSectionKey, contentBuffer.trim());
                 foundAnySection = true;
             }
 
             if (!foundAnySection) {
-                // Only display error if no sections AT ALL were found in the response
-                 if (!document.getElementById('result-concept').querySelector('.content p')?.textContent &&
-                     !document.getElementById('result-requirements').querySelector('.content ul')?.children.length) // Check if concept/reqs are also empty
+                 // Only display error if no sections AT ALL were found in the response
+                 // Check if at least one known result area is still empty after parsing attempt
+                 const conceptContent = document.getElementById('result-concept')?.querySelector('.content p')?.textContent;
+                 const requirementsContent = document.getElementById('result-requirements')?.querySelector('.content ul')?.children.length;
+                 if (!conceptContent && !requirementsContent) // Heuristic: if primary sections are empty, parsing likely failed
                  {
-                    displayError("Could not parse the AI response structure. The response might be empty or not follow the expected format. Raw output logged to console.");
+                    // TODO: Translate this error
+                    displayError("Could not parse the AI response structure. The response might be empty or not follow the expected format (check headers like '## Section Title'). Raw output logged to console.");
                     console.warn("Raw AI Response Text (Parsing Failed):", text);
                  } else {
-                      console.warn("Parsed some sections, but maybe not all expected ones. Raw text:", text);
+                      // Some sections might have been parsed, but maybe not all expected ones. Log for debugging.
+                      console.warn("Parsed some sections, but maybe not all expected ones based on the structure. Raw text:", text);
                  }
             } else {
                  console.log("Parsing complete for received sections.");
-                 // Showing areas is handled by the calling functions (handleGenerateConcept/handleExploreMore)
+                 // Showing result areas is handled by the calling functions (handleGenerateConcept/handleExploreMore)
             }
         }
 
-        // --- Process Section Content (Unchanged - relies on finding elements) ---
-        function processSectionContent(elementId, sectionTitle, content) { /* ... Same as before ... */
+        // --- Process Section Content (Handles display within specific elements) ---
+        function processSectionContent(elementId, sectionTitle, content) {
             const sectionElement = document.getElementById(elementId);
             if (!sectionElement) { console.error(`Section element not found: ${elementId}`); return; }
             const contentDiv = sectionElement.querySelector('.content');
             if (!contentDiv) { console.error(`Content div not found in: ${elementId}`); return; }
 
-            // Clear previous content *within this specific section* before processing
-            // Exception: For image containers, clear them specifically below if needed
-            if (!['result-visuals', 'result-moodboard', 'result-palette', 'result-budget', 'result-requirements'].includes(elementId)) {
-                 contentDiv.innerHTML = ''; // Clear general content divs like concept
-            }
-
+            // Clear previous content *within this specific section's contentDiv* before adding new stuff
+             contentDiv.innerHTML = ''; // Clear previous dynamic content
 
             try {
                 console.log(`Processing Section: ${sectionTitle} into #${elementId}`);
-
+                 // Use sectionTitle (the English header key) to decide how to format
                 if (sectionTitle === 'Visual Demo (Key Image Descriptions)') {
-                     let imageContainer = contentDiv.querySelector('.image-placeholder-container');
-                     if (!imageContainer) { /* ... create container ... */ imageContainer = document.createElement('div'); imageContainer.className = 'image-placeholder-container'; imageContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(220px, 1fr))'; contentDiv.appendChild(imageContainer); }
-                     imageContainer.innerHTML = ''; // Clear previous images
+                     const imageContainer = document.createElement('div');
+                     imageContainer.className = 'image-placeholder-container';
+                     // Adjust grid based on target section
+                     imageContainer.style.gridTemplateColumns = elementId === 'result-moodboard'
+                        ? 'repeat(auto-fit, minmax(160px, 1fr))'
+                        : 'repeat(auto-fit, minmax(220px, 1fr))';
+                     contentDiv.appendChild(imageContainer);
+
+                     // Split by numbered list pattern (1. ..., 2. ...)
                      const descriptions = content.split(/^\s*[1-9][0-9]*\.\s+/gm).filter(Boolean).map(d => d.trim().replace(/\n$/, ''));
-                     if (descriptions.length > 0) { descriptions.slice(0, 3).forEach((desc, index) => { if (desc) createImagePlaceholder(imageContainer, desc, `visual-${index}-${Date.now()}`); }); } else { /* ... no descriptions message ... */ imageContainer.innerHTML = `<p style="font-style: italic; color: #6c757d;">No specific visual descriptions found.</p>`; }
+                     if (descriptions.length > 0) {
+                         descriptions.slice(0, 3).forEach((desc, index) => {
+                            if (desc) createImagePlaceholder(imageContainer, desc, `visual-${index}-${Date.now()}`);
+                         });
+                     } else {
+                         // TODO: Translate fallback message
+                         imageContainer.innerHTML = `<p style="font-style: italic; color: #6c757d;">No specific visual descriptions found in the expected format (e.g., 1. Description).</p>`;
+                     }
 
                 } else if (sectionTitle === 'Moodboard Influences') {
-                    let descriptionElement = contentDiv.querySelector('#moodboard-description');
-                    if (!descriptionElement) { /* ... create description p ... */ descriptionElement = document.createElement('p'); descriptionElement.id = 'moodboard-description'; contentDiv.appendChild(descriptionElement); }
-                    let imageContainer = contentDiv.querySelector('#moodboard-images');
-                    if (!imageContainer) { /* ... create image container div ... */ imageContainer = document.createElement('div'); imageContainer.className = 'image-placeholder-container'; imageContainer.id = 'moodboard-images'; imageContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(160px, 1fr))'; contentDiv.appendChild(imageContainer); }
-                    imageContainer.innerHTML = ''; descriptionElement.textContent = '';
-                    contentDiv.insertBefore(descriptionElement, imageContainer); // Ensure order
+                    // Moodboard has a description AND images
+                     const descriptionElement = document.createElement('p');
+                     descriptionElement.id = 'moodboard-description'; // Keep ID for potential styling
+                     contentDiv.appendChild(descriptionElement);
 
-                    const firstBulletMatch = content.match(/^\s*[\*\-]\s+/m);
-                    let mainDescription = content.trim(); let itemsToProcess = [];
-                    if (firstBulletMatch) { mainDescription = content.substring(0, firstBulletMatch.index).trim(); itemsToProcess = content.substring(firstBulletMatch.index).split(/^\s*[\*\-]\s+/gm).filter(Boolean).map(b => b.trim().replace(/\n$/, '')); }
-                    descriptionElement.textContent = mainDescription; descriptionElement.style.display = mainDescription ? 'block' : 'none';
-                    if (itemsToProcess.length > 0) { itemsToProcess.slice(0, 5).forEach((desc, index) => { if (desc) createImagePlaceholder(imageContainer, desc, `mood-${index}-${Date.now()}`); }); } else if (!mainDescription) { /* ... no description/items message ... */ imageContainer.innerHTML = `<p style="font-style: italic; color: #6c757d;">No moodboard description or items found.</p>`; }
+                     const imageContainer = document.createElement('div');
+                     imageContainer.className = 'image-placeholder-container';
+                     imageContainer.id = 'moodboard-images'; // Specific ID
+                     imageContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(160px, 1fr))';
+                     contentDiv.appendChild(imageContainer); // Add image container after description
+
+                     // Separate description from bullet points
+                     const firstBulletMatch = content.match(/^\s*[\*\-]\s+/m);
+                     let mainDescription = content.trim();
+                     let itemsToProcess = [];
+
+                     if (firstBulletMatch) {
+                         mainDescription = content.substring(0, firstBulletMatch.index).trim();
+                         // Split by bullet point pattern (* ..., - ...)
+                         itemsToProcess = content.substring(firstBulletMatch.index)
+                                             .split(/^\s*[\*\-]\s+/gm)
+                                             .filter(Boolean) // Remove empty strings from split
+                                             .map(b => b.trim().replace(/\n$/, '')); // Clean up each item
+                     }
+
+                     descriptionElement.innerHTML = mainDescription.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Allow bold in description
+                     descriptionElement.style.display = mainDescription ? 'block' : 'none'; // Hide if empty
+
+                     if (itemsToProcess.length > 0) {
+                         itemsToProcess.slice(0, 5).forEach((desc, index) => { // Limit to 5 for moodboard
+                             if (desc) createImagePlaceholder(imageContainer, desc, `mood-${index}-${Date.now()}`);
+                         });
+                     } else if (!mainDescription) {
+                         // Only show fallback if BOTH description and items are missing
+                         // TODO: Translate fallback message
+                         imageContainer.innerHTML = `<p style="font-style: italic; color: #6c757d;">No moodboard description or items found in the expected format (Description followed by * Item).</p>`;
+                     }
 
                 } else if (sectionTitle === 'Estimated Budget') {
-                     let container = contentDiv.querySelector('.budget-columns-container');
-                     if(!container){ /* ... create container ... */ container = document.createElement('div'); container.className = 'budget-columns-container'; contentDiv.appendChild(container); }
-                     container.innerHTML = ''; // Clear previous columns
-                     const budgetLevels = { "Low Budget": null, "Mid Budget": null, "High Budget": null }; const budgetRegex = /\*\s*\*\*(Low|Mid|High) Budget\*\*\s*:?\s*([\s\S]*?)(?=\n\s*\*\s*\*\*|\n*$)/g;
-                     let match; while ((match = budgetRegex.exec(content)) !== null) { const level = match[1] + " Budget"; const description = match[2].trim(); if (budgetLevels.hasOwnProperty(level)) budgetLevels[level] = description; }
-                     const order = ["Low Budget", "Mid Budget", "High Budget"]; let columnsCreated = 0;
-                     order.forEach(level => { if (budgetLevels[level]) { const columnDiv = document.createElement('div'); columnDiv.className = 'budget-column'; const titleH3 = document.createElement('h3'); titleH3.textContent = level; const descP = document.createElement('p'); descP.innerHTML = budgetLevels[level].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); columnDiv.appendChild(titleH3); columnDiv.appendChild(descP); container.appendChild(columnDiv); columnsCreated++; } });
-                     if (columnsCreated === 0) { console.warn("Could not parse budget columns."); contentDiv.innerHTML = `<p style="white-space: pre-wrap;">${content.trim()}</p>`; }
+                     const container = document.createElement('div');
+                     container.className = 'budget-columns-container';
+                     contentDiv.appendChild(container);
+
+                     // More robust regex to capture multiline descriptions and handle optional colon
+                     const budgetRegex = /\*\s*\*\*(Low Budget|Mid Budget|High Budget)\*\*\s*:?\s*([\s\S]*?)(?=\n\s*\*\*\s*(Low|Mid|High) Budget\*\*|\n*$)/gi;
+                     const budgetLevels = {}; // Use object to store found levels
+
+                     let match;
+                     while ((match = budgetRegex.exec(content)) !== null) {
+                         const level = match[1].trim() + " Budget"; // e.g., "Low Budget"
+                         const description = match[2].trim();
+                         budgetLevels[level] = description;
+                     }
+
+                     const order = ["Low Budget", "Mid Budget", "High Budget"];
+                     let columnsCreated = 0;
+                     order.forEach(level => {
+                         if (budgetLevels[level]) {
+                             const columnDiv = document.createElement('div');
+                             columnDiv.className = 'budget-column';
+                             const titleH3 = document.createElement('h3');
+                             titleH3.textContent = level; // Display level name as title
+                             const descP = document.createElement('p');
+                             // Use innerHTML to render potential bold markdown from AI
+                             descP.innerHTML = budgetLevels[level].replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                             descP.style.whiteSpace = 'pre-wrap'; // Preserve line breaks from AI
+
+                             columnDiv.appendChild(titleH3);
+                             columnDiv.appendChild(descP);
+                             container.appendChild(columnDiv);
+                             columnsCreated++;
+                         }
+                     });
+
+                     if (columnsCreated === 0) {
+                         console.warn("Could not parse budget columns using expected format (**Level:** Description). Displaying raw content.");
+                         // Display raw content as fallback if parsing fails
+                         const fallbackP = document.createElement('p');
+                         fallbackP.style.whiteSpace = 'pre-wrap';
+                         fallbackP.textContent = content.trim();
+                         contentDiv.appendChild(fallbackP); // Append raw text if no columns were made
+                     }
 
                 } else if (sectionTitle === 'Requirements for MV') {
-                    let listElement = contentDiv.querySelector('ul');
-                    if (!listElement) { /* ... create ul ... */ listElement = document.createElement('ul'); contentDiv.appendChild(listElement); }
-                    listElement.innerHTML = ''; // Clear previous items
+                    const listElement = document.createElement('ul');
+                    contentDiv.appendChild(listElement);
+                     // Split by bullet point pattern (* ..., - ...)
                     const items = content.trim().split(/^\s*[\*\-]\s+/gm).filter(Boolean).map(item => item.trim().replace(/\n$/, ''));
-                    if (items.length > 0) { items.forEach(itemText => { const li = document.createElement('li'); li.innerHTML = itemText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); listElement.appendChild(li); }); } else { console.warn("No requirement items found."); contentDiv.innerHTML = `<p style="white-space: pre-wrap;">${content.trim()}</p>`; }
+
+                    if (items.length > 0) {
+                        items.forEach(itemText => {
+                            const li = document.createElement('li');
+                             // Use innerHTML to render potential bold markdown from AI
+                            li.innerHTML = itemText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                            listElement.appendChild(li);
+                        });
+                    } else {
+                        console.warn("No requirement items found using bullet points (* or -). Displaying raw content.");
+                         // Display raw content as fallback
+                        const fallbackP = document.createElement('p');
+                        fallbackP.style.whiteSpace = 'pre-wrap';
+                        fallbackP.textContent = content.trim();
+                        contentDiv.appendChild(fallbackP); // Append raw text if no list items found
+                    }
 
                 } else if (sectionTitle === 'Color Palette') {
-                     let paletteContainer = contentDiv.querySelector('.color-palette-display');
-                     if (!paletteContainer) { /* ... create container ... */ paletteContainer = document.createElement('div'); paletteContainer.className = 'color-palette-display'; contentDiv.appendChild(paletteContainer); }
-                     paletteContainer.innerHTML = ''; // Clear only the palette container
-                     createColorSwatches(paletteContainer, content.trim());
+                     const paletteContainer = document.createElement('div');
+                     paletteContainer.className = 'color-palette-display';
+                     contentDiv.appendChild(paletteContainer);
+                     createColorSwatches(paletteContainer, content.trim()); // Pass content to swatch creator
 
-                } else { // Concept / Key Visual
-                     let pElement = contentDiv.querySelector('p');
-                     if(!pElement){ pElement = document.createElement('p'); contentDiv.appendChild(pElement); }
-                     pElement.style.whiteSpace = 'pre-wrap';
+                } else { // Default for 'Concept / Key Visual' or any other unexpected section
+                     const pElement = document.createElement('p');
+                     pElement.style.whiteSpace = 'pre-wrap'; // Preserve formatting
+                     // Use innerHTML to render potential bold markdown from AI
                      pElement.innerHTML = content.trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                     contentDiv.appendChild(pElement);
                 }
-                // No need to show sectionElement here, parent visibility is controlled
-                // sectionElement.style.display = 'block';
-            } catch (error) { console.error(`Error processing section "${sectionTitle}":`, error); contentDiv.innerHTML = `<p style="color: red;">Error displaying this section.</p>`; }
+            } catch (error) {
+                console.error(`Error processing section "${sectionTitle}":`, error);
+                // TODO: Translate error message
+                contentDiv.innerHTML = `<p style="color: red;">Error displaying this section. Check console.</p>`;
+            }
         }
 
-        // --- Unsplash Image Function (Unchanged) ---
-        const UNSPLASH_KEYS = [ 'tKEVJi06udyaqpZiOkTKrpLNw6uZfT81dLdfvDcotAM', 'C_PlMOR6NzRK37Om1B0Ewq3byIawwRo6sLOHT4iQLo4' ];
-        let unsplashKeyIndex = 0;
-        async function createImagePlaceholder(container, description, seedSuffix) { /* ... Same as before ... */
-             const figure = document.createElement('figure'); figure.className = 'image-placeholder'; const img = document.createElement('img'); /* ... img styles ... */ img.style.backgroundColor = '#e9ecef'; img.alt = `Loading: ${description}`; img.src = ''; img.loading = 'lazy'; let placeholderHeight = container && container.closest('#result-moodboard') ? 140 : 180; img.style.height = `${placeholderHeight}px`; img.style.width = '100%'; img.style.objectFit = 'cover'; const figcaption = document.createElement('figcaption'); figcaption.innerHTML = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); figure.appendChild(img); figure.appendChild(figcaption); container.appendChild(figure);
-             const currentKeyIndex = unsplashKeyIndex; const currentUnsplashKey = UNSPLASH_KEYS[currentKeyIndex]; unsplashKeyIndex = (unsplashKeyIndex + 1) % UNSPLASH_KEYS.length;
-             if (!currentUnsplashKey || currentUnsplashKey.startsWith('YOUR_') || currentUnsplashKey.length < 20) { console.warn(`Invalid Unsplash Key (index ${currentKeyIndex}).`); setFallbackImage(img, figcaption, description, seedSuffix, 'no-key', placeholderHeight); return; }
-             try { let query = description.replace(/<[^>]*>/g, '').replace(/[^a-zA-Z0-9\s,.]/g, '').trim(); query = query.length > 60 ? query.substring(0, 60).split(' ').slice(0, -1).join(' ') : query; if (!query) { console.warn("Empty image query."); setFallbackImage(img, figcaption, description, seedSuffix, 'empty-query', placeholderHeight); return; }
-                const searchUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape&client_id=${currentUnsplashKey}`; console.log(`Fetching Unsplash: Query='${query}'`);
-                const response = await fetch(searchUrl); const responseData = await response.json(); console.log(`Unsplash Status: ${response.status}`);
-                if (!response.ok) { let errorMsg = `Unsplash API error: ${response.status}`; if (responseData && responseData.errors) errorMsg += ` - ${responseData.errors[0]}`; console.error(errorMsg); setFallbackImage(img, figcaption, description, seedSuffix, 'api-error', placeholderHeight); return; }
-                if (responseData.results && responseData.results.length > 0) { const imageResult = responseData.results[0]; img.src = imageResult.urls.small; img.alt = imageResult.alt_description || description; const attributionLink = document.createElement('a'); attributionLink.href = imageResult.links.html + '?utm_source=mv_assistant&utm_medium=referral'; attributionLink.target = '_blank'; attributionLink.rel = 'noopener noreferrer'; attributionLink.innerHTML = `Photo by <span style="text-decoration: underline;">${imageResult.user.name}</span> on <span style="text-decoration: underline;">Unsplash</span>`; figcaption.appendChild(attributionLink); } else { console.warn(`No Unsplash image found for: "${query}".`); setFallbackImage(img, figcaption, description, seedSuffix, 'not-found', placeholderHeight); }
-             } catch (error) { console.error(`Failed Unsplash fetch for "${description}"`, error); setFallbackImage(img, figcaption, description, seedSuffix, 'fetch-error', placeholderHeight); }
-        }
-        function setFallbackImage(imgElement, figcaptionElement, description, seedSuffix, reason, height) { /* ... Same as before ... */ const seed = encodeURIComponent(description.substring(0, 25) + seedSuffix + '-' + reason); const picSumHeight = Math.round(height * 1.5); imgElement.src = `https://picsum.photos/seed/${seed}/400/${picSumHeight}`; imgElement.alt = `Placeholder: ${description}`; const fallbackNotice = document.createElement('span'); fallbackNotice.className = 'fallback-notice'; fallbackNotice.textContent = `(Placeholder: ${reason})`; if (figcaptionElement.querySelector('a')) { figcaptionElement.insertBefore(fallbackNotice, figcaptionElement.querySelector('a')); } else { figcaptionElement.appendChild(fallbackNotice); } }
 
-        // --- Color Swatch Creation (Unchanged) ---
-        function createColorSwatches(container, text) { /* ... Same as before ... */
-             if (!container) { console.error("createColorSwatches null container."); return; } container.innerHTML = ''; const colorRegex = /([\w\s\-\/]+?)\s*\(\s*(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\s*\)/g; let match; let foundColors = false; console.log("Parsing colors from:\n", text);
-             while ((match = colorRegex.exec(text)) !== null) { foundColors = true; const colorName = match[1].trim().replace(/[\s,-]+$/, ''); let hexCode = match[2].trim().toUpperCase(); if (hexCode.length === 4) hexCode = '#' + hexCode[1] + hexCode[1] + hexCode[2] + hexCode[2] + hexCode[3] + hexCode[3]; if (hexCode.length !== 7) { console.warn(`Skipping invalid hex: ${match[2]}`); continue; } console.log(`   Found color: ${colorName} (${hexCode})`); const swatch = document.createElement('div'); swatch.className = 'color-swatch'; try { swatch.style.backgroundColor = hexCode; swatch.style.color = isColorDarkGuess(hexCode) ? '#FFFFFF' : '#333333'; } catch (e) { swatch.style.backgroundColor = '#CCCCCC'; swatch.style.color = '#000000'; } const nameSpan = document.createElement('span'); nameSpan.textContent = colorName; const hexSpan = document.createElement('span'); hexSpan.className = 'hex-code'; hexSpan.textContent = hexCode; swatch.appendChild(nameSpan); swatch.appendChild(hexSpan); container.appendChild(swatch); }
-             if (!foundColors) { console.warn("Could not parse colors."); container.innerHTML = `<p style="font-style: italic; color: #6c757d;">Could not parse colors in 'Name (#XXXXXX)' format.</p>`; } else { console.log(`Created ${container.children.length} swatches.`); }
+        // --- Unsplash Image Function (Multiple Keys & Fallback) ---
+        // !! IMPORTANT: Add your actual Unsplash access keys here !!
+        // Get keys from https://unsplash.com/developers
+        // Using multiple keys can help mitigate rate limits in testing.
+        const UNSPLASH_KEYS = [
+            'tKEVJi06udyaqpZiOkTKrpLNw6uZfT81dLdfvDcotAM', // Replace with your key
+            'C_PlMOR6NzRK37Om1B0Ewq3byIawwRo6sLOHT4iQLo4', // Replace with another key (optional)
+            // Add more keys if needed
+        ];
+        let unsplashKeyIndex = 0; // Cycle through keys
+
+        async function createImagePlaceholder(container, description, seedSuffix) {
+             const figure = document.createElement('figure');
+             figure.className = 'image-placeholder';
+
+             const img = document.createElement('img');
+             img.style.backgroundColor = '#e9ecef'; // Placeholder bg
+             img.alt = `Loading image for: ${description.substring(0, 50)}...`; // Initial alt text
+             img.src = ''; // Start empty
+             img.loading = 'lazy'; // Lazy load images
+
+             // Determine appropriate height based on container context
+             let placeholderHeight = (container && container.id === 'moodboard-images') ? 140 : 180;
+             img.style.height = `${placeholderHeight}px`;
+             img.style.width = '100%';
+             img.style.objectFit = 'cover';
+
+             const figcaption = document.createElement('figcaption');
+             // Use innerHTML to render potential bold markdown from AI description
+             figcaption.innerHTML = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+             figure.appendChild(img);
+             figure.appendChild(figcaption);
+             container.appendChild(figure);
+
+             // --- Fetch from Unsplash ---
+             const currentKeyIndex = unsplashKeyIndex;
+             const currentUnsplashKey = UNSPLASH_KEYS[currentKeyIndex];
+             unsplashKeyIndex = (unsplashKeyIndex + 1) % UNSPLASH_KEYS.length; // Cycle to next key
+
+             // Basic check if key seems invalid or is a placeholder
+             if (!currentUnsplashKey || currentUnsplashKey.startsWith('YOUR_') || currentUnsplashKey.length < 20) {
+                 console.warn(`Invalid or missing Unsplash Key (index ${currentKeyIndex}). Using fallback.`);
+                 setFallbackImage(img, figcaption, description, seedSuffix, 'no-key', placeholderHeight);
+                 return;
+             }
+
+             try {
+                 // Sanitize and shorten the description for a better search query
+                 let query = description.replace(/<[^>]*>/g, '') // Remove HTML tags if any sneaked in
+                                    .replace(/[^\p{L}\p{N}\s,.]/gu, '') // Keep letters, numbers, spaces, commas, periods (Unicode aware)
+                                    .replace(/\s+/g, ' ').trim(); // Normalize whitespace
+                 // Limit query length reasonably
+                 query = query.length > 70 ? query.substring(0, 70).split(' ').slice(0, -1).join(' ') : query; // Cut to ~70 chars at word boundary
+
+                 if (!query) {
+                     console.warn("Empty image query after sanitization. Using fallback.");
+                     setFallbackImage(img, figcaption, description, seedSuffix, 'empty-query', placeholderHeight);
+                     return;
+                 }
+
+                 // Construct Unsplash API URL
+                 const searchUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1&orientation=landscape&client_id=${currentUnsplashKey}`;
+                 console.log(`Fetching Unsplash: Query='${query}' with Key Index ${currentKeyIndex}`);
+
+                 const response = await fetch(searchUrl);
+                 const responseData = await response.json();
+                 console.log(`Unsplash Status for "${query}": ${response.status}`);
+
+                 if (!response.ok) {
+                     let errorMsg = `Unsplash API error: ${response.status}`;
+                     if (responseData && responseData.errors) {
+                         errorMsg += ` - ${responseData.errors[0]}`;
+                     }
+                     console.error(errorMsg, responseData);
+                     setFallbackImage(img, figcaption, description, seedSuffix, 'api-error', placeholderHeight);
+                     return; // Stop processing on API error
+                 }
+
+                 if (responseData.results && responseData.results.length > 0) {
+                     const imageResult = responseData.results[0];
+                     img.src = imageResult.urls.small; // Use 'small' for faster loading in grid
+                     img.alt = imageResult.alt_description || description; // Use Unsplash alt text or original description
+
+                     // Add attribution link (important for Unsplash TOS)
+                     const attributionLink = document.createElement('a');
+                     attributionLink.href = imageResult.links.html + '?utm_source=mv_assistant_app&utm_medium=referral'; // Customize utm_source
+                     attributionLink.target = '_blank';
+                     attributionLink.rel = 'noopener noreferrer';
+                     // Use innerHTML for potential styling or keep simple
+                     attributionLink.innerHTML = `Photo by <span style="text-decoration: underline;">${imageResult.user.name}</span> on <span style="text-decoration: underline;">Unsplash</span>`;
+                     figcaption.appendChild(attributionLink); // Append link below description
+
+                 } else {
+                     console.warn(`No Unsplash image found for: "${query}". Using fallback.`);
+                     setFallbackImage(img, figcaption, description, seedSuffix, 'not-found', placeholderHeight);
+                 }
+
+             } catch (error) {
+                 console.error(`Failed Unsplash fetch for "${description}"`, error);
+                 setFallbackImage(img, figcaption, description, seedSuffix, 'fetch-error', placeholderHeight);
+             }
         }
 
-        // --- Color Lightness Guess (Unchanged) ---
-        function isColorDarkGuess(hexColor) { /* ... Same as before ... */ try { if (!hexColor || typeof hexColor !== 'string' || !hexColor.startsWith('#')) return false; let hex = hexColor.substring(1); if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]; if (hex.length !== 6) return false; const r = parseInt(hex.substring(0, 2), 16); const g = parseInt(hex.substring(2, 4), 16); const b = parseInt(hex.substring(4, 6), 16); const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255; return luminance < 0.5; } catch (e) { console.error("Error parsing hex:", hexColor, e); return false; } }
+        // Fallback image function using Picsum photos (or similar placeholder service)
+        function setFallbackImage(imgElement, figcaptionElement, description, seedSuffix, reason, height) {
+             // Generate a consistent seed based on description and suffix for deterministic placeholders
+             const seed = encodeURIComponent(description.substring(0, 25) + seedSuffix + '-' + reason);
+             const picSumHeight = Math.max(150, Math.round(height * 1.5)); // Ensure reasonable fallback height
+             const picSumWidth = Math.round(picSumHeight * 1.5); // Approx landscape ratio
+
+             imgElement.src = `https://picsum.photos/seed/${seed}/${picSumWidth}/${picSumHeight}`; // Use picsum.photos with seed
+             imgElement.alt = `Placeholder image for: ${description.substring(0, 50)}... (Reason: ${reason})`;
+
+             // Add a small notice in the caption about the fallback
+             const fallbackNotice = document.createElement('span');
+             fallbackNotice.className = 'fallback-notice';
+             fallbackNotice.textContent = `(Placeholder: ${reason})`;
+
+             // Insert notice before any existing link or at the end
+             const existingLink = figcaptionElement.querySelector('a');
+             if (existingLink) {
+                 figcaptionElement.insertBefore(fallbackNotice, existingLink);
+             } else {
+                 figcaptionElement.appendChild(fallbackNotice);
+             }
+        }
+
+
+        // --- Color Swatch Creation ---
+        function createColorSwatches(container, text) {
+             if (!container) { console.error("Color swatch container is null."); return; }
+             container.innerHTML = ''; // Clear previous swatches
+
+             // Regex to find patterns like "Color Name (#HEXCODE)" or "Color Name (#RGB)"
+             // Allows spaces, hyphens, slashes in names. Handles 3 or 6 digit hex.
+             const colorRegex = /([\w\s\-\/]+?)\s*\(\s*(#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3})\s*\)/g;
+             let match;
+             let foundColors = false;
+             console.log("Parsing colors from text:", text);
+
+             while ((match = colorRegex.exec(text)) !== null) {
+                 foundColors = true;
+                 // Extract name and hex code
+                 const colorName = match[1].trim().replace(/[\s,-]+$/, ''); // Clean up trailing chars
+                 let hexCode = match[2].trim().toUpperCase();
+
+                 // Expand 3-digit hex to 6 digits
+                 if (hexCode.length === 4) { // #RGB
+                     hexCode = '#' + hexCode[1] + hexCode[1] + hexCode[2] + hexCode[2] + hexCode[3] + hexCode[3];
+                 }
+
+                 // Validate hex code format
+                 if (!/^#[0-9A-F]{6}$/.test(hexCode)) {
+                     console.warn(`Skipping invalid or non-hex color format: ${match[0]}`);
+                     continue; // Skip if not a valid 6-digit hex
+                 }
+
+                 console.log(`   Found color: ${colorName} (${hexCode})`);
+
+                 // Create swatch element
+                 const swatch = document.createElement('div');
+                 swatch.className = 'color-swatch';
+                 try {
+                     swatch.style.backgroundColor = hexCode;
+                     // Set text color based on background lightness for readability
+                     swatch.style.color = isColorDarkGuess(hexCode) ? '#FFFFFF' : '#333333';
+                 } catch (e) {
+                     // Fallback if setting background color fails (shouldn't with validated hex)
+                     console.error("Error setting swatch background:", e);
+                     swatch.style.backgroundColor = '#CCCCCC'; // Grey fallback
+                     swatch.style.color = '#000000';
+                 }
+
+                 // Add color name and hex code text inside swatch
+                 const nameSpan = document.createElement('span');
+                 nameSpan.textContent = colorName;
+                 const hexSpan = document.createElement('span');
+                 hexSpan.className = 'hex-code';
+                 hexSpan.textContent = hexCode;
+
+                 swatch.appendChild(nameSpan);
+                 swatch.appendChild(hexSpan);
+                 container.appendChild(swatch); // Add swatch to the display container
+             }
+
+             if (!foundColors) {
+                 console.warn("Could not parse any colors in 'Name (#XXXXXX)' format.");
+                  // TODO: Translate fallback message
+                 container.innerHTML = `<p style="font-style: italic; color: #6c757d;">Could not parse colors. Ensure format is 'Color Name (#HEXCODE)'.</p>`;
+             } else {
+                 console.log(`Created ${container.children.length} valid color swatches.`);
+             }
+        }
+
+        // --- Color Lightness Guess (Simple Luminance) ---
+        function isColorDarkGuess(hexColor) {
+            try {
+                if (!hexColor || typeof hexColor !== 'string' || !hexColor.startsWith('#')) return false; // Basic validation
+                let hex = hexColor.substring(1); // Remove #
+
+                // Ensure 6 digits
+                if (hex.length === 3) {
+                    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+                }
+                if (hex.length !== 6) return false; // Invalid length
+
+                // Convert hex to RGB
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+
+                // Calculate relative luminance (standard formula)
+                const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+
+                // Consider dark if luminance is below a threshold (e.g., 0.5)
+                return luminance < 0.5;
+            } catch (e) {
+                console.error("Error parsing hex for darkness guess:", hexColor, e);
+                return false; // Default to light background if parsing fails
+            }
+        }
 
         // --- Utility Functions ---
         function clearResultsAndErrors() {
-            // Hide main containers
+            // Hide main result containers
             initialConceptArea.style.display = 'none';
             detailedResultsArea.style.display = 'none';
             errorMessageDiv.style.display = 'none';
             errorMessageDiv.textContent = '';
 
-            // Clear content within sections (important for re-generate)
-            const allResultSections = document.querySelectorAll('#initial-concept-area .result-section, #detailed-results-area .result-section');
-            allResultSections.forEach(section => {
-                const contentDiv = section.querySelector('.content');
-                if (contentDiv) contentDiv.innerHTML = ''; // Clear broadly, specific containers will repopulate
-
-                // Ensure specific containers are definitely empty
-                 const pContainers = section.querySelectorAll('p');
-                 pContainers.forEach(p => p.innerHTML = '');
-                 const ulContainers = section.querySelectorAll('ul');
-                 ulContainers.forEach(ul => ul.innerHTML = '');
-                 const divContainers = section.querySelectorAll('.image-placeholder-container, .budget-columns-container, .color-palette-display');
-                 divContainers.forEach(div => div.innerHTML = '');
+            // Clear dynamic content within all result sections robustly
+            const allResultContentDivs = document.querySelectorAll('#initial-concept-area .result-section .content, #detailed-results-area .result-section .content');
+            allResultContentDivs.forEach(contentDiv => {
+                contentDiv.innerHTML = ''; // Clear all generated children
             });
 
-             // Re-enable explore button if it exists
-             if(exploreMoreButton) exploreMoreButton.disabled = false;
+            // Re-enable explore button if it exists and might have been disabled
+            if(exploreMoreButton) exploreMoreButton.disabled = false;
 
             console.log("Cleared previous results and errors.");
         }
 
-        function displayError(messageKey) { // Accept key or text
-             // Attempt translation
-             const errorElementForLang = document.getElementById('error-message') || {}; // Use dummy if not found
-             const translatedMessage = errorElementForLang.dataset ? (errorElementForLang.dataset['lang' + currentLang] || errorElementForLang.dataset['langEn'] || messageKey) : messageKey;
+        function displayError(message) { // Accepts raw message string
+             // Try to find a data attribute key that matches the start of the message
+             // This is less reliable than passing a key, but provides some translation attempt
+             let translatedMessage = message;
+             const errorKey = Object.keys(errorMessageDiv.dataset).find(key =>
+                 key.startsWith('lang') && message.startsWith(errorMessageDiv.dataset[key])
+             );
+
+             if (errorKey) {
+                 const targetLangKey = formatDatasetKey(currentLang);
+                 translatedMessage = errorMessageDiv.dataset[targetLangKey] || errorMessageDiv.dataset[formatDatasetKey('en')] || message;
+                 // Append specific error details if they exist after the base message
+                 const baseMessage = errorMessageDiv.dataset[errorKey];
+                 if(message.length > baseMessage.length) {
+                    translatedMessage += message.substring(baseMessage.length);
+                 }
+             } else {
+                 // If no matching key, check if the error div itself has a generic error message translation
+                 const genericErrorKey = formatDatasetKey(currentLang);
+                 translatedMessage = errorMessageDiv.dataset[genericErrorKey] || errorMessageDiv.dataset[formatDatasetKey('en')] || message;
+                 // Append specific details if message is longer than generic one
+                 const genericBase = errorMessageDiv.dataset[formatDatasetKey('en')];
+                 if(genericBase && message.length > genericBase.length) {
+                     translatedMessage = (errorMessageDiv.dataset[genericErrorKey] || genericBase) + message.substring(genericBase.length);
+                 }
+             }
+
 
              errorMessageDiv.textContent = translatedMessage;
              errorMessageDiv.style.display = 'block';
              initialConceptArea.style.display = 'none'; // Hide results on error
              detailedResultsArea.style.display = 'none';
-             hideLoading();
-             console.error("Displayed user error message:", translatedMessage);
+             hideLoading(); // Ensure loading is hidden on error
+             console.error("Displayed user error message:", translatedMessage, "Original:", message);
         }
 
-        // --- Parallax Effect (Unchanged) ---
-        let isParallaxEnabled = true; let rafId = null;
-        function handleScrollParallax() { /* ... Same as before ... */ if (rafId) cancelAnimationFrame(rafId); if (!heroImage || !isParallaxEnabled || !document.getElementById('home-page').classList.contains('active')) { if (heroImage && heroImage.style.transform !== 'scale(1.1) translateY(0px)') { rafId = requestAnimationFrame(() => { heroImage.style.transform = 'scale(1.1) translateY(0px)'; }); } return; } const scrollY = window.scrollY; const parallaxFactor = 0.3; const translateY = scrollY * parallaxFactor; rafId = requestAnimationFrame(() => { if (heroImage && isParallaxEnabled && document.getElementById('home-page').classList.contains('active')) { heroImage.style.transform = `scale(1.1) translateY(${translateY}px)`; } }); }
-        function checkParallaxStatus() { /* ... Same as before ... */ if (window.innerWidth < 768) { if (isParallaxEnabled && heroImage) { if (rafId) cancelAnimationFrame(rafId); heroImage.style.transform = 'scale(1.1) translateY(0px)'; } isParallaxEnabled = false; } else { isParallaxEnabled = true; handleScrollParallax(); } console.log(`Parallax enabled: ${isParallaxEnabled}`); }
+
+        // --- Parallax Effect ---
+        let isParallaxEnabled = true;
+        let rafId = null; // Store requestAnimationFrame ID
+
+        function handleScrollParallax() {
+             // Cancel previous frame request if any
+             if (rafId) { cancelAnimationFrame(rafId); }
+
+             // Check if parallax should run
+             if (!heroImage || !isParallaxEnabled || !document.getElementById('home-page').classList.contains('active')) {
+                 // If disabled or not on home page, ensure image is reset (only if needed)
+                 if (heroImage && heroImage.style.transform !== 'scale(1.1) translateY(0px)') {
+                     rafId = requestAnimationFrame(() => {
+                         if (heroImage) heroImage.style.transform = 'scale(1.1) translateY(0px)';
+                     });
+                 }
+                 return; // Don't proceed
+             }
+
+             // Calculate parallax effect
+             const scrollY = window.scrollY;
+             const parallaxFactor = 0.3; // Adjust for more/less effect
+             const translateY = scrollY * parallaxFactor;
+
+             // Use requestAnimationFrame for smooth animation aligned with browser rendering
+             rafId = requestAnimationFrame(() => {
+                 // Double check conditions inside the frame callback
+                 if (heroImage && isParallaxEnabled && document.getElementById('home-page').classList.contains('active')) {
+                     heroImage.style.transform = `scale(1.1) translateY(${translateY}px)`;
+                 }
+             });
+        }
+
+        // Check if parallax should be enabled based on screen width
+        function checkParallaxStatus() {
+             const shouldEnable = window.innerWidth >= 768; // Enable on tablets and larger
+             if (shouldEnable !== isParallaxEnabled) {
+                 isParallaxEnabled = shouldEnable;
+                 console.log(`Parallax ${isParallaxEnabled ? 'enabled' : 'disabled'}.`);
+                 // If disabling, reset the transform immediately
+                 if (!isParallaxEnabled && heroImage) {
+                     if (rafId) cancelAnimationFrame(rafId); // Cancel any pending frame
+                     heroImage.style.transform = 'scale(1.1) translateY(0px)'; // Reset position
+                 } else if (isParallaxEnabled) {
+                     // If enabling, trigger a scroll update
+                     handleScrollParallax();
+                 }
+             }
+        }
+
 
         // --- Language Switching Functions ---
+
+        // Helper to format dataset keys (e.g., 'en' -> 'langEn', 'zh-CN' -> 'langZhcn')
+        // Now produces camelCase keys suitable for `element.dataset` access
+        function formatDatasetKey(langCode, suffix = '') {
+            const langPart = langCode.toLowerCase().split('-')[0]; // Get base lang 'zh' from 'zh-CN'
+            const regionPart = langCode.includes('-') ? langCode.split('-')[1].toUpperCase() : ''; // Get 'CN'
+            let key = 'lang' + langPart.charAt(0).toUpperCase() + langPart.slice(1); // 'langZh'
+            if (regionPart) {
+                key += regionPart; // 'langZhCN'
+            }
+             if (suffix) {
+                 key += suffix.charAt(0).toUpperCase() + suffix.slice(1); // 'langEnPlaceholder'
+             }
+            return key; // Returns camelCase e.g. langEn, langEs, langZhcn, langVi, langEnPlaceholder
+        }
+
         function updateLanguage(langCode) {
-            currentLang = langCode;
+            currentLang = langCode; // Update global language state
             console.log(`Switching language to: ${langCode}`);
 
             allTranslatableElements.forEach(el => {
-                const translationKey = 'lang' + langCode.charAt(0).toUpperCase() + langCode.slice(1).replace('-', ''); // Format key e.g., langEs, langZhCN
-                const fallbackKey = 'langEn';
-                const translation = el.dataset[translationKey] || el.dataset[fallbackKey]; // Get specific lang or fallback to English
+                const translationKey = formatDatasetKey(langCode);          // e.g., langFr, langZhcn
+                const fallbackKey = formatDatasetKey('en');                 // langEn
+                const translation = el.dataset[translationKey] || el.dataset[fallbackKey]; // Get specific lang or fallback to English dataset property
 
-                if (translation) {
-                    // Check for placeholder attributes (need specific handling)
-                    const placeholderKey = 'lang' + langCode.charAt(0).toUpperCase() + langCode.slice(1).replace('-', '') + 'Placeholder';
-                    const fallbackPlaceholderKey = 'langEnPlaceholder';
-                    const placeholderTranslation = el.dataset[placeholderKey] || el.dataset[fallbackPlaceholderKey];
+                if (translation !== undefined) { // Check if translation exists (even if empty string)
+                    // --- Handle Placeholders ---
+                    if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+                        const placeholderKey = formatDatasetKey(langCode, 'placeholder'); // e.g., langFrPlaceholder
+                        const fallbackPlaceholderKey = formatDatasetKey('en', 'placeholder'); // langEnPlaceholder
+                        const placeholderTranslation = el.dataset[placeholderKey] || el.dataset[fallbackPlaceholderKey];
 
-                    if (placeholderTranslation && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT')) {
-                        el.placeholder = placeholderTranslation;
-                    } else if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
-                        // If specific placeholder lang not found, try using general translation as placeholder
-                        el.placeholder = translation;
-                    } else if (el.tagName === 'TITLE') {
-                         document.title = translation; // Update page title
+                        if (placeholderTranslation !== undefined) {
+                             el.placeholder = placeholderTranslation;
+                        } else if (el.placeholder) {
+                             // Maybe keep existing placeholder if no translation found? Or clear it?
+                             // el.placeholder = ''; // Option: Clear if no translation
+                             console.warn(`No placeholder translation found for ${placeholderKey} or fallback on`, el);
+                        }
                     }
-                    else {
-                        el.textContent = translation; // Update text content for other elements
+
+                    // --- Handle Text Content ---
+                     // Exclude elements where only placeholder should change
+                    if (!((el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') && !el.value)) { // Don't overwrite input value
+                        if (el.tagName === 'TITLE') {
+                           document.title = translation; // Update page title specifically
+                        } else {
+                           el.textContent = translation; // Update text content for most elements
+                        }
                     }
-                } else {
-                     // Optional: Log if an element has data-lang-en but not the target lang
-                     // console.warn(`No translation found for key ${translationKey} on element:`, el);
+                } else if (el.dataset[fallbackKey]){ // Log if English exists but target lang doesn't
+                     console.warn(`No translation found for key '${translationKey}' on element:`, el);
                 }
             });
 
-             // Update Record button text dynamically if needed
-             updateRecordingUI(isRecording);
+             // Update Record button text dynamically using its specific data attributes
+             if(recordAudioButton) updateRecordingUI(isRecording);
+
              // Update loading overlay text if visible
              if (loadingOverlay.classList.contains('show')) {
                  const loadingP = loadingOverlay.querySelector('p');
                  if (loadingP) {
-                     loadingP.textContent = loadingP.dataset['lang' + langCode] || loadingP.dataset['langEn'] || "Loading...";
+                     const loadingKey = formatDatasetKey(langCode);
+                     const fallbackLoadingKey = formatDatasetKey('en');
+                     loadingP.textContent = loadingP.dataset[loadingKey] || loadingP.dataset[fallbackLoadingKey] || "Loading...";
                  }
              }
-             // Update genre select default option
-             const genreDefaultOption = genreSelect.querySelector('option[disabled]');
+             // Update genre select default option text
+             const genreDefaultOption = genreSelect ? genreSelect.querySelector('option[disabled]') : null;
              if (genreDefaultOption) {
-                  genreDefaultOption.textContent = genreDefaultOption.dataset['lang' + langCode] || genreDefaultOption.dataset['langEn'] || "-- Select --";
+                  const genreKey = formatDatasetKey(langCode);
+                  const fallbackGenreKey = formatDatasetKey('en');
+                  genreDefaultOption.textContent = genreDefaultOption.dataset[genreKey] || genreDefaultOption.dataset[fallbackGenreKey] || "-- Select --";
              }
 
-             // Update speech recognition language if supported and recorder instance exists
-             if (recognition) {
-                 recognition.lang = langCode === 'zh-CN' ? 'zh-CN' : langCode.split('-')[0] + '-' + langCode.split('-')[0].toUpperCase(); // Attempt standard BCP 47 format
-                 console.log("Updated speech recognition language to:", recognition.lang);
-             }
+            // Update speech recognition language if supported
+            if (isSpeechRecognitionSupported && recognition) {
+                // Attempt to stop/restart recognition if language changes while running?
+                // This might be complex depending on browser behavior.
+                // For simplicity, we just set the lang property. It might only take effect on next start.
+                const bcp47Map = { 'zh-CN': 'zh-CN', 'vi': 'vi-VN', 'ko': 'ko-KR', 'hi': 'hi-IN', 'ar': 'ar-SA', /* ... */ };
+                recognition.lang = bcp47Map[langCode] || (langCode.includes('-') ? langCode : `${langCode}-${langCode.toUpperCase()}`);
+                console.log("Updated speech recognition language setting to:", recognition.lang);
+            }
         }
 
 
@@ -1407,26 +2514,48 @@ Adhere strictly to this format and provide detailed, relevant content for each r
         function loadLanguagePreference() {
             try {
                 const savedLang = localStorage.getItem('mvAssistantLang');
-                if (savedLang && languageSelect.querySelector(`option[value="${savedLang}"]`)) {
-                    languageSelect.value = savedLang;
-                    return savedLang;
+                // Check if the saved language is actually an option in the select dropdown
+                if (savedLang && languageSelect && languageSelect.querySelector(`option[value="${savedLang}"]`)) {
+                    languageSelect.value = savedLang; // Set dropdown to saved value
+                    return savedLang; // Return the loaded language
                 }
             } catch (e) {
                 console.warn("Could not load language preference from localStorage:", e);
             }
-            return languageSelect.value; // Default to selected value in HTML ('en')
+            // If no valid saved preference, return the default value from the select element (should be 'en')
+            return languageSelect ? languageSelect.value : 'en';
         }
 
         // --- Event Listeners Setup --- //
         // Page Navigation
-        navLinks.forEach(link => { link.addEventListener('click', (e) => { e.preventDefault(); showPage(link.getAttribute('data-page')); }); });
-        if (exploreButton) { exploreButton.addEventListener('click', () => showPage('feature')); }
-        backButtons.forEach(button => { button.addEventListener('click', (e) => { e.preventDefault(); showPage('home'); }); });
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        if (exploreButton) {
+            exploreButton.addEventListener('click', () => showPage('feature'));
+        }
+        backButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Always go back to home for simplicity, could make more complex later
+                showPage('home');
+            });
+        });
 
         // Feature Page Buttons
-        if (generateConceptButton) { generateConceptButton.addEventListener('click', handleGenerateConcept); } else { console.error("FATAL: Generate Concept button not found!"); }
-        if (exploreMoreButton) { exploreMoreButton.addEventListener('click', handleExploreMore); } else { console.error("FATAL: Explore More button not found!"); }
-        if (regenerateButton) { regenerateButton.addEventListener('click', handleRegenerateConcept); } else { console.error("FATAL: Re-Generate button not found!"); }
+        if (generateConceptButton) {
+            generateConceptButton.addEventListener('click', handleGenerateConcept);
+        } else { console.error("FATAL: Generate Concept button not found!"); }
+        if (exploreMoreButton) {
+            exploreMoreButton.addEventListener('click', handleExploreMore);
+        } else { console.error("FATAL: Explore More button not found!"); }
+        if (regenerateButton) {
+            regenerateButton.addEventListener('click', handleRegenerateConcept);
+        } else { console.error("FATAL: Re-Generate button not found!"); }
 
         // Language Selector
         if (languageSelect) {
@@ -1435,19 +2564,19 @@ Adhere strictly to this format and provide detailed, relevant content for each r
                 updateLanguage(newLang);
                 saveLanguagePreference(newLang);
             });
-        }
+        } else { console.error("FATAL: Language select dropdown not found!"); }
 
         // Parallax Listeners
-        checkParallaxStatus();
-        window.addEventListener('scroll', handleScrollParallax, { passive: true });
-        window.addEventListener('resize', checkParallaxStatus);
+        checkParallaxStatus(); // Initial check
+        window.addEventListener('scroll', handleScrollParallax, { passive: true }); // Use passive listener for scroll performance
+        window.addEventListener('resize', checkParallaxStatus); // Re-check on resize
 
 
         // --- Initial Setup ---
-        const initialLang = loadLanguagePreference();
-        updateLanguage(initialLang); // Apply loaded/default language on start
-        showPage('home'); // Show the initial page
-        console.log("MV Assistant Initialized.");
+        const initialLang = loadLanguagePreference(); // Load saved lang or default
+        updateLanguage(initialLang); // Apply the language settings on page load
+        showPage('home'); // Show the initial page (e.g., home)
+        console.log("MV Assistant Initialized. Current Language:", currentLang);
 
     }); // End DOMContentLoaded
 </script>
